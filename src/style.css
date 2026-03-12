@@ -69,6 +69,7 @@ header {
 @media (prefers-reduced-motion: no-preference) {
     .card:hover {
         scale: 105%;
+        transition: scale 0.1s ease-in-out;
     }
 }
 
