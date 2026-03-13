@@ -47,6 +47,30 @@ header {
     z-index: 5;
 }
 
+button[popovertarget] {
+    background: none;
+    border: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+#btn-categories {
+    anchor-name: --btn-categories;
+}
+
+#popover-categories {
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+
+    position: fixed;
+    position-anchor: --btn-categories;
+    top: calc(anchor(bottom) + 1rem);
+    justify-self: anchor-center;
+}
+
 .products {
     display: grid;
     width: 100%;
