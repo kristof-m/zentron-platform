@@ -1,0 +1,19 @@
+{
+  "name": "wtech",
+  "version": "0.0.0",
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vite": "^8.0.0"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "serve": "tsc && vite build && vite preview"
+  },
+  "type": "module",
+  "dependencies": {
+    "modern-normalize": "^3.0.1"
+  }
+}
