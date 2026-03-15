@@ -161,12 +161,12 @@ button[popovertarget] {
     padding-inline: 0.2rem;
 }
 
-a:has(h1) {
+.home-link {
     color: var(--color-text);
     text-decoration: none;
 }
 
-a > h1 {
+.home-link > h1 {
     font-size: 1rem;
 }
 
