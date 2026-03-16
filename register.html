@@ -50,7 +50,75 @@
             </div>
         </header>
 
-        <main></main>
+        <main class="register-main">
+            <section class="register-shell" aria-label="Sign-up options">
+                <section class="register-social" aria-label="Social sign-up">
+                    <h2>You can also sign-up with these</h2>
+
+                    <button class="register-btn" type="button">Sign up with Google</button>
+                    <button class="register-btn" type="button">Sign up with Apple</button>
+                    <button class="register-btn" type="button">Sign up with Facebook</button>
+
+                    <p class="register-help">
+                        Already have an account?
+                        <a href="/signin">Sign-in here</a>
+                    </p>
+                </section>
+
+                <div class="register-divider" aria-hidden="true"></div>
+
+                <section class="register-form-wrap" aria-label="Create account form">
+                    <h2>Create a new account! Become a part of the community!</h2>
+
+                    <form class="register-form" action="#" method="post">
+                        <label for="username">User Name:</label>
+                        <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            placeholder="jankohorasko"
+                            autocomplete="username"
+                        />
+
+                        <label for="password">Password:</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="********"
+                            autocomplete="new-password"
+                        />
+
+                        <label for="email">E-mail:</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="jankohorasko67@yahoo.com"
+                            autocomplete="email"
+                        />
+
+                        <div class="terms-block">
+                            <p>
+                                By joining, you agree to our terms of service and
+                                acknowledge that your account data will be used to
+                                personalize your store experience.
+                            </p>
+                            <label class="terms-check" for="accept-terms">
+                                <input
+                                    id="accept-terms"
+                                    name="accept-terms"
+                                    type="checkbox"
+                                />
+                                I accept the terms and privacy policy.
+                            </label>
+                        </div>
+
+                        <button class="register-btn" type="submit">Join</button>
+                    </form>
+                </section>
+            </section>
+        </main>
         <footer></footer>
     </body>
 </html>
