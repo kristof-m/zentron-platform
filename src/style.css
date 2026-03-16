@@ -27,6 +27,7 @@
         --color-alt: hsl(0, 0%, 90%);
         --color-footer-bg: hsl(210, 18%, 88%);
         --color-footer-text: hsl(220, 25%, 12%);
+        --color-alt: hsl(0, 0%, 40%);
     }
 }
 
