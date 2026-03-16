@@ -7,6 +7,13 @@
     display: flex;
 }
 
+@media (aspect-ratio <= 2/3) {
+    .main-product {
+        flex-direction: column;
+        height: fit-content;
+    }
+}
+
 .product-image {
     height: 100%;
 
@@ -23,6 +30,7 @@
     display: flex;
     flex-direction: column;
     padding-inline-start: 0.5rem;
+    padding-block: 1rem;
 }
 
 .tags {
