@@ -16,6 +16,7 @@
 
 .product-image {
     height: 100%;
+    min-height: 15rem;
 
     flex-grow: 1;
     flex-shrink: 1;
@@ -42,4 +43,9 @@
     border: 1px solid var(--color-alt);
     padding-inline: 0.5rem;
     padding-block: 0.25rem;
+}
+
+.main-price {
+    font-weight: 700;
+    font-size: 2rem;
 }

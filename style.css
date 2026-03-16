@@ -252,7 +252,7 @@ button[popovertarget] {
     background-color: var(--color-alt);
 }
 
-.price {
+.product-price {
     width: fit-content;
     padding-inline: 0.2rem;
 
