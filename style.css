@@ -305,7 +305,7 @@ header {
 }
 
 .mobile-nav {
-    position: fixed;
+    position: sticky;
     bottom: 0;
 
     height: 3rem;
