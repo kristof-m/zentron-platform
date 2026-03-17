@@ -1,0 +1,16 @@
+@import "style.css";
+
+.deals-card {
+    display: flex;
+    width: 100%;
+    height: 20rem;
+    padding-block: 1.5rem;
+    gap: 0.5rem;
+}
+
+.deal-image {
+    flex-shrink: 1;
+    flex-grow: 1;
+    height: 100%;
+    background-color: var(--color-alt);
+}
