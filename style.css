@@ -189,7 +189,8 @@ button[popovertarget] {
     display: grid;
     width: 100%;
     gap: 1rem;
-    padding: 3rem;
+    padding-inline: 2rem;
+    padding-block: 1.5rem;
 
     border-top: 1px solid var(--color-alt);
 
