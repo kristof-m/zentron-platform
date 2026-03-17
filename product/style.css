@@ -36,6 +36,7 @@
     flex-direction: column;
 
     padding-inline-start: 0.5rem;
+    padding-inline-end: 1.5rem;
     padding-block: 1rem;
     gap: 1rem;
 
