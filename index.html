@@ -14,30 +14,50 @@
             <a class="home-link" href="/">
                 <h1>zentron</h1>
             </a>
-            <button
-                class="black-link no-mobile"
-                id="btn-categories"
-                popovertarget="popover-categories"
-            >
-                Categories
-            </button>
-            <ul popover class="dropdown" id="popover-categories">
-                <li>
-                    <a class="black-link" href="/categories/gaming">Gaming</a>
-                </li>
-                <li>
-                    <a class="black-link" href="/categories/pc">
-                        PC and Laptops
-                    </a>
-                </li>
-                <li>
-                    <a class="black-link" href="/categories/mobile">Mobile</a>
-                </li>
-            </ul>
+
+            <nav class="register-nav no-mobile" aria-label="Main navigation">
+                <a class="black-link" href="/categories">Categories</a>
+                <a class="black-link" href="#">Placeholder</a>
+                <a class="black-link" href="#">Placeholder</a>
+            </nav>
 
             <div class="spacer" aria-hidden="true"></div>
-            <a href="/login" class="black-link no-mobile"><p>Sign in</p></a>
-            <a href="/cart" class="black-link no-mobile">Cart</a>
+
+            <div class="header-tools">
+                <label class="search-box" for="login-search">
+                    <svg
+                        class="search-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <circle cx="11" cy="11" r="7" />
+                        <line x1="16.5" y1="16.5" x2="21" y2="21" />
+                    </svg>
+                    <input
+                        id="login-search"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search products"
+                    />
+                </label>
+
+                <button
+                    class="icon-button no-mobile"
+                    type="button"
+                    aria-label="Open cart"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <path d="M3 4h2l2 11h11l2-8H7" />
+                        <circle cx="10" cy="19" r="1.5" />
+                        <circle cx="17" cy="19" r="1.5" />
+                    </svg>
+                </button>
+            </div>
         </header>
 
         <article class="deals-card">
