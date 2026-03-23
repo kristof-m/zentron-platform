@@ -223,7 +223,10 @@ header {
 .product-image {
     display: block;
     width: 100%;
-    flex: 0 1;
+    max-height: 15rem;
+    flex: 1 1;
+
+    object-fit: cover;
     background-color: var(--color-alt);
 }
 
