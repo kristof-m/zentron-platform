@@ -1,0 +1,314 @@
+@import "style.css";
+
+.checkout-page {
+    background-color: var(--color-alt);
+}
+
+.checkout-header {
+    width: 100%;
+    border-bottom: 1px solid var(--color-alt);
+    background-color: var(--color-bg);
+}
+
+.checkout-header-inner {
+    width: min(84rem, 100%);
+    margin-inline: auto;
+    min-height: 4.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+    padding-inline: 1rem;
+}
+
+.nav-placeholder {
+    width: 5rem;
+    height: 1.8rem;
+    border: 1px solid var(--color-alt);
+    background-color: color-mix(in srgb, var(--color-alt) 82%, var(--color-bg));
+}
+
+.checkout-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.checkout-nav > .black-link {
+    min-width: 6.6rem;
+    text-align: center;
+    border: 1px solid var(--color-alt);
+    background-color: color-mix(in srgb, var(--color-alt) 82%, var(--color-bg));
+    padding: 0.45rem 0.55rem;
+    text-decoration: none;
+}
+
+.checkout-nav > .black-link.is-active {
+    font-weight: 700;
+    background-color: color-mix(in srgb, var(--color-alt) 92%, var(--color-bg));
+}
+
+.checkout-tools {
+    margin-inline-start: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.checkout-search {
+    min-width: 14.5rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border: 1px solid var(--color-alt);
+    background-color: color-mix(in srgb, var(--color-alt) 84%, var(--color-bg));
+    padding-inline: 0.6rem;
+}
+
+.checkout-search > input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--color-text);
+}
+
+.checkout-search > .search-icon {
+    flex: 0 0 auto;
+}
+
+.checkout-tools > .icon-button {
+    border-color: var(--color-alt);
+    background-color: color-mix(in srgb, var(--color-alt) 86%, var(--color-bg));
+}
+
+.checkout-steps {
+    width: min(84rem, 100%);
+    margin-inline: auto;
+    padding: 1.1rem 1rem 0.3rem;
+    text-align: center;
+}
+
+.checkout-steps > p {
+    margin: 0;
+}
+
+.step-sep {
+    margin-inline: 0.55rem;
+}
+
+.checkout-main {
+    width: min(84rem, 100%);
+    margin-inline: auto;
+    padding: 1.3rem 1rem 2.3rem;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: 1.1rem;
+    align-items: start;
+}
+
+.checkout-form-box,
+.checkout-summary {
+    background-color: color-mix(in srgb, var(--color-alt) 88%, var(--color-bg));
+    border: 1px solid color-mix(in srgb, var(--color-alt) 92%, var(--color-text));
+    padding: 1rem;
+}
+
+.checkout-form-box > h2,
+.checkout-summary > h2 {
+    margin: 0 0 0.9rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.checkout-form label {
+    font-size: 0.95rem;
+}
+
+.checkout-form input,
+.checkout-form select {
+    width: 100%;
+    min-height: 2.2rem;
+    border: 1px solid var(--color-alt);
+    background-color: color-mix(in srgb, var(--color-alt) 68%, var(--color-bg));
+    color: var(--color-text);
+    padding-inline: 0.5rem;
+}
+
+.field-row {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.field-row > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.field-row-zip-city {
+    grid-template-columns: 3fr 7fr;
+}
+
+.field-row-phone {
+    grid-template-columns: 3fr 7fr;
+}
+
+.checkbox-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.45rem;
+}
+
+.checkbox-row > label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.summary-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-bottom: 1rem;
+}
+
+.summary-lines > p {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.summary-total {
+    margin: 0 0 1rem;
+    font-weight: 700;
+}
+
+.checkout-btn {
+    width: 100%;
+    min-height: 2.5rem;
+    border: 1px solid var(--color-alt);
+    background-color: color-mix(in srgb, var(--color-alt) 80%, var(--color-bg));
+    color: var(--color-text);
+    text-align: center;
+    cursor: pointer;
+}
+
+.checkout-btn + .checkout-btn {
+    margin-top: 0.55rem;
+}
+
+.checkout-btn-primary {
+    background-color: color-mix(in srgb, var(--color-alt) 92%, var(--color-bg));
+    font-weight: 700;
+}
+
+@media (max-width: 70rem) {
+    .checkout-header-inner {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding-block: 0.7rem;
+    }
+
+    .checkout-tools {
+        margin-inline-start: 0;
+    }
+
+    .checkout-search {
+        min-width: 11.5rem;
+    }
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 48rem) {
+    .checkout-nav {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .checkout-nav > .black-link {
+        min-width: 0;
+        flex: 1 1 8rem;
+    }
+
+    .field-row-zip-city,
+    .field-row-phone {
+        grid-template-columns: 1fr;
+    }
+}
+
+.checkout-footer {
+    width: 100%;
+    margin-top: auto;
+    border-top: 1px solid var(--color-alt);
+    background-color: color-mix(in srgb, var(--color-alt) 82%, var(--color-bg));
+    padding: 2rem 1rem;
+}
+
+.checkout-footer-grid {
+    width: min(84rem, 100%);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.checkout-footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-inline: 0.8rem;
+}
+
+.checkout-footer-col + .checkout-footer-col {
+    border-left: 1px solid var(--color-alt);
+}
+
+.checkout-footer-col > h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.checkout-footer-col > p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+@media (max-width: 70rem) {
+    .checkout-footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .checkout-footer-col:nth-child(3) {
+        border-left: none;
+    }
+}
+
+@media (max-width: 48rem) {
+    .checkout-footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-footer-col + .checkout-footer-col {
+        border-left: none;
+        border-top: 1px solid var(--color-alt);
+        padding-top: 0.8rem;
+    }
+}

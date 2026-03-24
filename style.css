@@ -6,11 +6,11 @@
 
     color-scheme: light dark;
 
-    --color-text: black;
-    --color-bg: white;
-    --color-alt: hsl(0, 0%, 90%);
-    --color-footer-bg: hsl(215, 20%, 16%);
-    --color-footer-text: hsl(210, 25%, 96%);
+    --color-text: hsl(220, 24%, 14%);
+    --color-bg: hsl(210, 30%, 98%);
+    --color-alt: hsl(220, 12%, 84%);
+    --color-footer-bg: hsl(218, 18%, 24%);
+    --color-footer-text: hsl(210, 30%, 96%);
 
     color: var(--color-text);
     background-color: var(--color-bg);
@@ -22,12 +22,11 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --color-text: white;
-        --color-bg: black;
-        --color-alt: hsl(0, 0%, 90%);
-        --color-footer-bg: hsl(210, 18%, 88%);
-        --color-footer-text: hsl(220, 25%, 12%);
-        --color-alt: hsl(0, 0%, 40%);
+        --color-text: hsl(210, 24%, 90%);
+        --color-bg: hsl(222, 22%, 10%);
+        --color-alt: hsl(220, 12%, 34%);
+        --color-footer-bg: hsl(223, 18%, 16%);
+        --color-footer-text: hsl(210, 25%, 92%);
     }
 }
 
