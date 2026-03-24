@@ -2,14 +2,18 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" href="register.css" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="/checkout/completion.css"
+        />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="zentron login page" />
-        <title>zentron - login</title>
+        <meta name="description" content="zentron checkout completion page" />
+        <title>zentron - checkout completion</title>
     </head>
 
-    <body>
+    <body class="checkout-page">
         <header>
             <a class="home-link" href="/">
                 <h1>zentron</h1>
@@ -63,81 +67,54 @@
             </div>
         </header>
 
-        <main class="register-main">
-            <section class="register-shell" aria-label="Log-in options">
-                <section class="register-social" aria-label="Social login">
-                    <h2>You can also log-in with these:</h2>
+        <main class="checkout-completion-main">
+            <section class="completion-card" aria-label="Order completion card">
+                <h1>Payment complete</h1>
+                <p class="completion-note">
+                    Thank you for your order. A confirmation email has been
+                    sent.
+                </p>
 
-                    <button class="register-btn" type="button">
-                        Log in with Google
-                    </button>
-                    <button class="register-btn" type="button">
-                        Log in with Apple
-                    </button>
-                    <button class="register-btn" type="button">
-                        Log in with Facebook
-                    </button>
+                <div class="completion-fields">
+                    <div class="completion-field">
+                        <h2>Order ID</h2>
+                        <span class="value-placeholder">ZTR-2026-03-24017</span>
+                    </div>
 
-                    <p class="register-help">
-                        Don’t have an account? Create one
-                        <a href="/register.html">here</a>
-                    </p>
-                </section>
+                    <div class="completion-field">
+                        <h2>Total</h2>
+                        <span class="value-placeholder">1204 EUR</span>
+                    </div>
 
-                <div class="register-divider" aria-hidden="true"></div>
+                    <div class="completion-field">
+                        <h2>Expected shipping date:</h2>
+                        <span class="value-placeholder">28 March 2026</span>
+                    </div>
+                </div>
 
-                <section class="register-form-wrap" aria-label="Login form">
-                    <h2>Welcome back! Log in to your account.</h2>
-
-                    <form class="register-form" action="#" method="post">
-                        <label for="login-email">E-mail:</label>
-                        <input
-                            id="login-email"
-                            name="email"
-                            type="email"
-                            placeholder="jankohrasko67@yahoo.com"
-                            autocomplete="email"
-                        />
-
-                        <label for="login-password">Password:</label>
-                        <div class="password-row">
-                            <input
-                                id="login-password"
-                                name="password"
-                                type="password"
-                                placeholder="********"
-                                autocomplete="current-password"
-                            />
-                            <button class="forgot-btn" type="button">
-                                Forgot password?
-                            </button>
-                        </div>
-
-                        <button class="register-btn" type="submit">
-                            Login
-                        </button>
-                    </form>
-                </section>
+                <div class="checkout-link">
+                    <a href="/">Back to Homepage</a>
+                </div>
             </section>
         </main>
 
-        <footer class="site-footer">
-            <section class="footer-grid" aria-label="Footer information">
-                <section class="footer-col">
+        <footer class="checkout-footer" aria-label="Footer placeholders">
+            <section class="checkout-footer-grid">
+                <section class="checkout-footer-col">
                     <h2>About Zentron</h2>
                     <p>Something about being a good electronics store.</p>
                     <p>Our electronics sure are good, though.</p>
                     <p>New drops land every week!</p>
                 </section>
 
-                <section class="footer-col">
+                <section class="checkout-footer-col">
                     <h2>Support</h2>
                     <p>Shipping and delivery details</p>
                     <p>Returns and warranty info</p>
                     <p>Contact us: support@zentron.sk</p>
                 </section>
 
-                <section class="footer-col">
+                <section class="checkout-footer-col">
                     <h2>Social</h2>
                     <div class="social-row" aria-label="Social media links">
                         <a class="social-icon" href="#" aria-label="Instagram">
@@ -187,7 +164,7 @@
                     </p>
                 </section>
 
-                <section class="footer-col">
+                <section class="checkout-footer-col">
                     <h2>Company</h2>
                     <p>Careers and open roles</p>
                     <p>Partner and wholesale inquiries</p>
@@ -195,11 +172,5 @@
                 </section>
             </section>
         </footer>
-
-        <nav class="mobile-nav mobile-only">
-            <a class="black-link" href="/cart"><p>Cart</p></a>
-            <a class="black-link" href="/categories"><p>Categories</p></a>
-            <a class="black-link" href="/login"><p>Sign in</p></a>
-        </nav>
     </body>
 </html>

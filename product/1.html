@@ -15,8 +15,8 @@
                 <h1>zentron</h1>
             </a>
 
-            <nav class="checkout-nav no-mobile" aria-label="Main navigation">
-                <a class="black-link is-active" href="/categories">Categories</a>
+            <nav class="desktop-nav no-mobile" aria-label="Main navigation">
+                <a class="black-link" href="/categories">Categories</a>
                 <a class="black-link" href="#">Placeholder</a>
                 <a class="black-link" href="#">Placeholder</a>
                 <a class="black-link" href="#">Placeholder</a>
@@ -26,6 +26,12 @@
 
             <div class="header-tools">
                 <label class="search-box" for="login-search">
+                    <input
+                        id="login-search"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search products"
+                    />
                     <svg
                         class="search-icon"
                         viewBox="0 0 24 24"
@@ -35,12 +41,6 @@
                         <circle cx="11" cy="11" r="7" />
                         <line x1="16.5" y1="16.5" x2="21" y2="21" />
                     </svg>
-                    <input
-                        id="login-search"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search products"
-                    />
                 </label>
 
                 <a
@@ -65,7 +65,11 @@
 
         <main>
             <div class="main-product">
-                <img alt="Product image" class="main-image" />
+                <img
+                    alt="Photo of a PlayStation 5"
+                    class="main-image"
+                    src="/assets/ps5.jpg"
+                />
                 <div class="product-col">
                     <h1>PlayStation 5 Digital Edition</h1>
                     <div class="tags">
@@ -115,9 +119,10 @@
                 <a class="card" href="/product/1">
                     <img
                         class="product-image"
-                        alt="product image"
-                        width="256"
-                        height="256"
+                        alt="Photo of RAM sticks"
+                        src="/assets/ram.jpg"
+                        width="512"
+                        height="512"
                     />
                     <h1 class="product-name">Patriot DDR3 RAM 8GB</h1>
                     <p>awjdjh pwqwja hjh ahw awhoi</p>
@@ -130,9 +135,10 @@
                 <a class="card" href="/product/1">
                     <img
                         class="product-image"
-                        alt="product image"
-                        width="256"
-                        height="256"
+                        alt="Photo of an old iPhone"
+                        src="/assets/iphone.jpg"
+                        width="512"
+                        height="512"
                     />
                     <h1 class="product-name">iPhone 4</h1>
                     <p>awjdjh pwqwja hjh ahw awhoi</p>
@@ -145,9 +151,10 @@
                 <a class="card" href="/product/1">
                     <img
                         class="product-image"
-                        alt="product image"
-                        width="256"
-                        height="256"
+                        alt="Photo of a PlayStation 5"
+                        src="/assets/ps5.jpg"
+                        width="512"
+                        height="512"
                     />
                     <h1 class="product-name">PlayStation 5</h1>
                     <p>awjdjh pwqwja hjh ahw awhoi</p>
@@ -160,7 +167,72 @@
                 <a class="card" href="/product/1">
                     <img
                         class="product-image"
-                        alt="product image"
+                        alt="Photo of a Steam Deck"
+                        src="/assets/deck.jpg"
+                        width="512"
+                        height="512"
+                    />
+                    <h1 class="product-name">Steam Deck 64GB (fake)</h1>
+                    <p>awjdjh pwqwja hjh ahw awhoi</p>
+                    <div class="spacer" aria-hidden="true"></div>
+                    <p class="product-price">1499 €</p>
+                </a>
+            </article>
+
+            <article>
+                <a class="card" href="/product/1">
+                    <img
+                        class="product-image"
+                        alt="Photo of RAM sticks"
+                        src="/assets/ram.jpg"
+                        width="512"
+                        height="512"
+                    />
+                    <h1 class="product-name">Patriot DDR3 RAM 8GB</h1>
+                    <p>awjdjh pwqwja hjh ahw awhoi</p>
+                    <div class="spacer" aria-hidden="true"></div>
+                    <p class="product-price">1499 €</p>
+                </a>
+            </article>
+
+            <article>
+                <a class="card" href="/product/1">
+                    <img
+                        class="product-image"
+                        alt="Photo of an old iPhone"
+                        src="/assets/iphone.jpg"
+                        width="512"
+                        height="512"
+                    />
+                    <h1 class="product-name">iPhone 4</h1>
+                    <p>awjdjh pwqwja hjh ahw awhoi</p>
+                    <div class="spacer" aria-hidden="true"></div>
+                    <p class="product-price">1499 €</p>
+                </a>
+            </article>
+
+            <article>
+                <a class="card" href="/product/1">
+                    <img
+                        class="product-image"
+                        alt="Photo of a PlayStation 5"
+                        src="/assets/ps5.jpg"
+                        width="512"
+                        height="512"
+                    />
+                    <h1 class="product-name">PlayStation 5</h1>
+                    <p>awjdjh pwqwja hjh ahw awhoi</p>
+                    <div class="spacer" aria-hidden="true"></div>
+                    <p class="product-price">1499 €</p>
+                </a>
+            </article>
+
+            <article>
+                <a class="card" href="/product/1">
+                    <img
+                        class="product-image"
+                        alt="Photo of a Steam Deck"
+                        src="/assets/deck.jpg"
                         width="256"
                         height="256"
                     />
@@ -175,11 +247,28 @@
                 <a class="card" href="/product/1">
                     <img
                         class="product-image"
-                        alt="product image"
-                        width="256"
-                        height="256"
+                        alt="Photo of RAM sticks"
+                        src="/assets/ram.jpg"
+                        width="512"
+                        height="512"
                     />
                     <h1 class="product-name">Patriot DDR3 RAM 8GB</h1>
+                    <p>awjdjh pwqwja hjh ahw awhoi</p>
+                    <div class="spacer" aria-hidden="true"></div>
+                    <p class="product-price">1499 €</p>
+                </a>
+            </article>
+
+            <article>
+                <a class="card" href="/product/1">
+                    <img
+                        class="product-image"
+                        alt="Photo of an old iPhone"
+                        src="/assets/iphone.jpg"
+                        width="512"
+                        height="512"
+                    />
+                    <h1 class="product-name">iPhone 4</h1>
                     <p>awjdjh pwqwja hjh ahw awhoi</p>
                     <div class="spacer" aria-hidden="true"></div>
                     <p class="product-price">1499 €</p>

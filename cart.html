@@ -2,11 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" href="index.css" />
+        <link rel="stylesheet" type="text/css" href="cart.css" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="zentron store home page" />
-        <title>zentron</title>
+        <meta name="description" content="zentron shopping cart" />
+        <title>zentron - cart</title>
     </head>
 
     <body>
@@ -63,171 +63,73 @@
             </div>
         </header>
 
-        <article class="deals-card">
-            <img alt="Today's Deals" class="deal-image" />
-            <img alt="Deep Discounts" class="deal-image no-mobile" />
-        </article>
-
-        <main class="products">
-            <article>
-                <a class="card" href="/product/1">
+        <main class="cart-main">
+            <div class="items-col">
+                <article class="cart-item">
                     <img
-                        class="product-image"
-                        alt="Photo of RAM sticks"
-                        src="/assets/ram.jpg"
-                        width="512"
-                        height="512"
-                    />
-                    <h1 class="product-name">Patriot DDR3 RAM 8GB</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
-                    <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
-                </a>
-            </article>
-
-            <article>
-                <a class="card" href="/product/1">
-                    <img
-                        class="product-image"
-                        alt="Photo of an old iPhone"
-                        src="/assets/iphone.jpg"
-                        width="512"
-                        height="512"
-                    />
-                    <h1 class="product-name">iPhone 4</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
-                    <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
-                </a>
-            </article>
-
-            <article>
-                <a class="card" href="/product/1">
-                    <img
-                        class="product-image"
-                        alt="Photo of a PlayStation 5"
                         src="/assets/ps5.jpg"
+                        alt="PlayStation 5 Digital Edition"
                         width="512"
                         height="512"
+                        class="item-image"
                     />
-                    <h1 class="product-name">PlayStation 5</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
-                    <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
-                </a>
-            </article>
+                    <a class="black-link item-name" href="/product/1">
+                        PlayStation 5 Digital Edition
+                    </a>
 
-            <article>
-                <a class="card" href="/product/1">
-                    <img
-                        class="product-image"
-                        alt="Photo of a Steam Deck"
-                        src="/assets/deck.jpg"
-                        width="512"
-                        height="512"
-                    />
-                    <h1 class="product-name">Steam Deck 64GB (fake)</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
                     <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
-                </a>
-            </article>
 
-            <article>
-                <a class="card" href="/product/1">
+                    <div class="amount-controls">
+                        <button class="icon-button">-</button>
+                        <p class="item-amount">1</p>
+                        <button class="icon-button">+</button>
+                    </div>
+
+                    <p class="price">499 €</p>
+                </article>
+
+                <article class="cart-item">
                     <img
-                        class="product-image"
-                        alt="Photo of RAM sticks"
                         src="/assets/ram.jpg"
+                        alt="Patriot DDR3 RAM 8GB"
                         width="512"
                         height="512"
+                        class="item-image"
                     />
-                    <h1 class="product-name">Patriot DDR3 RAM 8GB</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
-                    <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
-                </a>
-            </article>
+                    <a class="black-link item-name" href="/product/1">
+                        Patriot DDR3 RAM 8GB
+                    </a>
 
-            <article>
-                <a class="card" href="/product/1">
-                    <img
-                        class="product-image"
-                        alt="Photo of an old iPhone"
-                        src="/assets/iphone.jpg"
-                        width="512"
-                        height="512"
-                    />
-                    <h1 class="product-name">iPhone 4</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
                     <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
-                </a>
-            </article>
 
-            <article>
-                <a class="card" href="/product/1">
-                    <img
-                        class="product-image"
-                        alt="Photo of a PlayStation 5"
-                        src="/assets/ps5.jpg"
-                        width="512"
-                        height="512"
-                    />
-                    <h1 class="product-name">PlayStation 5</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
-                    <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
-                </a>
-            </article>
+                    <div class="amount-controls">
+                        <button class="icon-button">-</button>
+                        <p class="item-amount">3</p>
+                        <button class="icon-button">+</button>
+                    </div>
 
-            <article>
-                <a class="card" href="/product/1">
-                    <img
-                        class="product-image"
-                        alt="Photo of a Steam Deck"
-                        src="/assets/deck.jpg"
-                        width="256"
-                        height="256"
-                    />
-                    <h1 class="product-name">Steam Deck 64GB (fake)</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
-                    <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
-                </a>
-            </article>
+                    <p class="price">1497 €</p>
+                </article>
+            </div>
 
-            <article>
-                <a class="card" href="/product/1">
-                    <img
-                        class="product-image"
-                        alt="Photo of RAM sticks"
-                        src="/assets/ram.jpg"
-                        width="512"
-                        height="512"
-                    />
-                    <h1 class="product-name">Patriot DDR3 RAM 8GB</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
-                    <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
+            <div class="payment-col">
+                <p class="price-row">
+                    <span>Price:</span>
+                    <span>1996 €</span>
+                </p>
+                <p class="price-row">
+                    <span>Delivery fee:</span>
+                    <span>4.99 €</span>
+                </p>
+                <p class="price-row total-price">
+                    <span>Total:</span>
+                    <span>2000.99 €</span>
+                </p>
+                <div class="spacer" aria-hidden="true"></div>
+                <a href="/checkout" class="black-link checkout-link">
+                    Checkout
                 </a>
-            </article>
-
-            <article>
-                <a class="card" href="/product/1">
-                    <img
-                        class="product-image"
-                        alt="Photo of an old iPhone"
-                        src="/assets/iphone.jpg"
-                        width="512"
-                        height="512"
-                    />
-                    <h1 class="product-name">iPhone 4</h1>
-                    <p>awjdjh pwqwja hjh ahw awhoi</p>
-                    <div class="spacer" aria-hidden="true"></div>
-                    <p class="product-price">1499 €</p>
-                </a>
-            </article>
+            </div>
         </main>
 
         <footer class="site-footer">

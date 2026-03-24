@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="/checkout/style.css" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="zentron checkout review page" />
+        <title>zentron - checkout</title>
+    </head>
+
+    <body class="checkout-page">
+        <header>
+            <a class="home-link" href="/">
+                <h1>zentron</h1>
+            </a>
+
+            <nav class="desktop-nav no-mobile" aria-label="Main navigation">
+                <a class="black-link" href="/categories">Categories</a>
+                <a class="black-link" href="#">Placeholder</a>
+                <a class="black-link" href="#">Placeholder</a>
+                <a class="black-link" href="#">Placeholder</a>
+            </nav>
+
+            <div class="spacer" aria-hidden="true"></div>
+
+            <div class="header-tools">
+                <label class="search-box" for="login-search">
+                    <input
+                        id="login-search"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search products"
+                    />
+                    <svg
+                        class="search-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <circle cx="11" cy="11" r="7" />
+                        <line x1="16.5" y1="16.5" x2="21" y2="21" />
+                    </svg>
+                </label>
+
+                <a
+                    class="icon-button no-mobile"
+                    href="/cart"
+                    aria-label="Open cart"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <path d="M3 4h2l2 11h11l2-8H7" />
+                        <circle cx="10" cy="19" r="1.5" />
+                        <circle cx="17" cy="19" r="1.5" />
+                    </svg>
+                </a>
+
+                <a href="/login" class="black-link no-mobile">Sign in</a>
+            </div>
+        </header>
+
+        <section class="checkout-steps" aria-label="Checkout steps">
+            <p>
+                <strong>Shipping</strong>
+                <span class="step-sep" aria-hidden="true">--------</span>
+                Review
+                <span class="step-sep" aria-hidden="true">--------</span>
+                Payment
+            </p>
+        </section>
+
+        <main class="checkout-main">
+            <section
+                class="checkout-layout"
+                aria-label="Checkout review layout"
+            >
+                <section class="checkout-form-box" aria-label="Customer form">
+                    <h2>Customer details</h2>
+
+                    <form class="checkout-form" action="#" method="post">
+                        <label for="country">Country</label>
+                        <select id="country" name="country">
+                            <option>Slovakia</option>
+                            <option>Czech Republic</option>
+                            <option>Austria</option>
+                        </select>
+
+                        <label for="first-name">First name</label>
+                        <input
+                            id="first-name"
+                            name="first-name"
+                            type="text"
+                            placeholder="First name"
+                        />
+
+                        <label for="last-name">Last name</label>
+                        <input
+                            id="last-name"
+                            name="last-name"
+                            type="text"
+                            placeholder="Last name"
+                        />
+
+                        <label for="address-1">Address 1</label>
+                        <input
+                            id="address-1"
+                            name="address-1"
+                            type="text"
+                            placeholder="Street and number"
+                        />
+
+                        <label for="address-2">Address 2</label>
+                        <input
+                            id="address-2"
+                            name="address-2"
+                            type="text"
+                            placeholder="Apartment / floor (optional)"
+                        />
+
+                        <div class="field-row field-row-zip-city">
+                            <div>
+                                <label for="zip">ZIP code</label>
+                                <input
+                                    id="zip"
+                                    name="zip"
+                                    type="text"
+                                    placeholder="04001"
+                                />
+                            </div>
+                            <div>
+                                <label for="city">City</label>
+                                <input
+                                    id="city"
+                                    name="city"
+                                    type="text"
+                                    placeholder="Kosice"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="field-row field-row-phone">
+                            <div>
+                                <label for="phone-prefix">Phone prefix</label>
+                                <input
+                                    id="phone-prefix"
+                                    name="phone-prefix"
+                                    type="text"
+                                    placeholder="+421"
+                                />
+                            </div>
+                            <div>
+                                <label for="phone-number">Phone number</label>
+                                <input
+                                    id="phone-number"
+                                    name="phone-number"
+                                    type="tel"
+                                    placeholder="900 000 000"
+                                />
+                            </div>
+                        </div>
+
+                        <label for="email">Email</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="name@email.com"
+                        />
+
+                        <div class="checkbox-row">
+                            <label
+                                ><input type="checkbox" checked /> Terms of
+                                Service</label
+                            >
+                            <label
+                                ><input type="checkbox" checked /> Subscribe to
+                                newsletter</label
+                            >
+                        </div>
+                    </form>
+                </section>
+
+                <aside class="checkout-summary" aria-label="Order summary">
+                    <h2>Order summary</h2>
+
+                    <p class="price-row">
+                        <span>Subtotal</span><span>999 EUR</span>
+                    </p>
+                    <p class="price-row">
+                        <span>Delivery</span><span>6 EUR</span>
+                    </p>
+                    <p class="price-row">
+                        <span>Tax</span><span>199 EUR</span>
+                    </p>
+
+                    <p class="price-row total-price">
+                        <span>Total:</span><span>1204 EUR</span>
+                    </p>
+
+                    <div class="checkout-link">
+                        <a href="/checkout/review">Go to review</a>
+                    </div>
+
+                    <div class="checkout-link">
+                        <a href="/cart">Go back</a>
+                    </div>
+                </aside>
+            </section>
+        </main>
+        <footer class="checkout-footer" aria-label="Footer placeholders">
+            <section class="checkout-footer-grid">
+                <section class="checkout-footer-col">
+                    <h2>About Zentron</h2>
+                    <p>Something about being a good electronics store.</p>
+                    <p>Our electronics sure are good, though.</p>
+                    <p>New drops land every week!</p>
+                </section>
+
+                <section class="checkout-footer-col">
+                    <h2>Support</h2>
+                    <p>Shipping and delivery details</p>
+                    <p>Returns and warranty info</p>
+                    <p>Contact us: support@zentron.sk</p>
+                </section>
+
+                <section class="checkout-footer-col">
+                    <h2>Social</h2>
+                    <div class="social-row" aria-label="Social media links">
+                        <a class="social-icon" href="#" aria-label="Instagram">
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                                focusable="false"
+                            >
+                                <rect
+                                    x="3"
+                                    y="3"
+                                    width="18"
+                                    height="18"
+                                    rx="5"
+                                    ry="5"
+                                />
+                                <circle cx="12" cy="12" r="4" />
+                                <circle cx="17.5" cy="6.5" r="1" />
+                            </svg>
+                        </a>
+                        <a class="social-icon" href="#" aria-label="Twitter">
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                                focusable="false"
+                            >
+                                <path
+                                    d="M21 6.5c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.2 1.7-2.1-.8.5-1.7.8-2.6 1-1.6-1.7-4.4-.8-4.7 1.6-.1.4 0 .8.1 1.1-3.2-.2-6-1.7-7.9-4.1-1 1.9-.4 4.3 1.4 5.5-.6 0-1.2-.2-1.8-.5 0 2 1.4 3.7 3.3 4.1-.6.2-1.3.2-1.9.1.5 1.7 2.1 2.9 3.9 3-1.6 1.3-3.7 1.9-5.7 1.7 1.9 1.2 4.2 1.9 6.6 1.9 7.9 0 12.4-6.8 12.1-12.9.8-.5 1.4-1.2 1.9-2"
+                                />
+                            </svg>
+                        </a>
+                        <a class="social-icon" href="#" aria-label="Facebook">
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                                focusable="false"
+                            >
+                                <path
+                                    d="M14 8h3V4h-3c-2.5 0-4 1.5-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8c0-.7.3-1 1-1"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                    <p>
+                        Follow us for hardware drops, deals and
+                        behind-the-scenes builds!
+                    </p>
+                </section>
+
+                <section class="checkout-footer-col">
+                    <h2>Company</h2>
+                    <p>Careers and open roles</p>
+                    <p>Partner and wholesale inquiries</p>
+                    <p>Kosice, KE - Online only storefront</p>
+                </section>
+            </section>
+        </footer>
+    </body>
+</html>

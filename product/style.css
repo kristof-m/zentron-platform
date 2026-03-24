@@ -29,7 +29,15 @@ main {
     flex-grow: 2;
     flex-shrink: 1;
 
+    object-fit: contain;
+
     background-color: var(--color-alt);
+}
+
+@media (aspect-ratio <= 2/3) {
+    .main-image {
+        height: 20rem;
+    }
 }
 
 .product-col {

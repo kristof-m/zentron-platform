@@ -1,0 +1,4 @@
+ram.jpg: https://unsplash.com/photos/green-circuit-board-close-up-photography-ING1Uf1Fc30
+ps5.jpg: https://unsplash.com/photos/white-playstation-five-console-and-controller-ads33nL7V4k
+iphone.jpg: https://unsplash.com/photos/silver-iphone-6-on-black-background-smHExRF9v00
+deck.jpg: https://unsplash.com/photos/a-person-holding-a-smart-phone-in-their-hand-fim2B-eoFDE
