@@ -23,13 +23,16 @@
 
 .completion-card {
     width: min(36rem, 100%);
-    background-color: color-mix(in srgb, var(--color-alt) 88%, var(--color-bg));
-    border: 1px solid color-mix(in srgb, var(--color-alt) 92%, var(--color-text));
-    padding: 2rem 1.6rem;
+    min-height: 34rem;
+    background-color: hsl(220, 16%, 14%);
+    color: hsl(210, 24%, 92%);
+    border: 1px solid hsl(220, 14%, 28%);
+    box-shadow: 0 0.7rem 1.4rem color-mix(in srgb, black 24%, transparent);
+    padding: 2.4rem 1.7rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.3rem;
+    gap: 1.6rem;
 }
 
 .completion-card > h1 {
@@ -43,13 +46,14 @@
     margin: -0.35rem 0 0;
     text-align: center;
     line-height: 1.4;
+    color: hsl(210, 18%, 78%);
 }
 
 .completion-fields {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.3rem;
 }
 
 .completion-field {
@@ -71,19 +75,21 @@
     justify-content: center;
     width: min(19rem, 88%);
     min-height: 1.75rem;
-    border: 1px solid var(--color-alt);
-    background-color: color-mix(in srgb, var(--color-alt) 72%, var(--color-bg));
+    border: 1px solid hsl(220, 14%, 34%);
+    background-color: hsl(220, 15%, 20%);
+    color: hsl(210, 26%, 94%);
     font-weight: 600;
 }
 
 .completion-btn {
     width: 100%;
     min-height: 2.9rem;
-    border: 1px solid var(--color-alt);
-    background-color: color-mix(in srgb, var(--color-alt) 92%, var(--color-bg));
-    color: var(--color-text);
+    border: 1px solid hsl(210, 22%, 84%);
+    background-color: hsl(210, 18%, 92%);
+    color: hsl(220, 18%, 12%);
     font-weight: 700;
     cursor: pointer;
+    margin-top: auto;
 }
 
 @media (max-width: 48rem) {
