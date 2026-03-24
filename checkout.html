@@ -10,60 +10,56 @@
     </head>
 
     <body class="checkout-page">
-        <header class="checkout-header">
-            <div class="checkout-header-inner">
-                <a class="home-link" href="/">
-                    <h1>zentron</h1>
+        <header>
+            <a class="home-link" href="/">
+                <h1>zentron</h1>
+            </a>
+
+            <nav class="desktop-nav no-mobile" aria-label="Main navigation">
+                <a class="black-link" href="/categories">Categories</a>
+                <a class="black-link" href="#">Placeholder</a>
+                <a class="black-link" href="#">Placeholder</a>
+                <a class="black-link" href="#">Placeholder</a>
+            </nav>
+
+            <div class="spacer" aria-hidden="true"></div>
+
+            <div class="header-tools">
+                <label class="search-box" for="login-search">
+                    <input
+                        id="login-search"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search products"
+                    />
+                    <svg
+                        class="search-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <circle cx="11" cy="11" r="7" />
+                        <line x1="16.5" y1="16.5" x2="21" y2="21" />
+                    </svg>
+                </label>
+
+                <a
+                    class="icon-button no-mobile"
+                    href="/cart"
+                    aria-label="Open cart"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <path d="M3 4h2l2 11h11l2-8H7" />
+                        <circle cx="10" cy="19" r="1.5" />
+                        <circle cx="17" cy="19" r="1.5" />
+                    </svg>
                 </a>
 
-                <span class="nav-placeholder" aria-hidden="true"></span>
-
-                <nav class="checkout-nav" aria-label="Checkout navigation">
-                    <a class="black-link is-active" href="/categories"
-                        >Categories</a
-                    >
-                    <a class="black-link" href="#" aria-label="placeholder link"
-                        >Placeholder</a
-                    >
-                    <a class="black-link" href="#" aria-label="placeholder link"
-                        >Placeholder</a
-                    >
-                    <a class="black-link" href="#" aria-label="placeholder link"
-                        >Placeholder</a
-                    >
-                </nav>
-
-                <div class="checkout-tools">
-                    <label class="checkout-search" for="checkout-search">
-                        <input
-                            id="checkout-search"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search products"
-                        />
-                        <svg
-                            class="search-icon"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                            focusable="false"
-                        >
-                            <circle cx="11" cy="11" r="7" />
-                            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-                        </svg>
-                    </label>
-
-                    <a class="icon-button" href="/cart" aria-label="Open cart">
-                        <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                            focusable="false"
-                        >
-                            <path d="M3 4h2l2 11h11l2-8H7" />
-                            <circle cx="10" cy="19" r="1.5" />
-                            <circle cx="17" cy="19" r="1.5" />
-                        </svg>
-                    </a>
-                </div>
+                <a href="/login" class="black-link no-mobile">Sign in</a>
             </div>
         </header>
 

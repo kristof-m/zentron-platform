@@ -15,8 +15,8 @@
                 <h1>zentron</h1>
             </a>
 
-            <nav class="checkout-nav no-mobile" aria-label="Main navigation">
-                <a class="black-link is-active" href="/categories">Categories</a>
+            <nav class="desktop-nav no-mobile" aria-label="Main navigation">
+                <a class="black-link" href="/categories">Categories</a>
                 <a class="black-link" href="#">Placeholder</a>
                 <a class="black-link" href="#">Placeholder</a>
                 <a class="black-link" href="#">Placeholder</a>
@@ -26,6 +26,12 @@
 
             <div class="header-tools">
                 <label class="search-box" for="login-search">
+                    <input
+                        id="login-search"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search products"
+                    />
                     <svg
                         class="search-icon"
                         viewBox="0 0 24 24"
@@ -35,12 +41,6 @@
                         <circle cx="11" cy="11" r="7" />
                         <line x1="16.5" y1="16.5" x2="21" y2="21" />
                     </svg>
-                    <input
-                        id="login-search"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search products"
-                    />
                 </label>
 
                 <a

@@ -51,27 +51,18 @@ header {
     z-index: 5;
 }
 
-.checkout-nav,
-.register-nav {
+.desktop-nav {
     display: flex;
     align-items: center;
     gap: 0.6rem;
 }
 
-.checkout-nav > .black-link,
-.register-nav > .black-link {
+.desktop-nav > .black-link {
     min-width: 6.6rem;
     text-align: center;
-    border: 1px solid var(--color-alt);
     background-color: transparent;
     padding: 0.45rem 0.55rem;
     text-decoration: none;
-}
-
-.checkout-nav > .black-link.is-active,
-.register-nav > .black-link.is-active {
-    font-weight: 700;
-    border-color: var(--color-text);
 }
 
 .header-tools {
