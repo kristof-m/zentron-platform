@@ -34,6 +34,12 @@ main {
     background-color: var(--color-alt);
 }
 
+@media (aspect-ratio <= 2/3) {
+    .main-image {
+        height: 20rem;
+    }
+}
+
 .product-col {
     height: 100%;
 
