@@ -39,6 +39,12 @@
     text-align: center;
 }
 
+.completion-note {
+    margin: -0.35rem 0 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
 .completion-fields {
     width: 100%;
     display: flex;
@@ -60,11 +66,14 @@
 }
 
 .value-placeholder {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: min(19rem, 88%);
-    height: 1.35rem;
+    min-height: 1.75rem;
     border: 1px solid var(--color-alt);
     background-color: color-mix(in srgb, var(--color-alt) 72%, var(--color-bg));
+    font-weight: 600;
 }
 
 .completion-btn {
