@@ -192,6 +192,10 @@
     font-weight: 700;
 }
 
+.review-fields {
+    display: contents;
+}
+
 .checkout-form {
     display: flex;
     flex-direction: column;
