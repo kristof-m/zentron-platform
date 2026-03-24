@@ -209,6 +209,9 @@ header {
 
 .product-name {
     font-size: 1.3rem;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
 }
 
 .product-image {
@@ -364,4 +367,21 @@ header {
     .mobile-only {
         display: none;
     }
+}
+
+.card-tags {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    height: fit-content;
+
+    overflow-x: hidden;
+}
+
+.card-tag {
+    margin: 0;
+    border: 1px solid var(--color-alt);
+    padding-inline: 0.5rem;
+    padding-block: 0.25rem;
+    height: fit-content;
 }
