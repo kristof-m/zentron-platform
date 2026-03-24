@@ -8,9 +8,62 @@
     gap: 0.5rem;
 }
 
-.deal-image {
+.deal-tile {
+    position: relative;
     flex-shrink: 1;
     flex-grow: 1;
     height: 100%;
+    overflow: hidden;
+    color: hsl(0, 0%, 98%);
+    text-decoration: none;
+    border: 1px solid var(--color-alt);
+}
+
+.deal-tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, black 10%, transparent) 10%,
+        color-mix(in srgb, black 55%, transparent) 90%
+    );
+}
+
+.deal-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     background-color: var(--color-alt);
+}
+
+.deal-copy {
+    position: absolute;
+    inset-inline: 1rem;
+    inset-block-end: 1rem;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.deal-copy > h2,
+.deal-copy > p {
+    margin: 0;
+}
+
+.deal-kicker {
+    width: fit-content;
+    border: 1px solid color-mix(in srgb, white 75%, transparent);
+    background-color: color-mix(in srgb, black 35%, transparent);
+    padding: 0.25rem 0.45rem;
+    font-weight: 600;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .deal-tile:hover .deal-image,
+    .deal-tile:focus .deal-image {
+        transform: scale(1.03);
+        transition: transform 0.2s ease-in-out;
+    }
 }
