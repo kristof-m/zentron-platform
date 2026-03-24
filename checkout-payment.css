@@ -1,18 +1,5 @@
 @import "checkout.css";
 
-.checkout-page-heading {
-    width: min(84rem, 100%);
-    margin-inline: auto;
-    padding: 1rem 1rem 0;
-}
-
-.checkout-page-heading > h2 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: lowercase;
-}
-
 .payment-form {
     display: flex;
     flex-direction: column;
