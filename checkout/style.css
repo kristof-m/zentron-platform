@@ -1,8 +1,4 @@
-@import "style.css";
-
-.checkout-page {
-    background-color: var(--color-bg);
-}
+@import "/style.css";
 
 .checkout-header {
     width: 100%;
@@ -180,8 +176,14 @@
 
 .checkout-form-box,
 .checkout-summary {
+<<<<<<< HEAD:checkout.css
     background-color: transparent;
     border: 1px solid var(--color-alt);
+=======
+    background-color: color-mix(in srgb, var(--color-alt) 88%, var(--color-bg));
+    border: 1px solid
+        color-mix(in srgb, var(--color-alt) 92%, var(--color-text));
+>>>>>>> 246a6cf (Move checkout pages into folder):checkout/style.css
     padding: 1rem;
 }
 
@@ -279,6 +281,14 @@
 
 .checkout-btn-primary {
     font-weight: 700;
+}
+
+.checkout-link {
+    font-weight: 700;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--color-alt);
+    text-align: center;
 }
 
 @media (max-width: 70rem) {
