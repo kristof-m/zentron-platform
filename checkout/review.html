@@ -89,105 +89,111 @@
                     <h2>Customer details</h2>
 
                     <form class="checkout-form" action="#" method="post">
-                        <label for="country">Country</label>
-                        <select id="country" name="country">
-                            <option>Slovakia</option>
-                            <option>Czech Republic</option>
-                            <option>Austria</option>
-                        </select>
+                        <fieldset disabled class="review-fields">
+                            <label for="country">Country</label>
+                            <select id="country" name="country">
+                                <option>Slovakia</option>
+                                <option>Czech Republic</option>
+                                <option>Austria</option>
+                            </select>
 
-                        <label for="first-name">First name</label>
-                        <input
-                            id="first-name"
-                            name="first-name"
-                            type="text"
-                            placeholder="First name"
-                        />
+                            <label for="first-name">First name</label>
+                            <input
+                                id="first-name"
+                                name="first-name"
+                                type="text"
+                                placeholder="First name"
+                            />
 
-                        <label for="last-name">Last name</label>
-                        <input
-                            id="last-name"
-                            name="last-name"
-                            type="text"
-                            placeholder="Last name"
-                        />
+                            <label for="last-name">Last name</label>
+                            <input
+                                id="last-name"
+                                name="last-name"
+                                type="text"
+                                placeholder="Last name"
+                            />
 
-                        <label for="address-1">Address 1</label>
-                        <input
-                            id="address-1"
-                            name="address-1"
-                            type="text"
-                            placeholder="Street and number"
-                        />
+                            <label for="address-1">Address 1</label>
+                            <input
+                                id="address-1"
+                                name="address-1"
+                                type="text"
+                                placeholder="Street and number"
+                            />
 
-                        <label for="address-2">Address 2</label>
-                        <input
-                            id="address-2"
-                            name="address-2"
-                            type="text"
-                            placeholder="Apartment / floor (optional)"
-                        />
+                            <label for="address-2">Address 2</label>
+                            <input
+                                id="address-2"
+                                name="address-2"
+                                type="text"
+                                placeholder="Apartment / floor (optional)"
+                            />
 
-                        <div class="field-row field-row-zip-city">
-                            <div>
-                                <label for="zip">ZIP code</label>
-                                <input
-                                    id="zip"
-                                    name="zip"
-                                    type="text"
-                                    placeholder="04001"
-                                />
+                            <div class="field-row field-row-zip-city">
+                                <div>
+                                    <label for="zip">ZIP code</label>
+                                    <input
+                                        id="zip"
+                                        name="zip"
+                                        type="text"
+                                        placeholder="04001"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="city">City</label>
+                                    <input
+                                        id="city"
+                                        name="city"
+                                        type="text"
+                                        placeholder="Kosice"
+                                    />
+                                </div>
                             </div>
-                            <div>
-                                <label for="city">City</label>
-                                <input
-                                    id="city"
-                                    name="city"
-                                    type="text"
-                                    placeholder="Kosice"
-                                />
-                            </div>
-                        </div>
 
-                        <div class="field-row field-row-phone">
-                            <div>
-                                <label for="phone-prefix">Phone prefix</label>
-                                <input
-                                    id="phone-prefix"
-                                    name="phone-prefix"
-                                    type="text"
-                                    placeholder="+421"
-                                />
+                            <div class="field-row field-row-phone">
+                                <div>
+                                    <label for="phone-prefix"
+                                        >Phone prefix</label
+                                    >
+                                    <input
+                                        id="phone-prefix"
+                                        name="phone-prefix"
+                                        type="text"
+                                        placeholder="+421"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="phone-number"
+                                        >Phone number</label
+                                    >
+                                    <input
+                                        id="phone-number"
+                                        name="phone-number"
+                                        type="tel"
+                                        placeholder="900 000 000"
+                                    />
+                                </div>
                             </div>
-                            <div>
-                                <label for="phone-number">Phone number</label>
-                                <input
-                                    id="phone-number"
-                                    name="phone-number"
-                                    type="tel"
-                                    placeholder="900 000 000"
-                                />
+
+                            <label for="email">Email</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder="name@email.com"
+                            />
+
+                            <div class="checkbox-row">
+                                <label
+                                    ><input type="checkbox" checked /> Terms of
+                                    Service</label
+                                >
+                                <label
+                                    ><input type="checkbox" checked /> Subscribe
+                                    to newsletter</label
+                                >
                             </div>
-                        </div>
-
-                        <label for="email">Email</label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            placeholder="name@email.com"
-                        />
-
-                        <div class="checkbox-row">
-                            <label
-                                ><input type="checkbox" checked /> Terms of
-                                Service</label
-                            >
-                            <label
-                                ><input type="checkbox" checked /> Subscribe to
-                                newsletter</label
-                            >
-                        </div>
+                        </fieldset>
                     </form>
                 </section>
 
@@ -213,7 +219,7 @@
                     </div>
 
                     <div class="checkout-link">
-                        <a href="/cart">Go back</a>
+                        <a href="/checkout">Go back</a>
                     </div>
                 </aside>
             </section>
