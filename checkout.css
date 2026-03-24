@@ -1,7 +1,7 @@
 @import "style.css";
 
 .checkout-page {
-    background-color: var(--color-alt);
+    background-color: var(--color-bg);
 }
 
 .checkout-header {
@@ -25,7 +25,7 @@
     width: 5rem;
     height: 1.8rem;
     border: 1px solid var(--color-alt);
-    background-color: color-mix(in srgb, var(--color-alt) 82%, var(--color-bg));
+    background-color: transparent;
 }
 
 .checkout-nav {
@@ -38,14 +38,14 @@
     min-width: 6.6rem;
     text-align: center;
     border: 1px solid var(--color-alt);
-    background-color: color-mix(in srgb, var(--color-alt) 82%, var(--color-bg));
+    background-color: transparent;
     padding: 0.45rem 0.55rem;
     text-decoration: none;
 }
 
 .checkout-nav > .black-link.is-active {
     font-weight: 700;
-    background-color: color-mix(in srgb, var(--color-alt) 92%, var(--color-bg));
+    border-color: var(--color-text);
 }
 
 .checkout-tools {
@@ -63,7 +63,7 @@
     justify-content: space-between;
     gap: 0.5rem;
     border: 1px solid var(--color-alt);
-    background-color: color-mix(in srgb, var(--color-alt) 84%, var(--color-bg));
+    background-color: transparent;
     padding-inline: 0.6rem;
 }
 
@@ -81,7 +81,7 @@
 
 .checkout-tools > .icon-button {
     border-color: var(--color-alt);
-    background-color: color-mix(in srgb, var(--color-alt) 86%, var(--color-bg));
+    background-color: transparent;
 }
 
 .checkout-steps {
@@ -114,8 +114,8 @@
 
 .checkout-form-box,
 .checkout-summary {
-    background-color: color-mix(in srgb, var(--color-alt) 88%, var(--color-bg));
-    border: 1px solid color-mix(in srgb, var(--color-alt) 92%, var(--color-text));
+    background-color: transparent;
+    border: 1px solid var(--color-alt);
     padding: 1rem;
 }
 
@@ -141,7 +141,7 @@
     width: 100%;
     min-height: 2.2rem;
     border: 1px solid var(--color-alt);
-    background-color: color-mix(in srgb, var(--color-alt) 68%, var(--color-bg));
+    background-color: transparent;
     color: var(--color-text);
     padding-inline: 0.5rem;
 }
@@ -200,8 +200,8 @@
 .checkout-btn {
     width: 100%;
     min-height: 2.5rem;
-    border: 1px solid var(--color-alt);
-    background-color: color-mix(in srgb, var(--color-alt) 80%, var(--color-bg));
+    border: 1px solid var(--color-text);
+    background-color: transparent;
     color: var(--color-text);
     text-align: center;
     cursor: pointer;
@@ -212,7 +212,6 @@
 }
 
 .checkout-btn-primary {
-    background-color: color-mix(in srgb, var(--color-alt) 92%, var(--color-bg));
     font-weight: 700;
 }
 
@@ -257,7 +256,8 @@
     width: 100%;
     margin-top: auto;
     border-top: 1px solid var(--color-alt);
-    background-color: color-mix(in srgb, var(--color-alt) 82%, var(--color-bg));
+    background-color: var(--color-footer-bg);
+    color: var(--color-footer-text);
     padding: 2rem 1rem;
 }
 

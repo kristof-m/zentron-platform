@@ -24,10 +24,9 @@
 .completion-card {
     width: min(36rem, 100%);
     min-height: 30rem;
-    background-color: hsl(220, 16%, 14%);
-    color: hsl(210, 24%, 92%);
-    border: 1px solid hsl(220, 14%, 28%);
-    box-shadow: 0 0.7rem 1.4rem color-mix(in srgb, black 24%, transparent);
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-alt);
     padding: 2.4rem 1.7rem;
     display: flex;
     flex-direction: column;
@@ -46,7 +45,7 @@
     margin: 0 0 1.4rem;
     text-align: center;
     line-height: 1.4;
-    color: hsl(210, 18%, 78%);
+    color: var(--color-text);
     max-width: 30ch;
 }
 
@@ -77,18 +76,18 @@
     justify-content: center;
     width: min(19rem, 88%);
     min-height: 1.75rem;
-    border: 1px solid hsl(220, 14%, 34%);
-    background-color: hsl(220, 15%, 20%);
-    color: hsl(210, 26%, 94%);
+    border: 1px solid var(--color-alt);
+    background-color: transparent;
+    color: var(--color-text);
     font-weight: 600;
 }
 
 .completion-btn {
     width: 100%;
     min-height: 2.9rem;
-    border: 1px solid hsl(210, 22%, 84%);
-    background-color: hsl(210, 18%, 92%);
-    color: hsl(220, 18%, 12%);
+    border: 1px solid var(--color-text);
+    background-color: transparent;
+    color: var(--color-text);
     font-weight: 700;
     cursor: pointer;
     margin-top: auto;
