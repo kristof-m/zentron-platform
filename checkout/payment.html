@@ -157,21 +157,27 @@
                 <aside class="checkout-summary" aria-label="Order summary">
                     <h2>Order summary</h2>
 
-                    <div class="summary-lines">
-                        <p><span>Subtotal</span><span>999 EUR</span></p>
-                        <p><span>Delivery</span><span>6 EUR</span></p>
-                        <p><span>Tax</span><span>199 EUR</span></p>
+                    <p class="price-row">
+                        <span>Subtotal</span><span>999 EUR</span>
+                    </p>
+                    <p class="price-row">
+                        <span>Delivery</span><span>6 EUR</span>
+                    </p>
+                    <p class="price-row">
+                        <span>Tax</span><span>199 EUR</span>
+                    </p>
+
+                    <p class="price-row total-price">
+                        <span>Total:</span><span>1204 EUR</span>
+                    </p>
+
+                    <div class="checkout-link">
+                        <a href="/checkout/completion">Confirm</a>
                     </div>
 
-                    <p class="summary-total">Total cost 1204 EUR</p>
-
-                    <button
-                        type="button"
-                        class="checkout-btn checkout-btn-primary"
-                    >
-                        Confirm
-                    </button>
-                    <button type="button" class="checkout-btn">Go back</button>
+                    <div class="checkout-link">
+                        <a href="/cart">Go back</a>
+                    </div>
                 </aside>
             </section>
         </main>
