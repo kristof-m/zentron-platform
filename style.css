@@ -311,17 +311,24 @@ header {
     display: grid;
     place-items: center;
     border: 1px solid currentColor;
-    color: currentColor;
 }
 
-.social-icon > svg {
+.social-icon > div {
     width: 1rem;
     height: 1rem;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    background-color: var(--color-footer-text);
+}
+
+.social-ig {
+    mask: url(/assets/Instagram.svg) no-repeat center / contain;
+}
+
+.social-tw {
+    mask: url(/assets/Twitter.svg) no-repeat center / contain;
+}
+
+.social-fb {
+    mask: url(/assets/Facebook.svg) no-repeat center / contain;
 }
 
 .social-icon > svg > path {
