@@ -63,12 +63,15 @@ header {
     background-color: transparent;
     padding: 0.45rem 0.55rem;
     text-decoration: none;
+    text-wrap: nowrap;
 }
 
 .header-tools {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+
+    text-wrap: nowrap;
 }
 
 .search-box {
@@ -120,6 +123,12 @@ header {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+
+@media (width >= 60rem) {
+    .header-tools > * {
+        border-block: none;
+    }
 }
 
 @media (aspect-ratio <= 2/3) {
