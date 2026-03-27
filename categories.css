@@ -22,10 +22,3 @@
     display: contents;
     color: var(--color-text);
 }
-
-.page-title {
-    font-size: 1.5rem;
-    width: 100%;
-    text-align: start;
-    padding-inline: 3rem;
-}
