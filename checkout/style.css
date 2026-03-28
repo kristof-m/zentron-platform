@@ -248,6 +248,36 @@
     gap: 0.4rem;
 }
 
+.delivery-methods {
+    margin: 0.35rem 0 0;
+    padding: 0.7rem;
+    border: 1px solid var(--color-alt);
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.delivery-methods > legend {
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding-inline: 0.35rem;
+}
+
+.delivery-option {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-alt);
+    padding: 0.45rem 0.55rem;
+}
+
+.delivery-option > input {
+    width: 1rem;
+    min-height: 1rem;
+    margin: 0;
+}
+
 .summary-lines {
     display: flex;
     flex-direction: column;
