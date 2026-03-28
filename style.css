@@ -139,6 +139,11 @@ header {
     stroke-linejoin: round;
 }
 
+.icon-button[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: default;
+}
+
 @media (width >= 60rem) {
     .header-tools > * {
         border-block: none;
