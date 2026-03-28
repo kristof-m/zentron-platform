@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="../register.css" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="zentron admin login page" />
+        <title>zentron - admin login</title>
+    </head>
+
+    <body>
+        <header>
+            <a class="home-link" href="/index.html">
+                <h1>zentron</h1>
+            </a>
+
+            <nav class="desktop-nav no-mobile" aria-label="Main navigation">
+                <a class="black-link" href="/categories.html">Categories</a>
+                <a class="black-link" href="/products.html">Deals</a>
+                <a class="black-link" href="/products.html">All Products</a>
+                <a class="black-link" href="/checkout.html">Support</a>
+            </nav>
+
+            <div class="spacer" aria-hidden="true"></div>
+
+            <div class="header-tools">
+                <label class="search-box" for="admin-search">
+                    <input
+                        id="admin-search"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search products"
+                    />
+                    <img
+                        src="../assets/Search.svg"
+                        aria-hidden="true"
+                        class="search-icon"
+                    />
+                </label>
+
+                <a
+                    class="icon-button no-mobile"
+                    href="/cart.html"
+                    aria-label="Open cart"
+                >
+                    <img
+                        src="../assets/ShoppingCart.svg"
+                        aria-hidden="true"
+                        class="search-icon"
+                    />
+                </a>
+
+                <a href="/admin/login.html" class="black-link no-mobile"
+                    >Admin</a
+                >
+            </div>
+        </header>
+
+        <main class="register-main">
+            <section class="register-shell" aria-label="Admin sign-in">
+                <section class="register-social" aria-label="Admin note">
+                    <h2>Administrator access</h2>
+                    <p class="register-help">
+                        This page is intended for administrators only.
+                    </p>
+                    <p class="register-help">
+                        Use your admin account to manage products.
+                    </p>
+                </section>
+
+                <div class="register-divider" aria-hidden="true"></div>
+
+                <section class="register-form-wrap" aria-label="Admin login form">
+                    <h2>Sign in to admin panel</h2>
+
+                    <form class="register-form" action="#" method="post">
+                        <label for="admin-email">E-mail</label>
+                        <input
+                            id="admin-email"
+                            name="email"
+                            type="email"
+                            placeholder="admin@zentron.sk"
+                            autocomplete="email"
+                        />
+
+                        <label for="admin-password">Password</label>
+                        <input
+                            id="admin-password"
+                            name="password"
+                            type="password"
+                            placeholder="********"
+                            autocomplete="current-password"
+                        />
+
+                        <label class="terms-check" for="remember-admin">
+                            <input
+                                id="remember-admin"
+                                name="remember-admin"
+                                type="checkbox"
+                            />
+                            Keep me signed in on this device.
+                        </label>
+
+                        <button class="register-btn" type="submit">
+                            Log in as admin
+                        </button>
+                    </form>
+                </section>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <section class="footer-grid" aria-label="Footer information">
+                <section class="footer-col">
+                    <h2>About Zentron</h2>
+                    <p>Something about being a good electronics store.</p>
+                    <p>Our electronics sure are good, though.</p>
+                    <p>New drops land every week!</p>
+                </section>
+
+                <section class="footer-col">
+                    <h2>Support</h2>
+                    <p>Shipping and delivery details</p>
+                    <p>Returns and warranty info</p>
+                    <p>Contact us: support@zentron.sk</p>
+                </section>
+
+                <section class="footer-col">
+                    <h2>Social</h2>
+                    <div class="social-row" aria-label="Social media links">
+                        <a class="social-icon" href="#" aria-label="Instagram">
+                            <div class="social-ig" aria-hidden="true"></div>
+                        </a>
+                        <a class="social-icon" href="#" aria-label="Twitter">
+                            <div class="social-tw" aria-hidden="true"></div>
+                        </a>
+                        <a class="social-icon" href="#" aria-label="Facebook">
+                            <div class="social-fb" aria-hidden="true"></div>
+                        </a>
+                    </div>
+                    <p>
+                        Follow us for hardware drops, deals and behind-the-scenes
+                        builds!
+                    </p>
+                </section>
+
+                <section class="footer-col">
+                    <h2>Company</h2>
+                    <p>Careers and open roles</p>
+                    <p>Partner and wholesale inquiries</p>
+                    <p>Kosice, KE - Online only storefront</p>
+                </section>
+            </section>
+        </footer>
+
+        <nav class="mobile-nav mobile-only">
+            <a class="black-link" href="/cart.html"><p>Cart</p></a>
+            <a class="black-link" href="/categories.html"><p>Categories</p></a>
+            <a class="black-link" href="/admin/login.html"><p>Admin</p></a>
+        </nav>
+    </body>
+</html>
