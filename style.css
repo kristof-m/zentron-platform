@@ -28,6 +28,26 @@
         --color-footer-bg: hsl(223, 18%, 16%);
         --color-footer-text: hsl(210, 25%, 92%);
     }
+
+    img[src$="Search.svg"]:not([src*="w_"]) {
+        content: url("/assets/w_Search.svg");
+    }
+
+    img[src$="ShoppingCart.svg"]:not([src*="w_"]) {
+        content: url("/assets/w_ShoppingCart.svg");
+    }
+
+    img[src$="arrow_left.svg"]:not([src*="w_"]) {
+        content: url("/assets/w_arrow_left.svg");
+    }
+
+    img[src$="arrow_right.svg"]:not([src*="w_"]) {
+        content: url("/assets/w_arrow_right.svg");
+    }
+
+    img[src$="arrow_drop_down.svg"]:not([src*="w_"]) {
+        content: url("/assets/w_arrow_drop_down.svg");
+    }
 }
 
 body {
