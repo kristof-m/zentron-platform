@@ -119,6 +119,10 @@ header {
     cursor: default;
 }
 
+footer .social-icon > img {
+    filter: invert(1);
+}
+
 @media (width >= 60rem) {
     .header-tools > * {
         border-block: none;

@@ -166,3 +166,9 @@
         width: min(78rem, 100%);
     }
 }
+
+@media not (prefers-color-scheme: dark) {
+    footer .social-icon > img {
+        filter: none;
+    }
+}
