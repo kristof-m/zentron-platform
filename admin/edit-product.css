@@ -1,0 +1,217 @@
+@import "../style.css";
+
+.admin-edit-page {
+    --color-text: hsl(220, 10%, 18%);
+    --color-bg: hsl(210, 14%, 93%);
+    --color-alt: hsl(220, 10%, 72%);
+    --color-footer-bg: hsl(220, 10%, 80%);
+    --color-footer-text: hsl(220, 12%, 16%);
+}
+
+.admin-edit-page header {
+    background-color: color-mix(in srgb, var(--color-bg) 72%, var(--color-alt));
+}
+
+.admin-nav-active {
+    border: 1px solid var(--color-text);
+    background-color: color-mix(in srgb, var(--color-alt) 55%, var(--color-bg));
+    padding: 0.45rem 0.55rem;
+}
+
+.profile-icon {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.admin-main {
+    width: 100%;
+    padding: 2rem 1rem 2.4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-card {
+    width: min(78rem, 80%);
+    background-color: color-mix(in srgb, var(--color-bg) 86%, var(--color-alt));
+    border: 1px solid var(--color-alt);
+    padding: 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.edit-card > h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.image-section {
+    border: 1px solid var(--color-alt);
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.image-section > legend {
+    font-weight: 700;
+    padding-inline: 0.4rem;
+}
+
+.image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.image-thumb {
+    position: relative;
+    width: 5.5rem;
+    height: 5.5rem;
+    border: 1px solid var(--color-alt);
+    background-color: color-mix(in srgb, var(--color-alt) 45%, var(--color-bg));
+}
+
+.image-thumb > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumb-remove {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    border: 1px solid var(--color-text);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: 0.75rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.add-image {
+    width: 5.5rem;
+    height: 5.5rem;
+    border: 1px dashed var(--color-text);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    background-color: transparent;
+}
+
+.add-image > input {
+    display: none;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    align-items: start;
+    gap: 0.9rem;
+}
+
+.form-row > label {
+    font-weight: 600;
+    padding-top: 0.55rem;
+}
+
+.form-row input,
+.form-row textarea {
+    width: 100%;
+    min-height: 2.3rem;
+    border: 1px solid var(--color-alt);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    padding: 0.5rem 0.6rem;
+}
+
+.form-row textarea {
+    min-height: 8rem;
+    resize: vertical;
+}
+
+.tag-editor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-height: 2.3rem;
+    border: 1px solid var(--color-alt);
+    background-color: var(--color-bg);
+    padding: 0.45rem;
+}
+
+.tag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid var(--color-alt);
+    background-color: color-mix(in srgb, var(--color-bg) 85%, var(--color-alt));
+    padding: 0.2rem 0.45rem;
+}
+
+.tag-remove,
+.tag-add {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 1px solid var(--color-alt);
+    background-color: transparent;
+    color: var(--color-text);
+    line-height: 1;
+    cursor: pointer;
+}
+
+.actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.action-btn {
+    min-height: 2.4rem;
+    padding-inline: 1rem;
+    border: 1px solid var(--color-text);
+    background-color: transparent;
+    color: var(--color-text);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.action-primary {
+    font-weight: 700;
+}
+
+.action-danger {
+    border-color: hsl(0, 45%, 38%);
+    color: hsl(0, 45%, 32%);
+}
+
+@media (max-width: 70rem) {
+    .edit-card {
+        width: min(78rem, 100%);
+    }
+}
+
+@media (max-width: 48rem) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .form-row > label {
+        padding-top: 0;
+    }
+}
