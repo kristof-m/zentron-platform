@@ -2,11 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" href="edit-product.css" />
+        <link rel="stylesheet" type="text/css" href="edit.css" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="zentron admin add product page" />
-        <title>zentron - admin add product</title>
+        <meta name="description" content="zentron admin edit product page" />
+        <title>zentron - admin edit product</title>
     </head>
 
     <body class="admin-edit-page">
@@ -17,7 +17,7 @@
 
             <nav class="desktop-nav no-mobile" aria-label="Main navigation">
                 <a class="black-link" href="/categories.html">Categories</a>
-                <a class="black-link admin-nav-active" href="/admin/products.html">
+                <a class="black-link admin-nav-active" href="/products.html">
                     Product Admin
                 </a>
                 <a class="black-link" href="/admin/login.html">Admin Home</a>
@@ -26,15 +26,15 @@
             <div class="spacer" aria-hidden="true"></div>
 
             <div class="header-tools">
-                <label class="search-box" for="admin-add-search">
+                <label class="search-box" for="admin-edit-search">
                     <input
-                        id="admin-add-search"
+                        id="admin-edit-search"
                         type="search"
                         placeholder="Search"
                         aria-label="Search products"
                     />
                     <img
-                        src="../assets/Search.svg"
+                        src="../../assets/Search.svg"
                         aria-hidden="true"
                         class="search-icon"
                     />
@@ -46,7 +46,7 @@
                     aria-label="Open cart"
                 >
                     <img
-                        src="../assets/ShoppingCart.svg"
+                        src="../../assets/ShoppingCart.svg"
                         aria-hidden="true"
                         class="search-icon"
                     />
@@ -63,23 +63,50 @@
         </header>
 
         <main class="admin-main">
-            <section class="edit-card" aria-label="Add product form container">
-                <h1>Add new product</h1>
+            <section class="edit-card" aria-label="Edit product form container">
+                <h1>Edit product: PlayStation 5 Digital Edition</h1>
 
                 <form class="edit-form" action="#" method="post">
                     <fieldset class="image-section">
-                        <legend>Product gallery (minimum 2 images)</legend>
+                        <legend>Product gallery</legend>
 
                         <div class="image-list">
-                            <label class="add-image" aria-label="Upload first product image">
-                                <input type="file" accept="image/*" />
-                            </label>
+                            <figure class="image-thumb">
+                                <img
+                                    src="../../assets/ps5.jpg"
+                                    alt="Product image 1"
+                                    width="512"
+                                    height="512"
+                                />
+                                <button
+                                    class="thumb-remove"
+                                    type="button"
+                                    aria-label="Remove first image"
+                                >
+                                    x
+                                </button>
+                            </figure>
 
-                            <label class="add-image" aria-label="Upload second product image">
-                                <input type="file" accept="image/*" />
-                            </label>
+                            <figure class="image-thumb">
+                                <img
+                                    src="../../assets/deck.jpg"
+                                    alt="Product image 2"
+                                    width="512"
+                                    height="512"
+                                />
+                                <button
+                                    class="thumb-remove"
+                                    type="button"
+                                    aria-label="Remove second image"
+                                >
+                                    x
+                                </button>
+                            </figure>
 
-                            <label class="add-image" aria-label="Upload additional product image">
+                            <label
+                                class="add-image"
+                                aria-label="Add product image"
+                            >
                                 <input type="file" accept="image/*" />
                             </label>
                         </div>
@@ -91,7 +118,7 @@
                             id="product-name"
                             name="product-name"
                             type="text"
-                            placeholder="e.g. PlayStation 5 Slim"
+                            value="PlayStation 5 Digital Edition"
                         />
                     </div>
 
@@ -102,7 +129,7 @@
                             name="product-price"
                             type="number"
                             step="0.01"
-                            placeholder="0.00"
+                            value="519.99"
                         />
                     </div>
 
@@ -119,7 +146,31 @@
                                     x
                                 </button></span
                             >
-                            <button class="tag-add" type="button" aria-label="Add category">
+                            <span class="tag-item"
+                                >Gaming
+                                <button
+                                    class="tag-remove"
+                                    type="button"
+                                    aria-label="Remove category Gaming"
+                                >
+                                    x
+                                </button></span
+                            >
+                            <span class="tag-item"
+                                >PlayStation
+                                <button
+                                    class="tag-remove"
+                                    type="button"
+                                    aria-label="Remove category PlayStation"
+                                >
+                                    x
+                                </button></span
+                            >
+                            <button
+                                class="tag-add"
+                                type="button"
+                                aria-label="Add category"
+                            >
                                 +
                             </button>
                         </div>
@@ -130,15 +181,21 @@
                         <textarea
                             id="product-description"
                             name="product-description"
-                            placeholder="Product description for customers."
-                        ></textarea>
+                        >
+The PlayStation 5 Digital Edition is a next-generation console focused on high performance and smooth gameplay.
+                        </textarea>
                     </div>
 
                     <div class="actions-row">
                         <button class="action-btn action-primary" type="submit">
-                            Create product
+                            Save changes
                         </button>
-                        <a class="action-btn" href="/admin/products.html">Cancel</a>
+                        <a class="action-btn" href="/products.html"
+                            >Discard changes</a
+                        >
+                        <button class="action-btn action-danger" type="button">
+                            Delete product
+                        </button>
                     </div>
                 </form>
             </section>
@@ -164,18 +221,30 @@
                     <h2>Social</h2>
                     <div class="social-row" aria-label="Social media links">
                         <a class="social-icon" href="#" aria-label="Instagram">
-                            <div class="social-ig" aria-hidden="true"></div>
+                            <img
+                                src="../../assets/Instagram.svg"
+                                aria-hidden="true"
+                                class="icon"
+                            />
                         </a>
                         <a class="social-icon" href="#" aria-label="Twitter">
-                            <div class="social-tw" aria-hidden="true"></div>
+                            <img
+                                src="../../assets/Twitter.svg"
+                                aria-hidden="true"
+                                class="icon"
+                            />
                         </a>
                         <a class="social-icon" href="#" aria-label="Facebook">
-                            <div class="social-fb" aria-hidden="true"></div>
+                            <img
+                                src="../../assets/Facebook.svg"
+                                aria-hidden="true"
+                                class="icon"
+                            />
                         </a>
                     </div>
                     <p>
-                        Follow us for hardware drops, deals and behind-the-scenes
-                        builds!
+                        Follow us for hardware drops, deals and
+                        behind-the-scenes builds!
                     </p>
                 </section>
 
@@ -191,7 +260,7 @@
         <nav class="mobile-nav mobile-only">
             <a class="black-link" href="/cart.html"><p>Cart</p></a>
             <a class="black-link" href="/categories.html"><p>Categories</p></a>
-            <a class="black-link" href="/admin/products.html"><p>Admin</p></a>
+            <a class="black-link" href="/admin/login.html"><p>Admin</p></a>
         </nav>
     </body>
 </html>

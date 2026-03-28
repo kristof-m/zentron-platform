@@ -1,4 +1,4 @@
-@import "../style.css";
+@import "../../style.css";
 
 .admin-edit-page {
     --color-text: hsl(220, 10%, 18%);
