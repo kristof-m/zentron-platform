@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="../categories.css" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="zentron store - consoles" />
+        <title>zentron - consoles</title>
+    </head>
+
+    <body>
+        <header>
+            <a class="home-link" href="/">
+                <h1>zentron</h1>
+            </a>
+
+            <nav class="desktop-nav no-mobile" aria-label="Main navigation">
+                <a class="black-link" href="/categories">Categories</a>
+                <a class="black-link" href="#">Deals</a>
+                <a class="black-link" href="/products">All Products</a>
+                <a class="black-link" href="#">Support</a>
+            </nav>
+
+            <div class="spacer" aria-hidden="true"></div>
+
+            <div class="header-tools">
+                <label class="search-box" for="login-search">
+                    <input
+                        id="login-search"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search products"
+                    />
+                    <img
+                        src="../assets/Search.svg"
+                        aria-hidden="true"
+                        class="search-icon"
+                    />
+                </label>
+
+                <a
+                    class="icon-button no-mobile"
+                    href="/cart"
+                    aria-label="Open cart"
+                >
+                    <img
+                        src="../assets/ShoppingCart.svg"
+                        aria-hidden="true"
+                        class="search-icon"
+                    />
+                </a>
+
+                <a href="/login" class="black-link no-mobile">Sign in</a>
+            </div>
+        </header>
+
+        <h1 class="page-title">Consoles</h1>
+
+        <section class="filter-bar" aria-label="Category product controls">
+            <form class="catalog-controls" action="#" method="get">
+                <label for="sort-order-category">Sort by</label>
+                <select id="sort-order-category" name="sort-order">
+                    <option value="price-asc">Price: low to high</option>
+                    <option value="price-desc">Price: high to low</option>
+                    <option value="name-asc">Name: A-Z</option>
+                </select>
+
+                <label for="price-min-category">Price from</label>
+                <input
+                    id="price-min-category"
+                    name="price-min"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="0"
+                />
+
+                <label for="price-max-category">Price to</label>
+                <input
+                    id="price-max-category"
+                    name="price-max"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="2000"
+                />
+
+                <label for="brand-category">Brand</label>
+                <select id="brand-category" name="brand">
+                    <option value="all">All</option>
+                    <option value="sony">Sony</option>
+                    <option value="apple">Apple</option>
+                    <option value="valve">Valve</option>
+                </select>
+
+                <label for="color-category">Color</label>
+                <select id="color-category" name="color">
+                    <option value="all">All</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="gray">Gray</option>
+                </select>
+
+                <button type="submit">Apply</button>
+                <button type="reset">Reset</button>
+            </form>
+
+            <div class="spacer" aria-hidden="true"></div>
+
+            <span class="icon-button" aria-label="Previous page unavailable" aria-disabled="true">
+                <img
+                    src="../assets/arrow_left.svg"
+                    aria-hidden="true"
+                />
+            </span>
+            <p>Page 1 of 2</p>
+            <a class="icon-button" href="/categories/consoles-page-2.html">
+                <img src="../assets/arrow_right.svg" aria-label="Next page" />
+            </a>
+        </section>
+
+        <main class="products">
+            <article>
+                <a class="card" href="/product/1">
+                    <img
+                        class="product-image"
+                        alt="Photo of a PlayStation 5"
+                        src="../assets/ps5.jpg"
+                        width="512"
+                        height="512"
+                    />
+                    <h1 class="product-name">PlayStation 5</h1>
+                    <div class="card-tags">
+                        <p class="card-tag black-link" href="/category/gaming">
+                            Gaming
+                        </p>
+                        <p class="card-tag black-link" href="/category/gaming">
+                            Consoles
+                        </p>
+                        <p class="card-tag black-link" href="/category/gaming">
+                            PlayStation
+                        </p>
+                    </div>
+                    <div class="spacer" aria-hidden="true"></div>
+                    <p class="product-price">1499 €</p>
+                </a>
+            </article>
+
+            <article>
+                <a class="card" href="/product/1">
+                    <img
+                        class="product-image"
+                        alt="Photo of a Steam Deck"
+                        src="../assets/deck.jpg"
+                        width="512"
+                        height="512"
+                    />
+                    <h1 class="product-name">Steam Deck 64GB (fake)</h1>
+                    <div class="card-tags">
+                        <p class="card-tag black-link" href="/category/gaming">
+                            Gaming
+                        </p>
+                        <p class="card-tag black-link" href="/category/gaming">
+                            Consoles
+                        </p>
+                        <p class="card-tag black-link" href="/category/gaming">
+                            Handheld
+                        </p>
+                    </div>
+                    <div class="spacer" aria-hidden="true"></div>
+                    <p class="product-price">1499 €</p>
+                </a>
+            </article>
+        </main>
+
+        <footer class="site-footer">
+            <section class="footer-grid" aria-label="Footer information">
+                <section class="footer-col">
+                    <h2>About Zentron</h2>
+                    <p>Zentron is an online electronics storefront.</p>
+                    <p>We focus on gaming gear, PC parts, and accessories.</p>
+                    <p>New arrivals are added every week.</p>
+                </section>
+
+                <section class="footer-col">
+                    <h2>Support</h2>
+                    <p>Shipping and delivery details</p>
+                    <p>Returns and warranty info</p>
+                    <p>Contact us: support@zentron.sk</p>
+                </section>
+
+                <section class="footer-col">
+                    <h2>Social</h2>
+                    <div class="social-row" aria-label="Social media links">
+                        <a class="social-icon" href="#" aria-label="Instagram">
+                            <div class="social-ig" aria-hidden="true"></div>
+                        </a>
+                        <a class="social-icon" href="#" aria-label="Twitter">
+                            <div class="social-tw" aria-hidden="true"></div>
+                        </a>
+                        <a class="social-icon" href="#" aria-label="Facebook">
+                            <div class="social-fb" aria-hidden="true"></div>
+                        </a>
+                    </div>
+                    <p>
+                        Follow us for hardware drops, deals and
+                        behind-the-scenes builds!
+                    </p>
+                </section>
+
+                <section class="footer-col">
+                    <h2>Company</h2>
+                    <p>Careers and open roles</p>
+                    <p>Partner and wholesale inquiries</p>
+                    <p>Kosice, KE - Online only storefront</p>
+                </section>
+            </section>
+        </footer>
+
+        <nav class="mobile-nav mobile-only">
+            <a class="black-link" href="/cart"><p>Cart</p></a>
+            <a class="black-link" href="/categories"><p>Categories</p></a>
+            <a class="black-link" href="/login"><p>Sign in</p></a>
+        </nav>
+    </body>
+</html>
