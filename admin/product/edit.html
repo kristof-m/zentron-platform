@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" href="edit-product.css" />
+        <link rel="stylesheet" type="text/css" href="edit.css" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="zentron admin edit product page" />
@@ -34,7 +34,7 @@
                         aria-label="Search products"
                     />
                     <img
-                        src="../assets/Search.svg"
+                        src="../../assets/Search.svg"
                         aria-hidden="true"
                         class="search-icon"
                     />
@@ -46,7 +46,7 @@
                     aria-label="Open cart"
                 >
                     <img
-                        src="../assets/ShoppingCart.svg"
+                        src="../../assets/ShoppingCart.svg"
                         aria-hidden="true"
                         class="search-icon"
                     />
@@ -73,29 +73,40 @@
                         <div class="image-list">
                             <figure class="image-thumb">
                                 <img
-                                    src="../assets/ps5.jpg"
+                                    src="../../assets/ps5.jpg"
                                     alt="Product image 1"
                                     width="512"
                                     height="512"
                                 />
-                                <button class="thumb-remove" type="button" aria-label="Remove first image">
+                                <button
+                                    class="thumb-remove"
+                                    type="button"
+                                    aria-label="Remove first image"
+                                >
                                     x
                                 </button>
                             </figure>
 
                             <figure class="image-thumb">
                                 <img
-                                    src="../assets/deck.jpg"
+                                    src="../../assets/deck.jpg"
                                     alt="Product image 2"
                                     width="512"
                                     height="512"
                                 />
-                                <button class="thumb-remove" type="button" aria-label="Remove second image">
+                                <button
+                                    class="thumb-remove"
+                                    type="button"
+                                    aria-label="Remove second image"
+                                >
                                     x
                                 </button>
                             </figure>
 
-                            <label class="add-image" aria-label="Add product image">
+                            <label
+                                class="add-image"
+                                aria-label="Add product image"
+                            >
                                 <input type="file" accept="image/*" />
                             </label>
                         </div>
@@ -127,23 +138,39 @@
                         <div class="tag-editor" aria-label="Product categories">
                             <span class="tag-item"
                                 >Consoles
-                                <button class="tag-remove" type="button" aria-label="Remove category Consoles">
+                                <button
+                                    class="tag-remove"
+                                    type="button"
+                                    aria-label="Remove category Consoles"
+                                >
                                     x
                                 </button></span
                             >
                             <span class="tag-item"
                                 >Gaming
-                                <button class="tag-remove" type="button" aria-label="Remove category Gaming">
+                                <button
+                                    class="tag-remove"
+                                    type="button"
+                                    aria-label="Remove category Gaming"
+                                >
                                     x
                                 </button></span
                             >
                             <span class="tag-item"
                                 >PlayStation
-                                <button class="tag-remove" type="button" aria-label="Remove category PlayStation">
+                                <button
+                                    class="tag-remove"
+                                    type="button"
+                                    aria-label="Remove category PlayStation"
+                                >
                                     x
                                 </button></span
                             >
-                            <button class="tag-add" type="button" aria-label="Add category">
+                            <button
+                                class="tag-add"
+                                type="button"
+                                aria-label="Add category"
+                            >
                                 +
                             </button>
                         </div>
@@ -151,7 +178,10 @@
 
                     <div class="form-row">
                         <label for="product-description">Description</label>
-                        <textarea id="product-description" name="product-description">
+                        <textarea
+                            id="product-description"
+                            name="product-description"
+                        >
 The PlayStation 5 Digital Edition is a next-generation console focused on high performance and smooth gameplay.
                         </textarea>
                     </div>
@@ -160,7 +190,9 @@ The PlayStation 5 Digital Edition is a next-generation console focused on high p
                         <button class="action-btn action-primary" type="submit">
                             Save changes
                         </button>
-                        <a class="action-btn" href="/products.html">Discard changes</a>
+                        <a class="action-btn" href="/products.html"
+                            >Discard changes</a
+                        >
                         <button class="action-btn action-danger" type="button">
                             Delete product
                         </button>
@@ -199,8 +231,8 @@ The PlayStation 5 Digital Edition is a next-generation console focused on high p
                         </a>
                     </div>
                     <p>
-                        Follow us for hardware drops, deals and behind-the-scenes
-                        builds!
+                        Follow us for hardware drops, deals and
+                        behind-the-scenes builds!
                     </p>
                 </section>
 

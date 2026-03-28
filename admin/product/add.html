@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" href="edit-product.css" />
+        <link rel="stylesheet" type="text/css" href="edit.css" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="zentron admin add product page" />
@@ -17,7 +17,10 @@
 
             <nav class="desktop-nav no-mobile" aria-label="Main navigation">
                 <a class="black-link" href="/categories.html">Categories</a>
-                <a class="black-link admin-nav-active" href="/admin/products.html">
+                <a
+                    class="black-link admin-nav-active"
+                    href="/admin/products.html"
+                >
                     Product Admin
                 </a>
                 <a class="black-link" href="/admin/login.html">Admin Home</a>
@@ -71,15 +74,24 @@
                         <legend>Product gallery (minimum 2 images)</legend>
 
                         <div class="image-list">
-                            <label class="add-image" aria-label="Upload first product image">
+                            <label
+                                class="add-image"
+                                aria-label="Upload first product image"
+                            >
                                 <input type="file" accept="image/*" />
                             </label>
 
-                            <label class="add-image" aria-label="Upload second product image">
+                            <label
+                                class="add-image"
+                                aria-label="Upload second product image"
+                            >
                                 <input type="file" accept="image/*" />
                             </label>
 
-                            <label class="add-image" aria-label="Upload additional product image">
+                            <label
+                                class="add-image"
+                                aria-label="Upload additional product image"
+                            >
                                 <input type="file" accept="image/*" />
                             </label>
                         </div>
@@ -119,7 +131,11 @@
                                     x
                                 </button></span
                             >
-                            <button class="tag-add" type="button" aria-label="Add category">
+                            <button
+                                class="tag-add"
+                                type="button"
+                                aria-label="Add category"
+                            >
                                 +
                             </button>
                         </div>
@@ -138,7 +154,9 @@
                         <button class="action-btn action-primary" type="submit">
                             Create product
                         </button>
-                        <a class="action-btn" href="/admin/products.html">Cancel</a>
+                        <a class="action-btn" href="/admin/products.html"
+                            >Cancel</a
+                        >
                     </div>
                 </form>
             </section>
@@ -174,8 +192,8 @@
                         </a>
                     </div>
                     <p>
-                        Follow us for hardware drops, deals and behind-the-scenes
-                        builds!
+                        Follow us for hardware drops, deals and
+                        behind-the-scenes builds!
                     </p>
                 </section>
 
