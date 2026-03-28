@@ -8,6 +8,16 @@
     --color-footer-text: hsl(220, 12%, 16%);
 }
 
+@media (prefers-color-scheme: dark) {
+    .admin-edit-page {
+        --color-text: hsl(210, 24%, 90%);
+        --color-bg: hsl(222, 20%, 12%);
+        --color-alt: hsl(220, 10%, 34%);
+        --color-footer-bg: hsl(223, 16%, 16%);
+        --color-footer-text: hsl(210, 25%, 92%);
+    }
+}
+
 .admin-edit-page header {
     background-color: color-mix(in srgb, var(--color-bg) 72%, var(--color-alt));
 }
@@ -197,6 +207,13 @@
 .action-danger {
     border-color: hsl(0, 45%, 38%);
     color: hsl(0, 45%, 32%);
+}
+
+@media (prefers-color-scheme: dark) {
+    .action-danger {
+        border-color: hsl(0, 62%, 66%);
+        color: hsl(0, 72%, 74%);
+    }
 }
 
 @media (max-width: 70rem) {
