@@ -95,7 +95,7 @@
 
 .item-part2 {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     align-items: center;
 }
 
@@ -106,13 +106,10 @@
     background-color: var(--color-alt);
 }
 
-.remove-item-btn {
-    min-height: 2rem;
-    border: 1px solid var(--color-alt);
-    background-color: transparent;
-    color: var(--color-text);
-    padding-inline: 0.6rem;
-    cursor: pointer;
+.remove-icon {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
 }
 
 .price {
