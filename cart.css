@@ -106,6 +106,15 @@
     background-color: var(--color-alt);
 }
 
+.remove-item-btn {
+    min-height: 2rem;
+    border: 1px solid var(--color-alt);
+    background-color: transparent;
+    color: var(--color-text);
+    padding-inline: 0.6rem;
+    cursor: pointer;
+}
+
 .price {
     font-weight: 700;
     font-size: 1.3rem;
