@@ -1,4 +1,4 @@
-@import "/checkout/style.css";
+@import "./style.css";
 
 .payment-form {
     display: flex;

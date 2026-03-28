@@ -1,4 +1,4 @@
-@import "/checkout/style.css";
+@import "./style.css";
 
 .checkout-completion-main {
     width: min(84rem, 100%);
@@ -62,9 +62,11 @@
     justify-content: center;
     width: min(19rem, 88%);
     min-height: 2rem;
-    border: 1px solid color-mix(in srgb, var(--color-alt) 65%, var(--color-text));
+    border: 1px solid
+        color-mix(in srgb, var(--color-alt) 65%, var(--color-text));
     background-color: color-mix(in srgb, var(--color-alt) 32%, var(--color-bg));
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-bg) 70%, transparent);
+    box-shadow: inset 0 1px 0
+        color-mix(in srgb, var(--color-bg) 70%, transparent);
     color: var(--color-text);
     font-weight: 600;
     padding-inline: 0.5rem;
