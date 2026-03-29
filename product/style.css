@@ -61,6 +61,10 @@ main {
     margin: unset;
 }
 
+.brand-name {
+    font-weight: 700;
+}
+
 .tags {
     display: flex;
     gap: 0.5rem;
