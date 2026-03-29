@@ -15,7 +15,7 @@
                 <h1>zentron</h1>
             </a>
 
-            <nav class="desktop-nav no-mobile" aria-label="Main navigation">
+            <nav class="desktop-nav no-mobile">
                 <a class="black-link" href="/categories.html">Categories</a>
                 <a
                     class="black-link admin-nav-active"
@@ -33,24 +33,19 @@
                         id="admin-search"
                         type="search"
                         placeholder="Search"
-                        aria-label="Search products"
                     />
                     <img
                         src="../../assets/Search.svg"
-                        aria-hidden="true"
+                        alt="Search"
                         class="icon search-icon"
                     />
                 </label>
 
-                <a
-                    class="icon-button no-mobile"
-                    href="/cart.html"
-                    aria-label="Open cart"
-                >
+                <a class="icon-button no-mobile" href="/cart.html">
                     <img
                         src="../../assets/ShoppingCart.svg"
-                        aria-hidden="true"
-                        class="icon search-icon"
+                        alt="Cart"
+                        class="search-icon"
                     />
                 </a>
 
@@ -62,18 +57,19 @@
 
         <main class="admin-main">
             <section class="edit-card" aria-label="Add product form container">
-                <h1>Add new product</h1>
+                <h2>Add new product</h2>
 
                 <form class="edit-form" action="#" method="post">
                     <fieldset class="image-section">
                         <legend>Product gallery (minimum 2 images)</legend>
 
                         <div class="image-list">
-                            <label
-                                class="add-image"
-                                aria-label="Upload first product image"
-                            >
-                                <input type="file" accept="image/*" />
+                            <label class="add-image">
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    aria-label="Upload product image"
+                                />
                             </label>
                         </div>
                     </fieldset>
@@ -101,7 +97,7 @@
 
                     <div class="form-row">
                         <label>Categories</label>
-                        <div class="tag-editor" aria-label="Product categories">
+                        <div class="tag-editor">
                             <span class="tag-item"
                                 >Consoles
                                 <button
