@@ -237,15 +237,22 @@
 
 .checkbox-row {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 0.45rem;
-}
-
-.checkbox-row > label {
-    display: flex;
     align-items: center;
-    gap: 0.4rem;
+
+    & div {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+
+        & input {
+            margin: 0;
+            width: 1rem;
+        }
+    }
 }
 
 .delivery-methods {
