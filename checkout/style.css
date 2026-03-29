@@ -94,6 +94,26 @@
     padding: 1.3rem 1rem 2.3rem;
 }
 
+.guest-signin-card {
+    border: 1px solid var(--color-alt);
+    padding: 0.8rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.8rem;
+    align-items: center;
+    margin-bottom: 1.1rem;
+}
+
+.guest-signin-card > p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.guest-signin-link {
+    width: fit-content;
+    min-width: 14rem;
+}
+
 .checkout-layout {
     display: grid;
     grid-template-columns: 7fr 3fr;
@@ -248,6 +268,14 @@
 @media (max-width: 70rem) {
     .checkout-layout {
         grid-template-columns: 1fr;
+    }
+
+    .guest-signin-card {
+        grid-template-columns: 1fr;
+    }
+
+    .guest-signin-link {
+        width: 100%;
     }
 }
 
