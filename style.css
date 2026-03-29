@@ -149,14 +149,6 @@ footer .social-icon > img {
         padding-block: 0.6rem;
     }
 
-    .checkout-nav,
-    .register-nav {
-        order: 3;
-        width: 100%;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-    }
-
     .search-box > input {
         width: 9rem;
     }
