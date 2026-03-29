@@ -51,6 +51,12 @@ header {
     z-index: 5;
 }
 
+@media (width <= 48rem) {
+    header > .spacer {
+        display: none;
+    }
+}
+
 .desktop-nav {
     display: flex;
     align-items: center;
