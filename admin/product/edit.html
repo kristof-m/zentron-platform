@@ -15,12 +15,14 @@
                 <h1>zentron</h1>
             </a>
 
-            <nav class="desktop-nav no-mobile" aria-label="Main navigation">
+            <nav class="desktop-nav no-mobile">
                 <a class="black-link" href="/categories.html">Categories</a>
-                <a class="black-link admin-nav-active" href="/admin/products.html"
-                    >Admin Product</a>
-                <a class="black-link" href="/admin/login.html"
-                    >Admin Home</a>
+                <a
+                    class="black-link admin-nav-active"
+                    href="/admin/products.html"
+                    >Admin Product</a
+                >
+                <a class="black-link" href="/admin/login.html">Admin Home</a>
             </nav>
 
             <div class="spacer" aria-hidden="true"></div>
@@ -31,23 +33,18 @@
                         id="admin-search"
                         type="search"
                         placeholder="Search"
-                        aria-label="Search products"
                     />
                     <img
                         src="../../assets/Search.svg"
-                        aria-hidden="true"
-                        class="search-icon"
+                        alt="Search"
+                        class="icon search-icon"
                     />
                 </label>
 
-                <a
-                    class="icon-button no-mobile"
-                    href="/cart.html"
-                    aria-label="Open cart"
-                >
+                <a class="icon-button no-mobile" href="/cart.html">
                     <img
                         src="../../assets/ShoppingCart.svg"
-                        aria-hidden="true"
+                        alt="Cart"
                         class="search-icon"
                     />
                 </a>
@@ -59,8 +56,8 @@
         </header>
 
         <main class="admin-main">
-            <section class="edit-card" aria-label="Edit product form container">
-                <h1>Edit product: PlayStation 5 Digital Edition</h1>
+            <section class="edit-card">
+                <h2>Edit product: PlayStation 5 Digital Edition</h2>
 
                 <form class="edit-form" action="#" method="post">
                     <fieldset class="image-section">
@@ -99,12 +96,13 @@
                                 </button>
                             </figure>
 
-                            <label
-                                class="add-image"
-                                aria-label="Add product image"
-                            >
-                                <input type="file" accept="image/*" />
-                            </label>
+                            <div class="add-image">
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    aria-label="Add product image"
+                                />
+                            </div>
                         </div>
                     </fieldset>
 
@@ -131,7 +129,7 @@
 
                     <div class="form-row">
                         <label>Categories</label>
-                        <div class="tag-editor" aria-label="Product categories">
+                        <div class="tag-editor">
                             <span class="tag-item"
                                 >Consoles
                                 <button
@@ -215,25 +213,25 @@ The PlayStation 5 Digital Edition is a next-generation console focused on high p
 
                 <section class="footer-col">
                     <h2>Social</h2>
-                    <div class="social-row" aria-label="Social media links">
-                        <a class="social-icon" href="#" aria-label="Instagram">
+                    <div class="social-row">
+                        <a class="social-icon" href="#">
                             <img
                                 src="../../assets/Instagram.svg"
-                                aria-hidden="true"
+                                alt="Instagram"
                                 class="icon"
                             />
                         </a>
-                        <a class="social-icon" href="#" aria-label="Twitter">
+                        <a class="social-icon" href="#">
                             <img
                                 src="../../assets/Twitter.svg"
-                                aria-hidden="true"
+                                alt="Twitter"
                                 class="icon"
                             />
                         </a>
-                        <a class="social-icon" href="#" aria-label="Facebook">
+                        <a class="social-icon" href="#">
                             <img
                                 src="../../assets/Facebook.svg"
-                                aria-hidden="true"
+                                alt="Facebook"
                                 class="icon"
                             />
                         </a>
