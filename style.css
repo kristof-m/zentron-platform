@@ -115,7 +115,8 @@ header {
 
 @media (prefers-color-scheme: dark) {
     .icon-button > img,
-    .icon {
+    .icon,
+    .search-icon {
         filter: invert(1);
     }
 }
