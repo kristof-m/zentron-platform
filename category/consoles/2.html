@@ -59,62 +59,71 @@
 
         <section class="filter-bar" aria-label="Category product controls">
             <form class="catalog-controls" action="#" method="get">
-                <label for="sort-order-category">Sort by</label>
-                <select id="sort-order-category" name="sort-order">
-                    <option value="price-asc">Price: low to high</option>
-                    <option value="price-desc">Price: high to low</option>
-                    <option value="name-asc">Name: A-Z</option>
-                </select>
+                <div>
+                    <label for="sort-order-category">Sort by</label>
+                    <select id="sort-order-category" name="sort-order">
+                        <option value="price-asc">Price: low to high</option>
+                        <option value="price-desc">Price: high to low</option>
+                        <option value="name-asc">Name: A-Z</option>
+                    </select>
+                </div>
 
-                <label for="price-min-category">Price from</label>
-                <input
-                    id="price-min-category"
-                    name="price-min"
-                    type="number"
-                    min="0"
-                    step="1"
-                    placeholder="0"
-                />
+                <div>
+                    <label for="price-min-category">Price from</label>
+                    <input
+                        id="price-min-category"
+                        class="price-field"
+                        name="price-min"
+                        type="number"
+                        min="0"
+                        step="1"
+                        placeholder="0"
+                    />
+                </div>
 
-                <label for="price-max-category">Price to</label>
-                <input
-                    id="price-max-category"
-                    name="price-max"
-                    type="number"
-                    min="0"
-                    step="1"
-                    placeholder="2000"
-                />
+                <div>
+                    <label for="price-max-category">Price to</label>
+                    <input
+                        id="price-max-category"
+                        class="price-field"
+                        name="price-max"
+                        type="number"
+                        min="0"
+                        step="1"
+                        placeholder="2000"
+                    />
+                </div>
 
-                <label for="brand-category">Brand</label>
-                <select id="brand-category" name="brand">
-                    <option value="all">All</option>
-                    <option value="sony">Sony</option>
-                    <option value="apple">Apple</option>
-                    <option value="valve">Valve</option>
-                </select>
+                <div>
+                    <label for="brand-category">Brand</label>
+                    <select id="brand-category" name="brand">
+                        <option value="all">All</option>
+                        <option value="sony">Sony</option>
+                        <option value="apple">Apple</option>
+                        <option value="valve">Valve</option>
+                    </select>
+                </div>
 
-                <label for="color-category">Color</label>
-                <select id="color-category" name="color">
-                    <option value="all">All</option>
-                    <option value="black">Black</option>
-                    <option value="white">White</option>
-                    <option value="gray">Gray</option>
-                </select>
-
-                <button type="submit">Apply</button>
-                <button type="reset">Reset</button>
+                <div>
+                    <label for="color-category">Color</label>
+                    <select id="color-category" name="color">
+                        <option value="all">All</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="gray">Gray</option>
+                    </select>
+                </div>
             </form>
 
             <div class="spacer" aria-hidden="true"></div>
 
-            <a class="icon-button" href="/category/consoles.html">
+            <a class="icon-button" href="/products.html">
                 <img
                     src="../../assets/arrow_left.svg"
                     aria-label="Previous page"
                 />
             </a>
-            <p>Page 2 of 2</p>
+            <p class="page-info">Page 2 of 2</p>
             <span
                 class="icon-button"
                 aria-label="Next page unavailable"
