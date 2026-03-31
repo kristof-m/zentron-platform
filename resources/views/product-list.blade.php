@@ -76,13 +76,13 @@
 
     <p class="icon-button" aria-disabled="true">
         <img
-            src="assets/arrow_left.svg"
+            src="{{ Vite::asset('resources/icons/arrow_left.svg') }}"
             alt="Previous page unavailable"
         />
     </p>
     <p class="page-info">Page {{ $pageNumber }} of 2</p>
     <a class="icon-button" href="/category/consoles/2.html">
-        <img src="assets/arrow_right.svg" alt="Next page"/>
+        <img src="{{ Vite::asset('resources/icons/arrow_right.svg') }}" alt="Next page"/>
     </a>
 </section>
 
