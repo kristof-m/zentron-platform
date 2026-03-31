@@ -7,7 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="zentron store product page - {{ $product->name }}"/>
-    <title>zentron - {{ $product->name }}</title>
+    <title>{{ $product->name }} - zentron</title>
 </head>
 
 <body>
