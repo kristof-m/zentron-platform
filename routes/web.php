@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
@@ -15,3 +16,6 @@ Route::get('/products/{page?}', [ProductController::class, 'all']);
 
 Route::get('/category/{id}/{page?}', [CategoryController::class, 'show']);
 Route::get('/categories/{page?}', [CategoryController::class, 'all']);
+
+
+Route::get('/brand/{id}/{page?}', [BrandController::class, 'show']);

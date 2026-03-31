@@ -22,7 +22,12 @@
         />
         <div class="product-col">
             <h1>{{ $product->name }}</h1>
-            <a class="black-link brand-name" href="#">Sony<span aria-hidden="true"> > </span></a>
+            @if($product->brand != null)
+                <a class="black-link brand-name" href="/brand/{{ $product->brand->id }}">
+                    {{ $product->brand->name }}<span aria-hidden="true"> > </span>
+                </a>
+            @endif
+
             <div class="tags">
                 @foreach($product->categories as $category)
                     <a class="tag black-link" href="/category/{{ $category->id }}">
