@@ -5,7 +5,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $products = Product::limit(10)->get();
+    $products = Product::limit(10)->with('categories')->get();
     return view('index', ['products' => $products]);
 });
 

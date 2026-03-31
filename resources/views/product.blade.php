@@ -22,14 +22,13 @@
         />
         <div class="product-col">
             <h1>{{ $product->name }}</h1>
-            <a class="black-link brand-name" href="#">Sony ></a>
+            <a class="black-link brand-name" href="#">Sony<span aria-hidden="true"> > </span></a>
             <div class="tags">
-                <a class="tag black-link" href="/category/consoles.html"
-                >Gaming</a
-                >
-                <a class="tag black-link" href="/category/consoles.html">
-                    Consoles
-                </a>
+                @foreach($product->categories as $category)
+                    <a class="tag black-link" href="/category/{{ $category->id }}">
+                        {{ $category->name }}
+                    </a>
+                @endforeach
             </div>
             <div class="spacer" aria-hidden="true"></div>
             <p class="main-price">{{ $product->price }} €</p>

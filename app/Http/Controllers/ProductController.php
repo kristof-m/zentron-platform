@@ -11,9 +11,11 @@ class ProductController extends Controller
     public function show(string $id): View
     {
         return view('product', [
-            'product' => Product::findOrFail($id),
+            'product' => Product::with('categories')
+                ->findOrFail($id),
             'otherProducts' => Product::limit(10)
                 ->whereNot('id', '=', $id)
+                ->with('categories')
                 ->get()
         ]);
     }

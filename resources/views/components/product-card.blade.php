@@ -9,8 +9,9 @@
         />
         <h2 class="product-name">{{ $product->name }}</h2>
         <div class="card-tags">
-            <span class="card-tag"> Apple </span>
-            <span class="card-tag"> Smartphones </span>
+            @foreach($product->categories as $category)
+                <p class="card-tag">{{ $category->name }}</p>
+            @endforeach
         </div>
         <div class="spacer" aria-hidden="true"></div>
         <p class="product-price">{{ $product->price }} €</p>
