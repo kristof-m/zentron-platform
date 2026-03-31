@@ -10,3 +10,4 @@ Route::get('/', function () {
 });
 
 Route::get('/product/{id}', [ProductController::class, 'show']);
+Route::get('/products/{page?}', [ProductController::class, 'all']);

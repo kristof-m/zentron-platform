@@ -19,4 +19,15 @@ class ProductController extends Controller
                 ->get()
         ]);
     }
+
+    public function all(?int $pageNumber = 1): View
+    {
+        return view('product-list', [
+            'heading' => 'All Products',
+            'pageNumber' => $pageNumber,
+            'products' => Product::with('categories')
+                ->limit(20)
+                ->get()
+        ]);
+    }
 }
