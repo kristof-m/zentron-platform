@@ -1,5 +1,5 @@
 <header>
-    <a class="home-link" href="/index">
+    <a class="home-link" href="/">
         <h1>zentron</h1>
     </a>
 
@@ -14,7 +14,7 @@
 
     <div class="header-tools">
         <label class="search-box" for="search">
-            <input id="search" type="search" placeholder="Search" />
+            <input id="search" type="search" placeholder="Search"/>
             <img
                 src="{{ Vite::asset('resources/icons/Search.svg') }}"
                 alt="Search"
