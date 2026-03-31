@@ -7,7 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="zentron - categories"/>
-    <title>zentron - categories</title>
+    <title>categories - zentron</title>
 </head>
 
 <body>
