@@ -5,9 +5,7 @@
 
     <nav class="desktop-nav no-mobile" aria-label="Main navigation">
         <a class="black-link" href="/categories">Categories</a>
-        <a class="black-link" href="#">Deals</a>
         <a class="black-link" href="/products">All Products</a>
-        <a class="black-link" href="#">Support</a>
     </nav>
 
     <div class="spacer" aria-hidden="true"></div>
