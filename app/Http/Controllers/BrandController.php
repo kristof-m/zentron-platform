@@ -16,6 +16,7 @@ class BrandController extends Controller
             'products' => Brand::with('products')
                 ->findOrFail($id)
                 ->products()
+                ->with('categories')
                 ->get()
         ]);
     }
