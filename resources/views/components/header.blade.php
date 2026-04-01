@@ -5,6 +5,7 @@
 
     <nav class="desktop-nav no-mobile" aria-label="Main navigation">
         <a class="black-link" href="/categories">Categories</a>
+        <a class="black-link" href="/brands">Brands</a>
         <a class="black-link" href="/products">All Products</a>
     </nav>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\View\View;
 
 class BrandController extends Controller
@@ -16,6 +17,13 @@ class BrandController extends Controller
                 ->findOrFail($id)
                 ->products()
                 ->get()
+        ]);
+    }
+
+    public function all(?int $pageNumber = 1): View
+    {
+        return view('brands', [
+            'brands' => Brand::all()
         ]);
     }
 }

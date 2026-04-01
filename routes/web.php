@@ -19,3 +19,4 @@ Route::get('/categories', [CategoryController::class, 'all']);
 
 
 Route::get('/brand/{id}/{page?}', [BrandController::class, 'show']);
+Route::get('/brands', [BrandController::class, 'all']);
