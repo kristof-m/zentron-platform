@@ -15,8 +15,8 @@
 
 <main class="categories-main">
     @foreach($categories as $category)
-        <article class="category">
-            <a href="/category/{{ $category->id }}">
+        <article class="category-box">
+            <a class="category" href="/category/{{ $category->id }}">
                 <h2>{{ $category->name }}</h2>
             </a>
         </article>
