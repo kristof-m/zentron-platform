@@ -16,6 +16,7 @@ class CategoryController extends Controller
             'products' => Category::with('products')
                 ->findOrFail($id)
                 ->products()
+                ->with('categories')
                 ->get()
         ]);
     }
