@@ -217,6 +217,7 @@ footer .social-icon > img {
     font-size: 1.3rem;
     text-wrap: nowrap;
     text-overflow: ellipsis;
+    line-height: 1.3;
     overflow: hidden;
 }
 
