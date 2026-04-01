@@ -11,7 +11,7 @@ main {
     border-block-end: 1px solid var(--color-alt);
 }
 
-@media (aspect-ratio <= 2/3) {
+@media (aspect-ratio <= 2 / 3) {
     .main-product {
         flex-direction: column;
         height: fit-content;
@@ -32,7 +32,7 @@ main {
     background-color: var(--color-alt);
 }
 
-@media (aspect-ratio <= 2/3) {
+@media (aspect-ratio <= 2 / 3) {
     .main-image {
         height: 20rem;
     }
@@ -120,4 +120,9 @@ main {
 
 .product-desc > * {
     margin: unset;
+}
+
+.amount-field {
+    max-width: 2.5rem;
+    appearance: textfield;
 }

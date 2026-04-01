@@ -44,7 +44,7 @@
 
             <div class="cart-row">
                 <button class="cart-btn">-</button>
-                <p>1</p>
+                <input class="amount-field" type="number" value="1"/>
                 <button class="cart-btn">+</button>
                 <div class="cart-row-spacer" aria-hidden="true"></div>
                 <button class="cart-btn">Add to cart</button>
