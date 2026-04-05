@@ -98,7 +98,7 @@
     max-width: 100%;
 }
 
-.item-part2 {
+.item-controls {
     display: flex;
     gap: 1rem;
     align-items: center;

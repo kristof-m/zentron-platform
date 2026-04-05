@@ -31,7 +31,7 @@
                     </a>
                 </div>
 
-                <div class="item-part2">
+                <div class="item-controls">
                     <div class="amount-controls">
                         <button class="icon-button">-</button>
                         <p class="item-amount">{{ $amounts[$loop->index] }}</p>
