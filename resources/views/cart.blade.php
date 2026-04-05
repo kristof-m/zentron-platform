@@ -21,7 +21,7 @@
                 <div class="item-display">
                     <img
                         src="assets/ps5.jpg"
-                        alt="PlayStation 5 Digital Edition"
+                        alt="{{ $product->name }}"
                         width="512"
                         height="512"
                         class="item-image"
@@ -46,7 +46,7 @@
                         />
                     </button>
 
-                    <p class="price">499 €</p>
+                    <p class="price">{{ $product->price }} €</p>
                 </div>
             </article>
         @endforeach
