@@ -26,7 +26,7 @@
                         height="512"
                         class="item-image"
                     />
-                    <a class="black-link item-name" href="/product/1.html">
+                    <a class="black-link item-name" href="/product/{{ $product->id }}">
                         <h2>{{ $product->name }}</h2>
                     </a>
                 </div>
