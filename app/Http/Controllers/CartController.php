@@ -13,9 +13,15 @@ class CartController extends Controller
         $entries = $request->session()->get('cartEntries', []);
         $products = Product::findMany(array_keys($entries));
 
+        $totalPrice = 0;
+        foreach ($products as $product) {
+            $totalPrice += $product->price * $entries[$product->id];
+        }
+
         return view('cart', [
             'products' => $products,
             'amounts' => array_values($entries),
+            'totalPrice' => $totalPrice,
         ]);
     }
 
