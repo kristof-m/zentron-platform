@@ -120,7 +120,7 @@
 .price {
     font-weight: 700;
     font-size: 1.3rem;
-    width: 5rem;
+    min-width: 5rem;
     flex-shrink: 0;
     text-align: end;
     text-wrap: nowrap;
