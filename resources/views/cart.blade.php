@@ -33,14 +33,16 @@
 
                 <div class="item-controls">
                     <div class="amount-controls">
-                        <form method="post" action="/cart/setAmount">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $product->id }}"/>
-                            <input type="hidden" name="amount" value="{{ $amounts[$loop->index] - 1 }}"/>
-                            <button class="icon-button">-</button>
-                        </form>
-                        <p class="item-amount">{{ $amounts[$loop->index] }}</p>
+                        @if ($amounts[$product->id] > 1)
+                            <form method="post" action="/cart/setAmount">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $product->id }}"/>
                                 <input type="hidden" name="amount" value="{{ $amounts[$product->id] - 1 }}"/>
+                                <button class="icon-button">-</button>
+                            </form>
+                        @else
+                            <button class="icon-button" aria-disabled="true">-</button>
+                        @endif
                         <p class="item-amount">{{ $amounts[$product->id] }}</p>
                         <form method="post" action="/cart/setAmount">
                             @csrf
