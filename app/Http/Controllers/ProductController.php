@@ -11,6 +11,7 @@ class ProductController extends Controller
     {
         return view('product', [
             'product' => Product::with('categories')
+                ->with('brand')
                 ->findOrFail($id),
             'otherProducts' => Product::limit(10)
                 ->whereNot('id', '=', $id)

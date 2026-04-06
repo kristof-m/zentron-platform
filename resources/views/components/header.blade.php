@@ -1,20 +1,19 @@
 <header>
-    <a class="home-link" href="/index">
+    <a class="home-link" href="/">
         <h1>zentron</h1>
     </a>
 
     <nav class="desktop-nav no-mobile" aria-label="Main navigation">
         <a class="black-link" href="/categories">Categories</a>
-        <a class="black-link" href="#">Deals</a>
+        <a class="black-link" href="/brands">Brands</a>
         <a class="black-link" href="/products">All Products</a>
-        <a class="black-link" href="#">Support</a>
     </nav>
 
     <div class="spacer" aria-hidden="true"></div>
 
     <div class="header-tools">
         <label class="search-box" for="search">
-            <input id="search" type="search" placeholder="Search" />
+            <input id="search" type="search" placeholder="Search"/>
             <img
                 src="{{ Vite::asset('resources/icons/Search.svg') }}"
                 alt="Search"

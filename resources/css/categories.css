@@ -1,0 +1,23 @@
+.categories-main {
+    display: grid;
+    width: 100%;
+    padding: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 2rem;
+}
+
+.category-box {
+    display: contents;
+}
+
+.category {
+    border: 1px solid var(--color-alt);
+    padding: 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.category:hover,
+.category:focus {
+    text-decoration: underline;
+}
