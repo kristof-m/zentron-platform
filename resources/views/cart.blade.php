@@ -38,13 +38,17 @@
                         <button class="icon-button">+</button>
                     </div>
 
-                    <button class="icon-button" type="button">
-                        <img
-                            src="{{ Vite::asset('resources/icons/X.svg') }}"
-                            alt="Remove"
-                            class="remove-icon"
-                        />
-                    </button>
+                    <form method="post" action="/cart/remove">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $product->id }}"/>
+                        <button class="icon-button" type="submit">
+                            <img
+                                src="{{ Vite::asset('resources/icons/X.svg') }}"
+                                alt="Remove"
+                                class="remove-icon"
+                            />
+                        </button>
+                    </form>
 
                     <p class="price">{{ $product->price }} €</p>
                 </div>

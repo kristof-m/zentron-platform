@@ -22,4 +22,6 @@ Route::get('/categories', [CategoryController::class, 'all']);
 Route::get('/brand/{id}/{page?}', [BrandController::class, 'show']);
 Route::get('/brands', [BrandController::class, 'all']);
 
-Route::get('/cart', [CartController::class, 'show']);
+Route::get('/cart', [CartController::class, 'show'])->name('cart');
+Route::post('/cart/setAmount', [CartController::class, 'setAmount']);
+Route::post('/cart/remove', [CartController::class, 'remove']);

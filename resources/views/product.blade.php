@@ -42,13 +42,15 @@
             <h2>Free delivery</h2>
             <p>Expected Mar 18-20</p>
 
-            <div class="cart-row">
-                <button class="cart-btn">-</button>
-                <input class="amount-field" type="number" value="1"/>
-                <button class="cart-btn">+</button>
+            <form class="cart-row" method="post" action="/cart/setAmount">
+                @csrf
+                <input type="hidden" name="id" value="{{ $product->id }}"/>
+                <button type="button" class="cart-btn">-</button>
+                <input class="amount-field" type="number" name="amount" value="1"/>
+                <button type="button" class="cart-btn">+</button>
                 <div class="cart-row-spacer" aria-hidden="true"></div>
-                <button class="cart-btn">Add to cart</button>
-            </div>
+                <button type="submit" class="cart-btn">Add to cart</button>
+            </form>
         </div>
     </div>
 
