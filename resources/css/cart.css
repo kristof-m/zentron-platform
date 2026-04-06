@@ -28,7 +28,7 @@
     margin: 0;
 }
 
-@media (aspect-ratio <= 2 / 3) {
+@media (width <= 48rem) {
     .cart-main {
         flex-direction: column;
     }
@@ -56,7 +56,7 @@
     text-decoration: unset;
 }
 
-@media (aspect-ratio <= 2 / 3) {
+@media (width <= 70rem) {
     .cart-item {
         flex-direction: column;
         align-items: flex-start;
@@ -82,6 +82,12 @@
 
     & h2 {
         font-size: 1.3rem;
+    }
+}
+
+@media (width <= 70rem) {
+    .item-name {
+        text-wrap: wrap;
     }
 }
 
