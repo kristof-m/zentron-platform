@@ -20,7 +20,7 @@ class CartController extends Controller
 
         return view('cart', [
             'products' => $products,
-            'amounts' => array_values($entries),
+            'amounts' => $entries,
             'totalPrice' => $totalPrice,
         ]);
     }

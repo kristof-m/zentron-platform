@@ -40,10 +40,12 @@
                             <button class="icon-button">-</button>
                         </form>
                         <p class="item-amount">{{ $amounts[$loop->index] }}</p>
+                                <input type="hidden" name="amount" value="{{ $amounts[$product->id] - 1 }}"/>
+                        <p class="item-amount">{{ $amounts[$product->id] }}</p>
                         <form method="post" action="/cart/setAmount">
                             @csrf
                             <input type="hidden" name="id" value="{{ $product->id }}"/>
-                            <input type="hidden" name="amount" value="{{ $amounts[$loop->index] + 1 }}"/>
+                            <input type="hidden" name="amount" value="{{ $amounts[$product->id] + 1 }}"/>
                             <button class="icon-button">+</button>
                         </form>
                     </div>
@@ -60,7 +62,7 @@
                         </button>
                     </form>
 
-                    <p class="price">{{ $amounts[$loop->index] * $product->price }} €</p>
+                    <p class="price">{{ $amounts[$product->id] * $product->price }} €</p>
                 </div>
             </article>
         @endforeach
