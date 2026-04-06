@@ -50,7 +50,7 @@
                         </button>
                     </form>
 
-                    <p class="price">{{ $product->price }} €</p>
+                    <p class="price">{{ $amounts[$loop->index] * $product->price }} €</p>
                 </div>
             </article>
         @endforeach
