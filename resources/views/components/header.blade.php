@@ -29,6 +29,10 @@
             />
         </a>
 
-        <a href="/login" class="black-link no-mobile">Sign in</a>
+        @auth
+            <a href="/account" class="black-link no-mobile">Account</a>
+        @else
+            <a href="/login" class="black-link no-mobile">Sign in</a>
+        @endauth
     </div>
 </header>
