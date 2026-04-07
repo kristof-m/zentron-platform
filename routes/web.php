@@ -4,9 +4,9 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 Route::get('/', function () {
     $products = Product::limit(10)->with('categories')->get();
@@ -25,3 +25,5 @@ Route::get('/brands', [BrandController::class, 'all']);
 Route::get('/cart', [CartController::class, 'show'])->name('cart');
 Route::post('/cart/setAmount', [CartController::class, 'setAmount']);
 Route::post('/cart/remove', [CartController::class, 'remove']);
+
+Route::get('/account', [UserController::class, 'account'])->middleware('auth');

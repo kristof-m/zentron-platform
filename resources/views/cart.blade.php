@@ -33,9 +33,23 @@
 
                 <div class="item-controls">
                     <div class="amount-controls">
-                        <button class="icon-button">-</button>
-                        <p class="item-amount">{{ $amounts[$loop->index] }}</p>
-                        <button class="icon-button">+</button>
+                        @if ($amounts[$product->id] > 1)
+                            <form method="post" action="/cart/setAmount">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $product->id }}"/>
+                                <input type="hidden" name="amount" value="{{ $amounts[$product->id] - 1 }}"/>
+                                <button class="icon-button">-</button>
+                            </form>
+                        @else
+                            <button class="icon-button" aria-disabled="true">-</button>
+                        @endif
+                        <p class="item-amount">{{ $amounts[$product->id] }}</p>
+                        <form method="post" action="/cart/setAmount">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $product->id }}"/>
+                            <input type="hidden" name="amount" value="{{ $amounts[$product->id] + 1 }}"/>
+                            <button class="icon-button">+</button>
+                        </form>
                     </div>
 
                     <form method="post" action="/cart/remove">
@@ -50,7 +64,7 @@
                         </button>
                     </form>
 
-                    <p class="price">{{ $product->price }} €</p>
+                    <p class="price">{{ $amounts[$product->id] * $product->price }} €</p>
                 </div>
             </article>
         @endforeach
@@ -59,7 +73,7 @@
     <div class="payment-col">
         <p class="price-row">
             <span>Price:</span>
-            <span>1996 €</span>
+            <span>{{ $totalPrice }} €</span>
         </p>
         <p class="price-row">
             <span>Delivery fee:</span>
@@ -67,7 +81,7 @@
         </p>
         <p class="price-row total-price">
             <span>Total:</span>
-            <span>2000.99 €</span>
+            <span>{{ $totalPrice + 4.99 }} €</span>
         </p>
         <div class="spacer" aria-hidden="true"></div>
         <a href="/checkout.html" class="black-link checkout-link">
