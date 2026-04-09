@@ -14,14 +14,22 @@
 
 <h1 class="page-title">{{ $heading }}</h1>
 
+@php
+    $selectedSort = request()->query('sort-order', 'price-asc');
+    $selectedMinPrice = request()->query('price-min', '');
+    $selectedMaxPrice = request()->query('price-max', '');
+    $selectedBrand = request()->query('brand', 'all');
+    $selectedColor = request()->query('color', 'all');
+@endphp
+
 <section class="filter-bar" aria-label="List controls">
     <form class="catalogue-controls" action="#" method="get">
         <div>
             <label for="sort-order-category">Sort by</label>
             <select id="sort-order-category" name="sort-order">
-                <option value="price-asc">Price: low to high</option>
-                <option value="price-desc">Price: high to low</option>
-                <option value="name-asc">Name: A-Z</option>
+                <option value="price-asc" {{ $selectedSort === 'price-asc' ? 'selected' : '' }}>Price: low to high</option>
+                <option value="price-desc" {{ $selectedSort === 'price-desc' ? 'selected' : '' }}>Price: high to low</option>
+                <option value="name-asc" {{ $selectedSort === 'name-asc' ? 'selected' : '' }}>Name: A-Z</option>
             </select>
         </div>
 
@@ -34,6 +42,7 @@
                 type="number"
                 min="0"
                 step="1"
+                value="{{ $selectedMinPrice }}"
                 placeholder="0"
             />
         </div>
@@ -47,6 +56,7 @@
                 type="number"
                 min="0"
                 step="1"
+                value="{{ $selectedMaxPrice }}"
                 placeholder="2000"
             />
         </div>
@@ -54,20 +64,20 @@
         <div>
             <label for="brand-category">Brand</label>
             <select id="brand-category" name="brand">
-                <option value="all">All</option>
-                <option value="sony">Sony</option>
-                <option value="apple">Apple</option>
-                <option value="valve">Valve</option>
+                <option value="all" {{ $selectedBrand === 'all' ? 'selected' : '' }}>All</option>
+                <option value="sony" {{ $selectedBrand === 'sony' ? 'selected' : '' }}>Sony</option>
+                <option value="apple" {{ $selectedBrand === 'apple' ? 'selected' : '' }}>Apple</option>
+                <option value="valve" {{ $selectedBrand === 'valve' ? 'selected' : '' }}>Valve</option>
             </select>
         </div>
 
         <div>
             <label for="color-category">Color</label>
             <select id="color-category" name="color">
-                <option value="all">All</option>
-                <option value="black">Black</option>
-                <option value="white">White</option>
-                <option value="gray">Gray</option>
+                <option value="all" {{ $selectedColor === 'all' ? 'selected' : '' }}>All</option>
+                <option value="black" {{ $selectedColor === 'black' ? 'selected' : '' }}>Black</option>
+                <option value="white" {{ $selectedColor === 'white' ? 'selected' : '' }}>White</option>
+                <option value="gray" {{ $selectedColor === 'gray' ? 'selected' : '' }}>Gray</option>
             </select>
         </div>
 
