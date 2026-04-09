@@ -413,7 +413,7 @@ footer .social-icon > img {
     text-wrap: nowrap;
 }
 
-.catalog-controls {
+.catalogue-controls {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -441,7 +441,7 @@ footer .social-icon > img {
         flex-wrap: wrap;
     }
 
-    .catalog-controls {
+    .catalogue-controls {
         width: 100%;
     }
 

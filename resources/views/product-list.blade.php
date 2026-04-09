@@ -15,7 +15,7 @@
 <h1 class="page-title">{{ $heading }}</h1>
 
 <section class="filter-bar" aria-label="List controls">
-    <form class="catalog-controls" action="#" method="get">
+    <form class="catalogue-controls" action="#" method="get">
         <div>
             <label for="sort-order-category">Sort by</label>
             <select id="sort-order-category" name="sort-order">
