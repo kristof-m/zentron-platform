@@ -80,6 +80,9 @@
             alt="Previous page unavailable"
         />
     </p>
+    <?php
+        #TODO update placeholder pagination
+    ?>
     <p class="page-info">Page {{ $pageNumber }} of 2</p>
     <a class="icon-button" href="/category/consoles/2.html">
         <img src="{{ Vite::asset('resources/icons/arrow_right.svg') }}" alt="Next page"/>
