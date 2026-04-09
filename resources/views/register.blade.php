@@ -44,7 +44,8 @@
                 Create a new account! Become a part of the community!
             </h2>
 
-            <form class="register-form" action="#" method="post">
+            <form class="register-form" action="/register" method="post">
+                @csrf
                 <label for="name">Name:</label>
                 <input
                     id="name"

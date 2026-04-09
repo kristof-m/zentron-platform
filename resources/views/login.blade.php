@@ -30,7 +30,7 @@
             </button>
 
             <p class="register-help">
-                Don’t have an account? Create one
+                Don't have an account? Create one
                 <a href="/register">here</a>
             </p>
         </section>
