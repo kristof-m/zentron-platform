@@ -41,6 +41,7 @@
             <h2>Welcome back! Log in to your account.</h2>
 
             <form class="register-form" action="/login" method="post">
+                @csrf
                 <label for="login-email">E-mail:</label>
                 <input
                     id="login-email"
