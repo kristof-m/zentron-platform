@@ -432,6 +432,16 @@ footer .social-icon > img {
     }
 }
 
+.apply-button {
+    border: 1px solid var(--color-alt);
+    background-color: transparent;
+    color: var(--color-text);
+    min-height: 2rem;
+    padding-inline: 0.8rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
 .price-field {
     width: 5rem;
 }

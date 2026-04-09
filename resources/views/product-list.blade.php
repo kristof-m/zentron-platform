@@ -70,6 +70,10 @@
                 <option value="gray">Gray</option>
             </select>
         </div>
+
+        <div>
+            <button class="apply-button" type="submit">Apply</button>
+        </div>
     </form>
 
     <div class="spacer" aria-hidden="true"></div>
