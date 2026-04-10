@@ -22,7 +22,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function all(Request $request, ?int $pageNumber = 1): View
+    public function all(Request $request): View
     {
         $query = Product::with('categories');
 
@@ -64,8 +64,7 @@ class ProductController extends Controller
 
         return view('product-list', [
             'heading' => 'All Products',
-            'pageNumber' => $pageNumber,
-            'products' => $query->limit(20)->get(),
+            'products' => $query->paginate(20)->withQueryString(),
         ]);
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function show(Request $request, string $id, ?int $pageNumber = 1): View
+    public function show(Request $request, string $id): View
     {
         $category = Category::findOrFail($id);
 
@@ -50,8 +50,7 @@ class CategoryController extends Controller
 
         return view('product-list', [
             'heading' => $category->name,
-            'pageNumber' => $pageNumber,
-            'products' => $query->get(),
+            'products' => $query->paginate(20)->withQueryString(),
         ]);
     }
 // 'All' pagination causes type error
