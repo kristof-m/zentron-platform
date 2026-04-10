@@ -5,8 +5,8 @@
     @vite('resources/css/style.css')
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="zentron store - {{ $heading }} page {{ $pageNumber }}"/>
-    <title>{{ $heading }} - page {{ $pageNumber  }} - zentron</title>
+    <meta name="description" content="zentron store - {{ $heading }} page {{ $products->currentPage() }}"/>
+    <title>{{ $heading }} - page {{ $products->currentPage() }} - zentron</title>
 </head>
 
 <body>
@@ -88,19 +88,30 @@
 
     <div class="spacer" aria-hidden="true"></div>
 
-    <p class="icon-button" aria-disabled="true">
-        <img
-            src="{{ Vite::asset('resources/icons/arrow_left.svg') }}"
-            alt="Previous page unavailable"
-        />
-    </p>
-    <?php
-        #TODO update placeholder pagination
-    ?>
-    <p class="page-info">Page {{ $pageNumber }} of 2</p>
-    <a class="icon-button" href="/category/consoles/2.html">
-        <img src="{{ Vite::asset('resources/icons/arrow_right.svg') }}" alt="Next page"/>
-    </a>
+    @if($products->onFirstPage())
+        <p class="icon-button" aria-disabled="true">
+            <img
+                src="{{ Vite::asset('resources/icons/arrow_left.svg') }}"
+                alt="Previous page unavailable!"
+            />
+        </p>
+    @else
+        <a class="icon-button" href="{{$products->previousPageUrl()}}" aria-label="Previous page">
+            <img src="{{Vite::asset('resources/icons/arrow_left.svg')}}" alt="Previous page"/>
+        </a>
+    @endif
+
+    <p class="page-info">Page {{$products->currentPage()}} of {{$products->lastPage()}}</p>
+
+    @if($products->hasMorePages())
+        <a class="icon-button" href="{{$products->nextPageUrl()}}" aria-label="Next page">
+            <img src="{{ Vite::asset('resources/icons/arrow_right.svg') }}" alt="Next page"/>
+        </a>
+    @else
+        <p class="icon-button" aria-disabled="true">
+            <img src="{{Vite::asset('resources/icons/arrow_right.svg')}}" alt="Next page unavailable!"/>
+        </p>
+    @endif
 </section>
 
 <main class="products">
