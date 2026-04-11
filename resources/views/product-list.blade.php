@@ -70,7 +70,7 @@
                 <select id="brand-category" name="brand">
                     <option value="all" {{ $selectedBrand === 'all' ? 'selected' : '' }}>All</option>
                     @foreach($brands as $brand)
-                        <option value="{{ $brand->name }}" {{ $selectedBrand === $brand->name ? 'selected' : '' }}>
+                        <option value="{{ $brand->id }}" {{ $selectedBrand === $brand->name ? 'selected' : '' }}>
                             {{ $brand->name }}
                         </option>
                     @endforeach

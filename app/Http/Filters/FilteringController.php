@@ -23,9 +23,7 @@ trait FilteringController
 
         $brand = $request->query('brand');
         if ($brand !== null && $brand !== '' && $brand !== 'all') {
-            $query->whereHas('brand', function ($brandQuery) use ($brand) {
-                $brandQuery->whereRaw('LOWER(name) = ?', [strtolower($brand)]);
-            });
+            $query->where('brand_id', $brand);
         }
 
         $color = $request->query('color');
