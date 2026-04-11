@@ -20,6 +20,9 @@
     $selectedMinPrice = request()->query('price-min', '');
     $selectedMaxPrice = request()->query('price-max', '');
     $selectedBrand = request()->query('brand', 'all');
+    if ($selectedBrand !== 'all') {
+        $selectedBrand = intval($selectedBrand);
+    }
     $selectedColor = request()->query('color', 'all');
 @endphp
 
@@ -70,7 +73,7 @@
                 <select id="brand-category" name="brand">
                     <option value="all" {{ $selectedBrand === 'all' ? 'selected' : '' }}>All</option>
                     @foreach($brands as $brand)
-                        <option value="{{ $brand->id }}" {{ $selectedBrand === $brand->name ? 'selected' : '' }}>
+                        <option value="{{ $brand->id }}" {{ $selectedBrand === $brand->id ? 'selected' : '' }}>
                             {{ $brand->name }}
                         </option>
                     @endforeach
