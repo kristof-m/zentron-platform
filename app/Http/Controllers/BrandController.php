@@ -17,7 +17,8 @@ class BrandController extends Controller
                 ->findOrFail($id)
                 ->products()
                 ->with('categories')
-                ->get()
+                ->get(),
+            'hiddenFields' => ['brand']
         ]);
     }
 

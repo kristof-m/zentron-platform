@@ -64,15 +64,17 @@
             />
         </div>
 
-        <div>
-            <label for="brand-category">Brand</label>
-            <select id="brand-category" name="brand">
-                <option value="all" {{ $selectedBrand === 'all' ? 'selected' : '' }}>All</option>
-                <option value="sony" {{ $selectedBrand === 'sony' ? 'selected' : '' }}>Sony</option>
-                <option value="apple" {{ $selectedBrand === 'apple' ? 'selected' : '' }}>Apple</option>
-                <option value="valve" {{ $selectedBrand === 'valve' ? 'selected' : '' }}>Valve</option>
-            </select>
-        </div>
+        @if (!in_array('brand', $hiddenFields))
+            <div>
+                <label for="brand-category">Brand</label>
+                <select id="brand-category" name="brand">
+                    <option value="all" {{ $selectedBrand === 'all' ? 'selected' : '' }}>All</option>
+                    <option value="sony" {{ $selectedBrand === 'sony' ? 'selected' : '' }}>Sony</option>
+                    <option value="apple" {{ $selectedBrand === 'apple' ? 'selected' : '' }}>Apple</option>
+                    <option value="valve" {{ $selectedBrand === 'valve' ? 'selected' : '' }}>Valve</option>
+                </select>
+            </div>
+        @endif
 
         <div>
             <label for="color-category">Color</label>

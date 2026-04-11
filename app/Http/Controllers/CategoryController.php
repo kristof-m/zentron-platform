@@ -35,7 +35,7 @@ class CategoryController extends Controller
         }
 
         $color = $request->query('color');
-        if ($color !== null && $color !== '' && $color !== 'all' && Schema::hasColumn('Product', 'color') ) {
+        if ($color !== null && $color !== '' && $color !== 'all' && Schema::hasColumn('Product', 'color')) {
             $query->whereRaw('LOWER(color) = ?', [strtolower($color)]);
         }
 
@@ -51,8 +51,10 @@ class CategoryController extends Controller
         return view('product-list', [
             'heading' => $category->name,
             'products' => $query->paginate(20)->withQueryString(),
+            'hiddenFields' => []
         ]);
     }
+
 // 'All' pagination causes type error
     public function all(?int $pageNumber = 1): View
     {
