@@ -2,22 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\FilteringController;
 use App\Models\Brand;
-use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class BrandController extends Controller
 {
-    public function show(string $id, ?int $pageNumber = 1): View
+    use FilteringController;
+
+    public function show(Request $request, string $id, ?int $pageNumber = 1): View
     {
+        $brand = Brand::with('products')
+            ->findOrFail($id);
+
+        $query = $brand->products()
+            ->with('categories')
+            ->get();
+
+        $query = $this->filterQuery($request, $query);
+
         return view('product-list', [
-            'heading' => Brand::findOrFail($id)->name,
+            'heading' => $brand->name,
             'pageNumber' => $pageNumber,
-            'products' => Brand::with('products')
-                ->findOrFail($id)
-                ->products()
-                ->with('categories')
-                ->get(),
+            'products' => $query->paginate(20)->withQueryString(),
             'hiddenFields' => ['brand']
         ]);
     }
