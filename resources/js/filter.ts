@@ -15,4 +15,10 @@ if (formElement) {
             })
         }
     }
+
+    // hide apply button with js turned on
+    let applyBtn = document.getElementById('apply-filter');
+    if (applyBtn) {
+        applyBtn.hidden = true;
+    }
 }

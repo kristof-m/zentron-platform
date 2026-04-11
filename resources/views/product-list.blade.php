@@ -92,7 +92,7 @@
         </div>
 
         <div>
-            <button class="apply-button" type="submit">Apply</button>
+            <button id="apply-filter" class="apply-button" type="submit">Apply</button>
         </div>
     </form>
 
