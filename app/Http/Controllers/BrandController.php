@@ -16,9 +16,9 @@ class BrandController extends Controller
         $brand = Brand::with('products')
             ->findOrFail($id);
 
-        $query = $brand->products()
-            ->with('categories')
-            ->get();
+        $query = $brand
+            ->products()
+            ->with('categories');
 
         $query = $this->filterQuery($request, $query);
 
