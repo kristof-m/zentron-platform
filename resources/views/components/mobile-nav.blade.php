@@ -1,7 +1,11 @@
 <nav class="mobile-nav mobile-only">
-    <a class="black-link" href="/cart"><p>Cart</p></a>
-    <a class="black-link" href="/categories"><p>Categories</p></a>
-    <a class="black-link" href="/products"><p>Products</p></a>
+    <a class="black-link" href="/cart">Cart</a>
+    <a class="black-link" href="/categories">Categories</a>
+    <a class="black-link" href="/products">Products</a>
     <a class="black-link" href="/brands">Brands</a>
-    <a class="black-link" href="/login"><p>Sign in</p></a>
+    @auth
+        <a href="/account" class="black-link">Account</a>
+    @else
+        <a href="/login" class="black-link">Sign in</a>
+    @endauth
 </nav>

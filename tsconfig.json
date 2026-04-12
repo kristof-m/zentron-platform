@@ -2,7 +2,6 @@
     "$schema": "https://www.schemastore.org/tsconfig",
     "display": "Node 24",
     "_version": "24.0.0",
-
     "compilerOptions": {
         "lib": [
             "es2024",
@@ -10,11 +9,12 @@
             "ESNext.Collection",
             "ESNext.Error",
             "ESNext.Iterator",
-            "ESNext.Promise"
+            "ESNext.Promise",
+            "dom",
+            "dom.iterable"
         ],
         "module": "nodenext",
         "target": "es2024",
-
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,

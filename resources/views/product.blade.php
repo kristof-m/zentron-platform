@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     @vite('resources/css/style.css')
     @vite('resources/css/product.css')
+    @vite('resources/js/product-amount.ts')
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="zentron store product page - {{ $product->name }}"/>
@@ -45,9 +46,9 @@
             <form class="cart-row" method="post" action="/cart/setAmount">
                 @csrf
                 <input type="hidden" name="id" value="{{ $product->id }}"/>
-                <button type="button" class="cart-btn">-</button>
-                <input class="amount-field" type="number" name="amount" value="1"/>
-                <button type="button" class="cart-btn">+</button>
+                <button type="button" id="amount-minus" class="cart-btn">-</button>
+                <input class="amount-field" id="amount-field" type="number" name="amount" value="1"/>
+                <button type="button" id="amount-plus" class="cart-btn">+</button>
                 <div class="cart-row-spacer" aria-hidden="true"></div>
                 <button type="submit" class="cart-btn">Add to cart</button>
             </form>

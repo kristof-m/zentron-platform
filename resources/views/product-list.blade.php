@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     @vite('resources/css/style.css')
+    @vite('resources/js/filter.ts')
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="zentron store - {{ $heading }} page {{ $products->currentPage() }}"/>
@@ -19,16 +20,21 @@
     $selectedMinPrice = request()->query('price-min', '');
     $selectedMaxPrice = request()->query('price-max', '');
     $selectedBrand = request()->query('brand', 'all');
+    if ($selectedBrand !== 'all') {
+        $selectedBrand = intval($selectedBrand);
+    }
     $selectedColor = request()->query('color', 'all');
 @endphp
 
 <section class="filter-bar" aria-label="List controls">
-    <form class="catalogue-controls" action="#" method="get">
+    <form class="catalog-controls" action="#" method="get">
         <div>
             <label for="sort-order-category">Sort by</label>
             <select id="sort-order-category" name="sort-order">
-                <option value="price-asc" {{ $selectedSort === 'price-asc' ? 'selected' : '' }}>Price: low to high</option>
-                <option value="price-desc" {{ $selectedSort === 'price-desc' ? 'selected' : '' }}>Price: high to low</option>
+                <option value="price-asc" {{ $selectedSort === 'price-asc' ? 'selected' : '' }}>Price: low to high
+                </option>
+                <option value="price-desc" {{ $selectedSort === 'price-desc' ? 'selected' : '' }}>Price: high to low
+                </option>
                 <option value="name-asc" {{ $selectedSort === 'name-asc' ? 'selected' : '' }}>Name: A-Z</option>
             </select>
         </div>
@@ -61,15 +67,19 @@
             />
         </div>
 
-        <div>
-            <label for="brand-category">Brand</label>
-            <select id="brand-category" name="brand">
-                <option value="all" {{ $selectedBrand === 'all' ? 'selected' : '' }}>All</option>
-                <option value="sony" {{ $selectedBrand === 'sony' ? 'selected' : '' }}>Sony</option>
-                <option value="apple" {{ $selectedBrand === 'apple' ? 'selected' : '' }}>Apple</option>
-                <option value="valve" {{ $selectedBrand === 'valve' ? 'selected' : '' }}>Valve</option>
-            </select>
-        </div>
+        @if (!in_array('brand', $hiddenFields))
+            <div>
+                <label for="brand-category">Brand</label>
+                <select id="brand-category" name="brand">
+                    <option value="all" {{ $selectedBrand === 'all' ? 'selected' : '' }}>All</option>
+                    @foreach($brands as $brand)
+                        <option value="{{ $brand->id }}" {{ $selectedBrand === $brand->id ? 'selected' : '' }}>
+                            {{ $brand->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        @endif
 
         <div>
             <label for="color-category">Color</label>
@@ -82,7 +92,7 @@
         </div>
 
         <div>
-            <button class="apply-button" type="submit">Apply</button>
+            <button id="apply-filter" class="apply-button" type="submit">Apply</button>
         </div>
     </form>
 
