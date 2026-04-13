@@ -7,17 +7,24 @@
 }
 
 .category-box {
-    display: contents;
+    display: flex;
+    width: 100%;
 }
 
 .category {
+    width: 100%;
     border: 1px solid var(--color-alt);
     padding: 1rem;
     color: var(--color-text);
+    align-content: center;
     text-decoration: none;
 }
 
 .category:hover,
 .category:focus {
     text-decoration: underline;
+}
+
+.edit-section {
+    width: 50%;
 }
