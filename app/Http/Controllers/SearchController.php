@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\FilteringController;
+use App\Http\Filters\ControllerWithProducts;
 use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class SearchController extends Controller
 {
-    use FilteringController;
+    use ControllerWithProducts;
 
     public function search(Request $request, ?int $pageNumber = 1): View
     {
@@ -21,10 +21,8 @@ class SearchController extends Controller
         $query = $this->filterQuery($request, $query)
             ->query(fn(Builder $query) => $query->with('categories'));
 
-        $brands = $query->get()
-            ->flatMap(fn(Product $prod) => $prod
-                ->brand()->get())
-            ->unique();
+        $brands = $this->getBrands($query);
+        $colors = $this->getColors($query);
 
         return view('product-list', [
             'heading' => 'Search results for "' . $searchQuery . '"',
@@ -32,6 +30,7 @@ class SearchController extends Controller
             'products' => $query->paginate(20)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
+            'colors' => $colors,
         ]);
     }
 }

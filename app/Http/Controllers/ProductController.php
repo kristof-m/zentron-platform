@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\FilteringController;
+use App\Http\Filters\ControllerWithProducts;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    use FilteringController;
+    use ControllerWithProducts;
 
     public function show(string $id): View
     {
@@ -28,11 +28,8 @@ class ProductController extends Controller
     {
         $query = Product::with('categories');
 
-        $brands = $query->get()
-            ->flatMap(fn(Product $prod) => $prod
-                ->brand()->get())
-            ->unique();
-
+        $brands = $this->getBrands($query);
+        $colors = $this->getColors($query);
         $query = $this->filterQuery($request, $query);
 
         return view('product-list', [
@@ -40,6 +37,7 @@ class ProductController extends Controller
             'products' => $query->paginate(20)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
+            'colors' => $colors,
         ]);
     }
 }

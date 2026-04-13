@@ -31,6 +31,7 @@ class Product extends Model
             "name" => "string",
             "price" => "decimal:2",
             "description" => "string",
+            "color" => "string",
         ];
     }
 }

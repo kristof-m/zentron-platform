@@ -85,9 +85,11 @@
             <label for="color-category">Color</label>
             <select id="color-category" name="color">
                 <option value="all" {{ $selectedColor === 'all' ? 'selected' : '' }}>All</option>
-                <option value="black" {{ $selectedColor === 'black' ? 'selected' : '' }}>Black</option>
-                <option value="white" {{ $selectedColor === 'white' ? 'selected' : '' }}>White</option>
-                <option value="gray" {{ $selectedColor === 'gray' ? 'selected' : '' }}>Gray</option>
+                @foreach($colors as $color)
+                    <option value="{{ $color }}" {{ $selectedColor === $color ? 'selected' : '' }}>
+                        {{ $color }}
+                    </option>
+                @endforeach
             </select>
         </div>
 
