@@ -1,7 +1,7 @@
-<form action="/search">
-    <label class="search-box" for="admin-search">
+<form class="search-form" action="/search">
+    <label class="search-box" for="search">
         <input
-            id="admin-search"
+            id="search"
             type="search"
             name="q"
             placeholder="Search"
@@ -11,6 +11,6 @@
             alt="Search"
             class="icon search-icon"
         />
-        <button type="submit" hidden />
+        <input type="submit" hidden/>
     </label>
 </form>

@@ -459,3 +459,7 @@ footer .social-icon > img {
         display: none;
     }
 }
+
+.search-form {
+    display: contents;
+}
