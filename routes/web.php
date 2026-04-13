@@ -27,3 +27,11 @@ Route::post('/cart/setAmount', [CartController::class, 'setAmount']);
 Route::post('/cart/remove', [CartController::class, 'remove']);
 
 Route::get('/account', [UserController::class, 'account'])->middleware('auth');
+
+Route::get('/admin/login', function () {
+    return view('admin.login');
+});
+Route::get('/admin/home', function () {
+    $user = auth()->user();
+    return view('admin.home', compact('user'));
+})->can('create', Product::class)->name('admin.home');
