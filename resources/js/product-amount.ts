@@ -5,6 +5,8 @@ if (amountField instanceof HTMLInputElement) {
         amountField.value = (Number.parseInt(amountField.value) + 1).toString();
     });
     document.getElementById("amount-minus")?.addEventListener('click', () => {
-        amountField.value = (Number.parseInt(amountField.value) - 1).toString();
+        if (Number.parseInt(amountField.value) >= 2) {
+            amountField.value = (Number.parseInt(amountField.value) - 1).toString();
+        }
     });
 }
