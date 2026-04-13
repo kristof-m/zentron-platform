@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Filters\ControllerWithProducts;
+use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -38,6 +40,57 @@ class ProductController extends Controller
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        Gate::authorize('create', Product::class);
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'price' => 'required|numeric',
+            'brand_id' => 'required|nullable|exists:Brand,id',
+        ]);
+
+        $product = Product::create($validated);
+
+        return redirect('/product/' . $product->id);
+    }
+
+    public function new(): View
+    {
+        $brands = Brand::all();
+
+        return view('product.edit', [
+            'create' => true,
+            'brands' => $brands,
+        ]);
+    }
+
+    public function update(Product $product, Request $request)
+    {
+        Gate::authorize('update', $product);
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'price' => 'required|numeric',
+            'brand_id' => 'required|nullable|exists:Brand,id',
+        ]);
+
+        $product->update($validated);
+
+        return redirect('/product/' . $product->id);
+    }
+
+    public function edit(Product $product): View
+    {
+        $brands = Brand::all();
+
+        return view('product.edit', [
+            'create' => false,
+            'product' => $product->load('brand'),
+            'brands' => $brands,
         ]);
     }
 }

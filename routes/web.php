@@ -14,6 +14,20 @@ Route::get('/', function () {
     return view('index', ['products' => $products]);
 });
 
+Route::get('/product/new', [ProductController::class, 'new'])
+    ->can('create', Product::class)
+    ->name('product.new');
+
+Route::post('/product/create', [ProductController::class, 'create'])
+    ->name('product.create');
+
+Route::get('/product/{product}/edit', [ProductController::class, 'edit'])
+    ->can('update', 'product')
+    ->name('product.edit');
+
+Route::post('/product/{product}/update', [ProductController::class, 'update'])
+    ->name('product.update');
+
 Route::get('/product/{id}', [ProductController::class, 'show']);
 Route::get('/products', [ProductController::class, 'all']);
 
