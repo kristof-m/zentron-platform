@@ -12,14 +12,7 @@
     <div class="spacer" aria-hidden="true"></div>
 
     <div class="header-tools">
-        <label class="search-box" for="search">
-            <input id="search" type="search" placeholder="Search"/>
-            <img
-                src="{{ Vite::asset('resources/icons/Search.svg') }}"
-                alt="Search"
-                class="icon search-icon"
-            />
-        </label>
+        @include('components.search-bar')
 
         <a class="icon-button no-mobile" href="/cart">
             <img

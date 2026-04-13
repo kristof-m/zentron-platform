@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Scout\Searchable;
 
 #[Table("Product")]
 class Product extends Model
 {
+    use Searchable;
+
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, "ProductCategory",
