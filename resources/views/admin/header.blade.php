@@ -4,9 +4,7 @@
     </a>
 
     <nav class="desktop-nav no-mobile" aria-label="Main navigation">
-        <a class="black-link" href="/categories">Categories</a>
-        <a class="black-link" href="/brands">Brands</a>
-        <a class="black-link" href="/products">All Products</a>
+        <a class="black-link" href="/admin/products">Edit Products</a>
     </nav>
 
     <div class="spacer" aria-hidden="true"></div>
@@ -23,9 +21,9 @@
         </a>
 
         @auth
-            <a href="/account" class="black-link no-mobile">Account</a>
+            <a href="/admin/home" class="black-link no-mobile">Admin</a>
         @else
-            <a href="/login" class="black-link no-mobile">Sign in</a>
+            <a href="/admin/login" class="black-link no-mobile">Sign in</a>
         @endauth
     </div>
 </header>

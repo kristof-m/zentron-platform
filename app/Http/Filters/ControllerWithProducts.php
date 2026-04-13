@@ -2,13 +2,16 @@
 
 namespace App\Http\Filters;
 
+use App\Models\Brand;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
 
 
-trait FilteringController
+trait ControllerWithProducts
 {
-    // Filters and sorts $query based on URL params in $request
+    /** Filters and sorts $query based on URL params in $request */
     function filterQuery(Request $request, $query)
     {
         $minPrice = $request->query('price-min');
@@ -41,5 +44,27 @@ trait FilteringController
         $query->orderBy($sortColumn, $sortDirection);
 
         return $query;
+    }
+
+    /** Returns all brands present in $query
+     * @return Collection<Brand>
+     */
+    function getBrands($query): Collection
+    {
+        return $query->get()
+            ->flatMap(fn(Product $prod) => $prod
+                ->brand()->get())
+            ->unique();
+    }
+
+    /** Returns all colors present in $query
+     * @return Collection<string>
+     */
+    function getColors($query): Collection
+    {
+        return $query->get()
+            ->map(fn(Product $prod) => $prod->color)
+            ->filter(fn(?string $color) => $color !== null)
+            ->unique();
     }
 }

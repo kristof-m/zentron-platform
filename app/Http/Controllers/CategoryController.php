@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\FilteringController;
+use App\Http\Filters\ControllerWithProducts;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    use FilteringController;
+    use ControllerWithProducts;
 
     public function show(Request $request, string $id): View
     {
@@ -20,11 +20,8 @@ class CategoryController extends Controller
             ->products()
             ->with('categories');
 
-        $brands = $query->get()
-            ->flatMap(fn(Product $prod) => $prod
-                ->brand()->get())
-            ->unique();
-
+        $brands = $this->getBrands($query);
+        $colors = $this->getColors($query);
         $query = $this->filterQuery($request, $query);
 
         return view('product-list', [
@@ -32,6 +29,7 @@ class CategoryController extends Controller
             'products' => $query->paginate(20)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
+            'colors' => $colors,
         ]);
     }
 
