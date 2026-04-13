@@ -463,3 +463,12 @@ footer .social-icon > img {
 .search-form {
     display: contents;
 }
+
+.cart-btn {
+  cursor: pointer;
+}
+
+.cart-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
