@@ -50,6 +50,7 @@ class ProductController extends Controller
             'name' => 'required|max:255',
             'description' => 'required|max:4095',
             'price' => 'required|numeric',
+            'color' => 'nullable|string',
             'brand_id' => 'nullable|exists:Brand,id',
         ]);
 
@@ -75,6 +76,7 @@ class ProductController extends Controller
             'name' => 'required|max:255',
             'description' => 'required|max:4095',
             'price' => 'required|numeric',
+            'color' => 'nullable|string',
             'brand_id' => 'nullable|exists:Brand,id',
         ]);
 

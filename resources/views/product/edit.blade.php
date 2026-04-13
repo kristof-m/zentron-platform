@@ -31,6 +31,11 @@
                    placeholder="149.99"/>
         </div>
         <div class="field-row">
+            <label for="color">Color</label>
+            <input id="color" name="color" value="{{ $create ? '' : $product->color }}"
+                   placeholder="White"/>
+        </div>
+        <div class="field-row">
             <label for="desc">Description</label>
             <textarea id="desc" type="text" name="description"
                       placeholder="Enter description here...">{{ $create ? '' : $product->description }}</textarea>
