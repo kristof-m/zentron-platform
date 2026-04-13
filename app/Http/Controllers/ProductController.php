@@ -48,7 +48,7 @@ class ProductController extends Controller
         Gate::authorize('create', Product::class);
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required|max:4095',
             'price' => 'required|numeric',
             'brand_id' => 'nullable|exists:Brand,id',
         ]);
@@ -73,7 +73,7 @@ class ProductController extends Controller
         Gate::authorize('update', $product);
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required|max:4095',
             'price' => 'required|numeric',
             'brand_id' => 'nullable|exists:Brand,id',
         ]);
