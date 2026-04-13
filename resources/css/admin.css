@@ -1,0 +1,33 @@
+.admin-page {
+    --color-text: hsl(220, 10%, 18%);
+    --color-bg: hsl(210, 14%, 93%);
+    --color-alt: hsl(220, 10%, 72%);
+    --color-footer-bg: hsl(220, 10%, 80%);
+    --color-footer-text: hsl(220, 12%, 16%);
+}
+
+@media (prefers-color-scheme: dark) {
+    .admin-page {
+        --color-text: hsl(210, 24%, 90%);
+        --color-bg: hsl(222, 20%, 12%);
+        --color-alt: hsl(220, 10%, 34%);
+        --color-footer-bg: hsl(223, 16%, 16%);
+        --color-footer-text: hsl(210, 25%, 92%);
+    }
+}
+
+.admin-page header {
+    background-color: color-mix(in srgb, var(--color-bg) 72%, var(--color-alt));
+}
+
+.admin-page .admin-nav-active {
+    border: 1px solid var(--color-text);
+    background-color: color-mix(in srgb, var(--color-alt) 55%, var(--color-bg));
+    padding: 0.45rem 0.55rem;
+}
+
+@media not (prefers-color-scheme: dark) {
+    .admin-page footer .social-icon > img {
+        filter: none;
+    }
+}

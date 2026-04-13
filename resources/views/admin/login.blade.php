@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     @vite('resources/css/style.css')
+    @vite('resources/css/admin.css')
     @vite('resources/css/auth.css')
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +11,7 @@
     <title>zentron - admin login</title>
 </head>
 
-<body class="admin-login-page">
+<body class="admin-page">
 
 @include('admin.header')
 
