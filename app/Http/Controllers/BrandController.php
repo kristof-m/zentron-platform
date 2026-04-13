@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Filters\ControllerWithProducts;
 use App\Models\Brand;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class BrandController extends Controller
@@ -36,6 +38,45 @@ class BrandController extends Controller
     {
         return view('brands', [
             'brands' => Brand::all()
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        Gate::authorize('create', Brand::class);
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $brand = Brand::create($validated);
+
+        return redirect(route('brand.show', [$brand]));
+    }
+
+    public function new(): View
+    {
+        return view('brand.edit', [
+            'create' => true,
+        ]);
+    }
+
+    public function update(Brand $brand, Request $request)
+    {
+        Gate::authorize('update', $brand);
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $brand->update($validated);
+
+        return redirect(route('brand.show', [$brand]));
+    }
+
+    public function edit(Brand $brand): View
+    {
+        return view('brand.edit', [
+            'create' => false,
+            'brand' => $brand,
         ]);
     }
 }

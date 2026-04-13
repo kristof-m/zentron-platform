@@ -19,6 +19,7 @@
     <h1>Hi, {{ $user->name }}</h1>
     <p>You are an admin!</p>
     <a class="register-btn" href="{{ route('product.new') }}">Add new product</a>
+    <a class="register-btn" href="{{ route('brand.new') }}">Add new brand</a>
     <form action="/logout" method="post">
         @csrf
         <button type="submit" class="register-btn">
