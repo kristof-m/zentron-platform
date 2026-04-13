@@ -69,8 +69,10 @@
                             />
                         </button>
                     </form>
-
-                    <p class="price">{{ $amounts[$product->id] * $product->price }} €</p>
+                    <div class="price-box">
+                        <p class="price">{{ number_format($amounts[$product->id] * $product->price, 2) }} €</p>
+                        <p class="price-piece">{{ number_format($product->price, 2) }} €</p>
+                    </div>
                 </div>
             </article>
         @endforeach

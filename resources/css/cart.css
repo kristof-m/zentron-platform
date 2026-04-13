@@ -130,14 +130,31 @@
 }
 
 .price {
-    font-weight: 700;
-    font-size: 1.3rem;
-    min-width: 5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    width: 6rem;
     flex-shrink: 0;
-    text-align: end;
-    text-wrap: nowrap;
+    align-self: center;
+    margin: 0.15rem 0;
+    text-align: center;
 }
 
+.price-piece {
+    font-weight: 400;
+    font-size: 0.8rem;
+    width: 4rem;
+    margin: 0.15rem 0;
+    flex-shrink: 0;
+    align-self: center;
+    text-align: center;
+}
+
+.price-box {
+    display: grid;
+    gap: 0.15rem;
+    align-content: center;
+    justify-items: center;
+}
 .price-row {
     width: 100%;
     height: fit-content;
