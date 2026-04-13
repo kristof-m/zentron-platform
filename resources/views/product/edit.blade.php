@@ -38,7 +38,7 @@
         <div class="field-row">
             <label for="brand">Brand</label>
             <select id="brand" name="brand_id">
-                <option value="null" {{ !$create && $product->brand_id == null ? 'selected' : '' }}>[None]</option>
+                <option value="" {{ !$create && $product->brand_id == null ? 'selected' : '' }}>[None]</option>
                 @foreach($brands as $brand)
                     <option
                         value="{{ $brand->id }}" {{ !$create && $product->brand_id == $brand->id ? 'selected' : '' }}>

@@ -50,7 +50,7 @@ class ProductController extends Controller
             'name' => 'required|max:255',
             'description' => 'required|max:255',
             'price' => 'required|numeric',
-            'brand_id' => 'required|nullable|exists:Brand,id',
+            'brand_id' => 'nullable|exists:Brand,id',
         ]);
 
         $product = Product::create($validated);
@@ -75,7 +75,7 @@ class ProductController extends Controller
             'name' => 'required|max:255',
             'description' => 'required|max:255',
             'price' => 'required|numeric',
-            'brand_id' => 'required|nullable|exists:Brand,id',
+            'brand_id' => 'nullable|exists:Brand,id',
         ]);
 
         $product->update($validated);
