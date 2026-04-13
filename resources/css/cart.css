@@ -117,6 +117,12 @@
     background-color: var(--color-alt);
 }
 
+.item-amount {
+    width: fit-content;
+    background-color: var(--color-alt);
+    border: none;
+}
+
 .remove-icon {
     width: 1rem;
     height: 1rem;

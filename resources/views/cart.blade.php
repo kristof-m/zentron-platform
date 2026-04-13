@@ -43,7 +43,13 @@
                         @else
                             <button class="icon-button" aria-disabled="true">-</button>
                         @endif
-                        <p class="item-amount">{{ $amounts[$product->id] }}</p>
+                        <form method="post" action="/cart/setAmount">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $product->id }}"/>
+                            <input class="item-amount" type="number" name="amount" size="2"
+                                   value="{{ $amounts[$product->id] }}"/>
+                            <input type="submit" hidden>
+                        </form>
                         <form method="post" action="/cart/setAmount">
                             @csrf
                             <input type="hidden" name="id" value="{{ $product->id }}"/>
