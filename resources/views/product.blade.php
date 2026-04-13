@@ -40,6 +40,10 @@
             <p class="main-price">{{ $product->price }} €</p>
         </div>
         <div class="product-col">
+            @can('update', $product)
+                <a class="black-link cart-btn" href="{{ route('product.edit', [$product]) }}">Edit this product</a>
+            @endcan
+
             <h2>Free delivery</h2>
             <p>Expected Mar 18-20</p>
 
