@@ -30,7 +30,7 @@
 
             <p class="register-help">
                 Already have an account?
-                <a href="/login.html">Sign-in here</a>
+                <a href="/login">Sign-in here</a>
             </p>
         </section>
 
