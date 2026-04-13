@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     @vite('resources/css/style.css')
     @vite('resources/css/admin.css')
+    @vite('resources/css/auth.css')
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="zentron admin page"/>
@@ -17,6 +18,7 @@
 <main>
     <h1>Hi, {{ $user->name }}</h1>
     <p>You are an admin!</p>
+    <a class="register-btn" href="{{ route('product.new') }}">Add new product</a>
     <form action="/logout" method="post">
         @csrf
         <button type="submit" class="register-btn">
