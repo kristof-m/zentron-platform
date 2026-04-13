@@ -29,6 +29,9 @@ Route::post('/cart/remove', [CartController::class, 'remove']);
 Route::get('/account', [UserController::class, 'account'])->middleware('auth');
 
 Route::get('/admin/login', function () {
+    if (auth()->check() && auth()->user()->isAdmin()) {
+        return redirect()->route('admin.home');
+    }
     return view('admin.login');
 });
 Route::get('/admin/home', function () {
