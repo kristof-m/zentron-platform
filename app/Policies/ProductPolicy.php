@@ -30,7 +30,6 @@ class ProductPolicy
      */
     public function create(User $user): bool
     {
-        Log::info("user role:", ['role' => $user->role]);
         return $user->isAdmin();
     }
 
