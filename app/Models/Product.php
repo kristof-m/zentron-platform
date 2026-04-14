@@ -62,4 +62,17 @@ class Product extends Model
             "color" => "string",
         ];
     }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'description' => $this->description,
+            'color' => $this->color,
+            'brand' => $this->brand()->value('name'),
+            'categories' => $this->categories()
+                ->pluck('name')
+                ->implode(' '),
+        ];
+    }
 }
