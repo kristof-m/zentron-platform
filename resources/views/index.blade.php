@@ -41,7 +41,7 @@
     </a>
 </article>
 
-<main class="products">
+<main class="products home-products">
     @foreach($products as $product)
         <x-product-card :product="$product"/>
     @endforeach
