@@ -36,7 +36,7 @@ class ProductController extends Controller
 
         return view('product-list', [
             'heading' => 'All Products',
-            'products' => $query->paginate(20)->withQueryString(),
+            'products' => $query->paginate(10)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
