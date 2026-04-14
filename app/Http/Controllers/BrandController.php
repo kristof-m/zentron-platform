@@ -28,7 +28,7 @@ class BrandController extends Controller
         return view('product-list', [
             'heading' => $brand->name,
             'pageNumber' => $pageNumber,
-            'products' => $query->paginate(20)->withQueryString(),
+            'products' => $query->paginate(10)->withQueryString(),
             'hiddenFields' => ['brand'],
             'colors' => $colors,
         ]);

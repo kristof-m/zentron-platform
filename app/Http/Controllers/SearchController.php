@@ -26,7 +26,7 @@ class SearchController extends Controller
         return view('product-list', [
             'heading' => 'Search results for "' . $searchQuery . '"',
             'pageNumber' => $pageNumber,
-            'products' => $query->paginate(20)->withQueryString(),
+            'products' => $query->paginate(10)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,

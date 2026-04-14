@@ -26,7 +26,7 @@ class CategoryController extends Controller
 
         return view('product-list', [
             'heading' => $category->name,
-            'products' => $query->paginate(20)->withQueryString(),
+            'products' => $query->paginate(10)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
