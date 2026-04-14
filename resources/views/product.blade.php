@@ -19,7 +19,7 @@
         <img
             alt="{{ $product->name }}"
             class="main-image"
-            src="../assets/ps5.jpg"
+            src="{{ $product->imageUrl() }}"
         />
         <div class="product-col">
             <h1>{{ $product->name }}</h1>

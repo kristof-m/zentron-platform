@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Vite;
 use Laravel\Scout\Searchable;
 
 #[Table("Product")]
@@ -15,6 +16,31 @@ use Laravel\Scout\Searchable;
 class Product extends Model
 {
     use Searchable;
+
+    static array $imageUrls;
+
+    /**
+     * Create a new component instance.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (!isset(self::$imageUrls)) {
+            self::$imageUrls = [
+                Vite::asset('resources/images/ps5.jpg'),
+                Vite::asset('resources/images/deck.jpg'),
+                Vite::asset('resources/images/iphone.jpg'),
+                Vite::asset('resources/images/ram.jpg'),
+            ];
+        }
+    }
+
+    public function imageUrl(): string
+    {
+        $idx = $this->id % count(self::$imageUrls);
+        return self::$imageUrls[$idx];
+    }
 
     public function categories(): BelongsToMany
     {

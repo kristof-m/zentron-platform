@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Schema;
 
 trait ControllerWithProducts
 {
-    /** Filters and sorts $query based on URL params in `$request` */
-    function filterQuery(Request $request, DbQuery|ScoutQuery $query): DbQuery|ScoutQuery
+    /** Filters and sorts $query based on URL params in `$request`
+     * @return DbQuery|ScoutQuery
+     */
+    function filterQuery(Request $request, $query)
     {
         $minPrice = $request->query('price-min');
         if ($minPrice !== '' && is_numeric($minPrice)) {
@@ -56,7 +58,7 @@ trait ControllerWithProducts
     /** Returns all brands present in $query
      * @return Collection<Brand>
      */
-    function getBrands(DbQuery|ScoutQuery $query): Collection
+    function getBrands($query): Collection
     {
         return $query->get()
             ->flatMap(fn(Product $prod) => $prod
@@ -67,7 +69,7 @@ trait ControllerWithProducts
     /** Returns all colors present in $query
      * @return Collection<string>
      */
-    function getColors(DbQuery|ScoutQuery $query): Collection
+    function getColors($query): Collection
     {
         return $query->get()
             ->map(fn(Product $prod) => $prod->color)

@@ -20,7 +20,7 @@
             <article class="cart-item">
                 <div class="item-display">
                     <img
-                        src="assets/ps5.jpg"
+                        src="{{ $product->imageUrl() }}"
                         alt="{{ $product->name }}"
                         width="512"
                         height="512"
