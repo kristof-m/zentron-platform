@@ -132,7 +132,7 @@
 .price {
     font-weight: 600;
     font-size: 1.2rem;
-    width: 6rem;
+    width: 7rem;
     flex-shrink: 0;
     align-self: center;
     margin: 0.15rem 0;
@@ -155,6 +155,7 @@
     align-content: center;
     justify-items: center;
 }
+
 .price-row {
     width: 100%;
     height: fit-content;
