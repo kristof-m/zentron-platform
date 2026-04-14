@@ -114,6 +114,11 @@ main {
     gap: 1rem;
 
     line-height: 130%;
+
+    & > pre {
+        font-family: inherit;
+        text-wrap: wrap;
+    }
 }
 
 .product-desc > * {
