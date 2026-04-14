@@ -61,9 +61,7 @@
 
     <div class="product-desc">
         <h2>Description</h2>
-        <p>
-            {{ $product->description }}
-        </p>
+        <pre>{{ $product->description }}</pre>
     </div>
 </main>
 

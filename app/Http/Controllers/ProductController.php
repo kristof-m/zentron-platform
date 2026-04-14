@@ -36,7 +36,7 @@ class ProductController extends Controller
 
         return view('product-list', [
             'heading' => 'All Products',
-            'products' => $query->paginate(20)->withQueryString(),
+            'products' => $query->paginate(10)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
@@ -48,9 +48,10 @@ class ProductController extends Controller
         Gate::authorize('create', Product::class);
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required|max:4095',
             'price' => 'required|numeric',
-            'brand_id' => 'required|nullable|exists:Brand,id',
+            'color' => 'nullable|string',
+            'brand_id' => 'nullable|exists:Brand,id',
         ]);
 
         $product = Product::create($validated);
@@ -73,9 +74,10 @@ class ProductController extends Controller
         Gate::authorize('update', $product);
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required|max:4095',
             'price' => 'required|numeric',
-            'brand_id' => 'required|nullable|exists:Brand,id',
+            'color' => 'nullable|string',
+            'brand_id' => 'nullable|exists:Brand,id',
         ]);
 
         $product->update($validated);

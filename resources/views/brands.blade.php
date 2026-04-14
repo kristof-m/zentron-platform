@@ -19,6 +19,9 @@
             <a class="category" href="/brand/{{ $brand->id }}">
                 <h2>{{ $brand->name }}</h2>
             </a>
+            @can('update', $brand)
+                <a class="category edit-section" href="{{ route('brand.edit', [$brand]) }}">Edit</a>
+            @endcan
         </article>
     @endforeach
 </main>

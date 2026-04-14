@@ -4,6 +4,8 @@ namespace App\Http\Filters;
 
 use App\Models\Brand;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder as DbQuery;
+use Laravel\Scout\Builder as ScoutQuery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
@@ -11,8 +13,8 @@ use Illuminate\Support\Facades\Schema;
 
 trait ControllerWithProducts
 {
-    /** Filters and sorts $query based on URL params in $request */
-    function filterQuery(Request $request, $query)
+    /** Filters and sorts $query based on URL params in `$request` */
+    function filterQuery(Request $request, DbQuery|ScoutQuery $query): DbQuery|ScoutQuery
     {
         $minPrice = $request->query('price-min');
         if ($minPrice !== '' && is_numeric($minPrice)) {
@@ -41,7 +43,12 @@ trait ControllerWithProducts
         ];
         $sortOrder = $request->query('sort-order', 'price-asc');
         [$sortColumn, $sortDirection] = $sortMap[$sortOrder] ?? $sortMap['price-asc'];
-        $query->orderBy($sortColumn, $sortDirection);
+
+        if ($sortColumn === 'name') {
+            $query->orderByRaw('name collate ' . '"en-US-x-icu" ' . $sortDirection);
+        } else {
+            $query->orderBy($sortColumn, $sortDirection);
+        }
 
         return $query;
     }
@@ -49,7 +56,7 @@ trait ControllerWithProducts
     /** Returns all brands present in $query
      * @return Collection<Brand>
      */
-    function getBrands($query): Collection
+    function getBrands(DbQuery|ScoutQuery $query): Collection
     {
         return $query->get()
             ->flatMap(fn(Product $prod) => $prod
@@ -60,7 +67,7 @@ trait ControllerWithProducts
     /** Returns all colors present in $query
      * @return Collection<string>
      */
-    function getColors($query): Collection
+    function getColors(DbQuery|ScoutQuery $query): Collection
     {
         return $query->get()
             ->map(fn(Product $prod) => $prod->color)
