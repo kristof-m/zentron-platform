@@ -136,12 +136,6 @@ footer .social-icon > img {
     }
 }
 
-@media (aspect-ratio <= 2 / 3) {
-    header {
-        height: 4rem;
-    }
-}
-
 @media (width <= 70rem) {
     header {
         flex-wrap: wrap;
