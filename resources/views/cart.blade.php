@@ -92,9 +92,15 @@
             <span>{{ $totalPrice + 4.99 }} €</span>
         </p>
         <div class="spacer" aria-hidden="true"></div>
-        <a href="/checkout.html" class="black-link checkout-link">
-            Checkout
-        </a>
+        @if($products->isEmpty())
+            <p class="checkout-link checkout-link-disabled" aria-disabled="true">
+                Checkout
+            </p>
+        @else
+            <a href="/checkout.html" class="black-link checkout-link">
+                Checkout
+            </a>
+        @endif
     </div>
 </main>
 

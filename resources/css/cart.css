@@ -178,3 +178,8 @@
     background-color: var(--color-alt);
     text-align: center;
 }
+
+.checkout-link-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
