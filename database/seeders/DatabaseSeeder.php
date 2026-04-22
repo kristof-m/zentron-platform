@@ -48,5 +48,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $ps5->categories()->attach($consoles->id);
+
+        (new DeliverySeeder)->run();
     }
 }
