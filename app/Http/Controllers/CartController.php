@@ -2,26 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatus;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CartController extends Controller
 {
+    private function getCurrentOrder(Request $request): Order
+    {
+        /* @var $order ?Order */
+        if (auth()->guest()) {
+            $orderId = $request->session()->get("orderId");
+
+            if ($orderId == null) {
+                $order = new Order;
+                $order->status = OrderStatus::InCart;
+                $order->total_amount = 0;
+                $order->save();
+
+                $request->session()->put("orderId", $order->id);
+            } else {
+                $order = Order::find($orderId);
+                // prevent order from expiring too early
+                $order->touch();
+            }
+        } else {
+            $user = auth()->user();
+            $order = $user->currentOrder;
+            if ($order == null) {
+                $order = new Order;
+                $order->status = OrderStatus::InCart;
+                $order->total_amount = 0;
+                $order->user_id = $user->id;
+                $order->save();
+
+                $user->current_order_id = $order->id;
+                $user->save();
+            }
+        }
+
+        return $order;
+    }
+
     public function show(Request $request): View
     {
-        $entries = $request->session()->get('cartEntries', []);
-        $products = Product::findMany(array_keys($entries));
+        $order = $this->getCurrentOrder($request);
 
-        $totalPrice = 0;
+        $products = $order->products;
+
+        $entries = [];
         foreach ($products as $product) {
-            $totalPrice += $product->price * $entries[$product->id];
+            /* @var $product Product */
+            $entries[$product->id] = $product->pivot->amount;
         }
 
         return view('cart', [
             'products' => $products,
             'amounts' => $entries,
-            'totalPrice' => $totalPrice,
+            'totalPrice' => $order->total_amount,
         ]);
     }
 
@@ -36,10 +76,12 @@ class CartController extends Controller
         /* @var $amount int */
         $amount = $validated['amount'];
 
-        $entries = $request->session()->get('cartEntries');
-        $entries[$id] = $amount;
+        $order = $this->getCurrentOrder($request);
 
-        $request->session()->put('cartEntries', $entries);
+        // add OrderProduct instance to database
+        $order->products()->syncWithoutDetaching([$id => ['amount' => $amount]]);
+
+        $order->updateTotalAmount();
 
         return redirect()->route('cart');
     }
@@ -52,12 +94,11 @@ class CartController extends Controller
         /* @type $id int */
         $id = $validated['id'];
 
-        $entries = $request->session()->get('cartEntries');
+        $order = $this->getCurrentOrder($request);
 
-        if (array_key_exists($id, $entries)) {
-            unset($entries[$id]);
-            $request->session()->put('cartEntries', $entries);
-        }
+        // add OrderProduct instance to database
+        $order->products()->detach([$id]);
+        $order->updateTotalAmount();
 
         return redirect()->route('cart');
     }
