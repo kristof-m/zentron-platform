@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
@@ -72,3 +73,5 @@ Route::get('/admin/home', function () {
 })->can('create', Product::class)->name('admin.home');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout');

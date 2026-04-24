@@ -10,45 +10,11 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-    private function getCurrentOrder(Request $request): Order
-    {
-        /* @var $order ?Order */
-        if (auth()->guest()) {
-            $orderId = $request->session()->get("orderId");
 
-            if ($orderId == null) {
-                $order = new Order;
-                $order->status = OrderStatus::InCart;
-                $order->total_amount = 0;
-                $order->save();
-
-                $request->session()->put("orderId", $order->id);
-            } else {
-                $order = Order::find($orderId);
-                // prevent order from expiring too early
-                $order->touch();
-            }
-        } else {
-            $user = auth()->user();
-            $order = $user->currentOrder;
-            if ($order == null) {
-                $order = new Order;
-                $order->status = OrderStatus::InCart;
-                $order->total_amount = 0;
-                $order->user_id = $user->id;
-                $order->save();
-
-                $user->current_order_id = $order->id;
-                $user->save();
-            }
-        }
-
-        return $order;
-    }
 
     public function show(Request $request): View
     {
-        $order = $this->getCurrentOrder($request);
+        $order = Order::getCurrentOrder($request);
 
         $products = $order->products;
 
@@ -76,7 +42,7 @@ class CartController extends Controller
         /* @var $amount int */
         $amount = $validated['amount'];
 
-        $order = $this->getCurrentOrder($request);
+        $order = Order::getCurrentOrder($request);
 
         // add OrderProduct instance to database
         $order->products()->syncWithoutDetaching([$id => ['amount' => $amount]]);
@@ -94,7 +60,7 @@ class CartController extends Controller
         /* @type $id int */
         $id = $validated['id'];
 
-        $order = $this->getCurrentOrder($request);
+        $order = Order::getCurrentOrder($request);
 
         // add OrderProduct instance to database
         $order->products()->detach([$id]);
