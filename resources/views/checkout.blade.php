@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     @vite('resources/css/style.css')
+    @vite('resources/css/form.css')
     @vite('resources/css/checkout.css')
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -47,35 +48,17 @@
         </section>
     @endif
 
-    <section
-        class="checkout-layout"
-        aria-label="Checkout review layout"
-    >
+    <form class="checkout-layout" action="/checkout/setDetails" method="post">
         <section class="checkout-form-box" aria-label="Customer form">
             <h2>Customer details</h2>
 
-            <form class="checkout-form" action="/order/setDetails" method="post">
-                <label for="country">Country</label>
-                <select id="country" name="country">
-                    <option>Slovakia</option>
-                    <option>Czech Republic</option>
-                    <option>Austria</option>
-                </select>
-
-                <label for="first-name">First name</label>
+            <div class="checkout-form">
+                <label for="name">Contact name</label>
                 <input
-                    id="first-name"
-                    name="first-name"
+                    id="name"
+                    name="name"
                     type="text"
-                    placeholder="First name"
-                />
-
-                <label for="last-name">Last name</label>
-                <input
-                    id="last-name"
-                    name="last-name"
-                    type="text"
-                    placeholder="Last name"
+                    placeholder="Peter Kováčik"
                 />
 
                 <label for="address-1">Address 1</label>
@@ -83,7 +66,7 @@
                     id="address-1"
                     name="address-1"
                     type="text"
-                    placeholder="Street and number"
+                    placeholder="Bratislavská 10"
                 />
 
                 <label for="address-2">Address 2</label>
@@ -101,7 +84,7 @@
                             id="zip"
                             name="zip"
                             type="text"
-                            placeholder="04001"
+                            placeholder="04011"
                         />
                     </div>
                     <div>
@@ -110,30 +93,26 @@
                             id="city"
                             name="city"
                             type="text"
-                            placeholder="Kosice"
+                            placeholder="Košice"
                         />
                     </div>
                 </div>
 
-                <div class="field-row field-row-phone">
-                    <div>
-                        <label for="phone-prefix">Phone prefix</label>
-                        <input
-                            id="phone-prefix"
-                            name="phone-prefix"
-                            type="text"
-                            placeholder="+421"
-                        />
-                    </div>
-                    <div>
-                        <label for="phone-number">Phone number</label>
-                        <input
-                            id="phone-number"
-                            name="phone-number"
-                            type="tel"
-                            placeholder="900 000 000"
-                        />
-                    </div>
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option>Slovakia</option>
+                    <option>Czech Republic</option>
+                    <option>Austria</option>
+                </select>
+
+                <div class="field-row">
+                    <label for="phone-number">Phone number</label>
+                    <input
+                        id="phone-number"
+                        name="phone-number"
+                        type="tel"
+                        placeholder="+421 900 000 000"
+                    />
                 </div>
 
                 <label for="email">Email</label>
@@ -182,7 +161,17 @@
                         </label>
                     </div>
                 </div>
-            </form>
+            </div>
+            
+            @if ($errors->any())
+                <div class="form-errors">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </section>
 
         <aside class="checkout-summary" aria-label="Order summary">
@@ -202,15 +191,15 @@
                 <span>Total:</span><span>1204 EUR</span>
             </p>
 
-            <div class="checkout-link">
-                <a href="/checkout/review">Go to review</a>
-            </div>
+            <button class="checkout-link">
+                Go to review
+            </button>
 
             <div class="checkout-link">
                 <a href="/cart">Go back</a>
             </div>
         </aside>
-    </section>
+    </form>
 </main>
 
 @include('components.footer')

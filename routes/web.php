@@ -75,3 +75,5 @@ Route::get('/admin/home', function () {
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout');
+Route::post('/checkout/setDetails', [CheckoutController::class, 'setDetails'])
+    ->name('checkout.setDetails');
