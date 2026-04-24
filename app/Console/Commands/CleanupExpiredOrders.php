@@ -21,7 +21,7 @@ class CleanupExpiredOrders extends Command
         $cutoff = now()->subMinutes($lifetime);
 
         $deleted = Order::whereNull('user_id')
-            ->where('status', OrderStatus::InCart)
+            ->whereIn('status', [OrderStatus::InCart, OrderStatus::Confirmed])
             ->where('updated_at', '<', $cutoff)
             ->delete();
 
