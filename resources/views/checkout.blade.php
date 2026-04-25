@@ -50,134 +50,143 @@
 
     <form class="checkout-layout" action="/checkout/setDetails" method="post">
         <section class="checkout-form-box" aria-label="Customer form">
-            <h2>Customer details</h2>
+            <fieldset {{ $isReview ? 'disabled' : '' }}>
+                <h2>Customer details</h2>
 
-            <div class="checkout-form">
-                <label for="name">Contact name</label>
-                <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    autocomplete="name"
-                    placeholder="Peter Kováčik"
-                />
-
-                <label for="address-1">Address 1</label>
-                <input
-                    id="address-1"
-                    name="address-1"
-                    type="text"
-                    autocomplete="address-line1"
-                    placeholder="Bratislavská 10"
-                />
-
-                <label for="address-2">Address 2</label>
-                <input
-                    id="address-2"
-                    name="address-2"
-                    type="text"
-                    autocomplete="address-line2"
-                    placeholder="Apartment / floor (optional)"
-                />
-
-                <div class="field-row field-row-zip-city">
-                    <div>
-                        <label for="zip">ZIP code</label>
-                        <input
-                            id="zip"
-                            name="zip"
-                            type="text"
-                            autocomplete="postal-code"
-                            placeholder="04011"
-                        />
-                    </div>
-                    <div>
-                        <label for="city">City</label>
-                        <input
-                            id="city"
-                            name="city"
-                            type="text"
-                            autocomplete="address-level1"
-                            placeholder="Košice"
-                        />
-                    </div>
-                </div>
-
-                <label for="country">Country</label>
-                <select id="country" name="country">
-                    <option value="SK">Slovakia</option>
-                    <option value="CZ">Czech Republic</option>
-                    <option value="AT">Austria</option>
-                </select>
-
-                <div class="field-row">
-                    <label for="phone-number">Phone number</label>
+                <div class="checkout-form">
+                    <label for="name">Contact name</label>
                     <input
-                        id="phone-number"
-                        name="phone-number"
-                        type="tel"
-                        placeholder="+421 900 000 000"
+                        id="name"
+                        name="name"
+                        value="{{ $order->contact_name }}"
+                        type="text"
+                        autocomplete="name"
+                        placeholder="Peter Kováčik"
                     />
-                </div>
 
-                <label for="email">Email</label>
-                <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="name@email.com"
-                />
+                    <label for="address-1">Address 1</label>
+                    <input
+                        id="address-1"
+                        name="address-1"
+                        value="{{ $order->address_1 }}"
+                        type="text"
+                        autocomplete="address-line1"
+                        placeholder="Bratislavská 10"
+                    />
 
-                <fieldset class="delivery-methods">
-                    <legend>Delivery method</legend>
+                    <label for="address-2">Address 2</label>
+                    <input
+                        id="address-2"
+                        name="address-2"
+                        value="{{ $order->address_2 }}"
+                        type="text"
+                        autocomplete="address-line2"
+                        placeholder="Apartment / floor (optional)"
+                    />
 
-                    <label class="delivery-option">
+                    <div class="field-row field-row-zip-city">
+                        <div>
+                            <label for="zip">ZIP code</label>
+                            <input
+                                id="zip"
+                                name="zip"
+                                value="{{ $order->zip == '00000' ? '' : $order->zip }}"
+                                type="text"
+                                autocomplete="postal-code"
+                                placeholder="04011"
+                            />
+                        </div>
+                        <div>
+                            <label for="city">City</label>
+                            <input
+                                id="city"
+                                name="city"
+                                value="{{ $order->city }}"
+                                type="text"
+                                autocomplete="address-level1"
+                                placeholder="Košice"
+                            />
+                        </div>
+                    </div>
+
+                    <label for="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="SK">Slovakia</option>
+                        <option value="CZ">Czech Republic</option>
+                        <option value="AT">Austria</option>
+                    </select>
+
+                    <div class="field-row">
+                        <label for="phone-number">Phone number</label>
                         <input
-                            type="radio"
-                            name="delivery-method"
-                            checked
+                            id="phone-number"
+                            name="phone-number"
+                            value="{{ $order->contact_phone }}"
+                            type="tel"
+                            placeholder="+421 900 000 000"
                         />
-                        <span>Home courier (2-3 business days)</span>
-                        <span>6 EUR</span>
-                    </label>
-
-                    <label class="delivery-option">
-                        <input type="radio" name="delivery-method"/>
-                        <span>Pickup point (next day)</span>
-                        <span>3 EUR</span>
-                    </label>
-
-                    <label class="delivery-option">
-                        <input type="radio" name="delivery-method"/>
-                        <span>Store pickup</span>
-                        <span>0 EUR</span>
-                    </label>
-                </fieldset>
-
-                <div class="checkbox-row">
-                    <div>
-                        <input id="terms" type="checkbox" checked/>
-                        <label for="terms">Terms of Service</label>
                     </div>
-                    <div>
-                        <input id="subscribe" type="checkbox" checked/>
-                        <label for="subscribe">
-                            Subscribe to newsletter
+
+                    <label for="email">Email</label>
+                    <input
+                        id="email"
+                        name="email"
+                        value="{{ $order->contact_email }}"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="name@email.com"
+                    />
+
+                    <fieldset class="delivery-methods">
+                        <legend>Delivery method</legend>
+
+                        <label class="delivery-option">
+                            <input
+                                type="radio"
+                                name="delivery-method"
+                                checked
+                            />
+                            <span>Home courier (2-3 business days)</span>
+                            <span>6 EUR</span>
                         </label>
+
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery-method"/>
+                            <span>Pickup point (next day)</span>
+                            <span>3 EUR</span>
+                        </label>
+
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery-method"/>
+                            <span>Store pickup</span>
+                            <span>0 EUR</span>
+                        </label>
+                    </fieldset>
+
+                    <div class="checkbox-row">
+                        <div>
+                            <input id="terms" type="checkbox" checked/>
+                            <label for="terms">Terms of Service</label>
+                        </div>
+                        <div>
+                            <input id="subscribe" type="checkbox" checked/>
+                            <label for="subscribe">
+                                Subscribe to newsletter
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            @if ($errors->any())
-                <div class="form-errors">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                @if ($errors->any())
+                    <div class="form-errors">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </fieldset>
         </section>
 
         <aside class="checkout-summary" aria-label="Order summary">

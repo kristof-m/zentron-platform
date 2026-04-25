@@ -81,3 +81,6 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout');
 Route::post('/checkout/setDetails', [CheckoutController::class, 'setDetails'])
     ->name('checkout.setDetails');
+
+Route::get('/checkout/review', [CheckoutController::class, 'review'])
+    ->name('checkout.review');

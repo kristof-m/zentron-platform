@@ -11,7 +11,13 @@ class CheckoutController extends Controller
     public function show(Request $request): View
     {
         $order = Order::getCurrentOrder($request);
-        return view('checkout', compact('order'));
+        return view('checkout', ['order' => $order, 'isReview' => false]);
+    }
+
+    public function review(Request $request): View
+    {
+        $order = Order::getCurrentOrder($request);
+        return view('checkout', ['order' => $order, 'isReview' => true]);
     }
 
     public function setDetails(Request $request)
