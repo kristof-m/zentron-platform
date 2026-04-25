@@ -58,6 +58,7 @@
                     id="name"
                     name="name"
                     type="text"
+                    autocomplete="name"
                     placeholder="Peter Kováčik"
                 />
 
@@ -66,6 +67,7 @@
                     id="address-1"
                     name="address-1"
                     type="text"
+                    autocomplete="address-line1"
                     placeholder="Bratislavská 10"
                 />
 
@@ -74,6 +76,7 @@
                     id="address-2"
                     name="address-2"
                     type="text"
+                    autocomplete="address-line2"
                     placeholder="Apartment / floor (optional)"
                 />
 
@@ -84,6 +87,7 @@
                             id="zip"
                             name="zip"
                             type="text"
+                            autocomplete="postal-code"
                             placeholder="04011"
                         />
                     </div>
@@ -93,6 +97,7 @@
                             id="city"
                             name="city"
                             type="text"
+                            autocomplete="address-level1"
                             placeholder="Košice"
                         />
                     </div>
@@ -120,6 +125,7 @@
                     id="email"
                     name="email"
                     type="email"
+                    autocomplete="email"
                     placeholder="name@email.com"
                 />
 
@@ -162,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            
+
             @if ($errors->any())
                 <div class="form-errors">
                     <ul>

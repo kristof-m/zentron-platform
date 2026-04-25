@@ -22,11 +22,12 @@ class CheckoutController extends Controller
 
             'address-1' => 'required|string',
             'address-2' => 'nullable|string',
-            'zip' => 'required|int',
+            'zip' => 'required|string',
             'city' => 'required|string',
             'country' => 'required|string',
 
-            'phone' => 'required|string',
+            'email' => 'required|string',
+            'phone-number' => 'nullable|string',
         ]);
 
         return redirect()->route('checkout.review');
