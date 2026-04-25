@@ -105,9 +105,9 @@
 
                 <label for="country">Country</label>
                 <select id="country" name="country">
-                    <option>Slovakia</option>
-                    <option>Czech Republic</option>
-                    <option>Austria</option>
+                    <option value="SK">Slovakia</option>
+                    <option value="CZ">Czech Republic</option>
+                    <option value="AT">Austria</option>
                 </select>
 
                 <div class="field-row">
