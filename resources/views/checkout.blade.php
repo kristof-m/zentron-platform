@@ -175,41 +175,9 @@
             </fieldset>
         </section>
 
-        <aside class="checkout-summary" aria-label="Order summary">
-            <h2>Order summary</h2>
-
-            <p class="price-row">
-                <span>Subtotal</span><span>{{ $order->total_amount }} €</span>
-            </p>
-            <p class="price-row">
-                <span>Delivery</span><span>6 EUR</span>
-            </p>
-            <p class="price-row">
-                <span>Tax</span><span>199 EUR</span>
-            </p>
-
-            <p class="price-row total-price">
-                <span>Total:</span><span>1204 EUR</span>
-            </p>
-
-            @if ($isReview)
-                <button class="checkout-link">
-                    Go to payment
-                </button>
-
-                <div class="checkout-link">
-                    <a href="/checkout">Go back</a>
-                </div>
-            @else
-                <button class="checkout-link">
-                    Go to review
-                </button>
-
-                <div class="checkout-link">
-                    <a href="/cart">Go back</a>
-                </div>
-            @endif
-        </aside>
+        <x-checkout-summary :order="$order"
+                            :forward-text="$isReview ? 'Go to payment' : 'Go to review'"
+                            :back-link="$isReview ? '/checkout' : '/cart'"/>
     </form>
 </main>
 
