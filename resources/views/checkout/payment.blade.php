@@ -18,7 +18,7 @@
 
 <x-checkout-stepper step="payment"/>
 
-<main class="checkout-main">
+<form class="checkout-main" action="/checkout/acceptPayment" method="post">
     <section
         class="checkout-layout"
         aria-label="Checkout payment layout"
@@ -29,10 +29,11 @@
         >
             <h2>Payment method</h2>
 
-            <form class="payment-form" action="/checkout/acceptPayment" method="post">
+            <div class="payment-form">
                 <fieldset
                     class="payment-methods"
                     aria-label="Payment method selector"
+                    disabled
                 >
                     <label class="payment-option">
                         <input type="radio" name="payment-method"/>
@@ -87,12 +88,12 @@
                         />
                     </div>
                 </div>
-            </form>
+            </div>
         </section>
 
         <x-checkout-summary :order="$order" forward-text="Confirm payment" back-link="/checkout/review"/>
     </section>
-</main>
+</form>
 
 @include('components.footer')
 
