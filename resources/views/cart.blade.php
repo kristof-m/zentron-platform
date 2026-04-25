@@ -97,7 +97,7 @@
                 Checkout
             </p>
         @else
-            <a href="/checkout.html" class="black-link checkout-link">
+            <a href="{{ route('checkout') }}" class="black-link checkout-link">
                 Checkout
             </a>
         @endif
