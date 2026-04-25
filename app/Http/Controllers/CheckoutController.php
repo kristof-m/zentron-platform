@@ -30,6 +30,18 @@ class CheckoutController extends Controller
             'phone-number' => 'nullable|string',
         ]);
 
+        $order->contact_name = $validated['name'];
+        $order->contact_phone = $validated['phone-number'];
+        $order->contact_email = $validated['email'];
+
+        $order->address_1 = $validated['address-1'];
+        $order->address_2 = $validated['address-2'];
+        $order->zip = $validated['zip'];
+        $order->city = $validated['city'];
+        $order->country = $validated['country'];
+
+        $order->save();
+
         return redirect()->route('checkout.review');
     }
 }
