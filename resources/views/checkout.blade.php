@@ -33,7 +33,8 @@
         </section>
     @endif
 
-    <form class="checkout-layout" action="/checkout/setDetails" method="post">
+    <form class="checkout-layout" method="post"
+          action="{{$isReview ? '/checkout/confirm' : '/checkout/setDetails'}}">
         <section class="checkout-form-box" aria-label="Customer form">
             <fieldset {{ $isReview ? 'disabled' : '' }}>
                 <h2>Customer details</h2>
@@ -191,13 +192,23 @@
                 <span>Total:</span><span>1204 EUR</span>
             </p>
 
-            <button class="checkout-link">
-                Go to review
-            </button>
+            @if ($isReview)
+                <button class="checkout-link">
+                    Go to payment
+                </button>
 
-            <div class="checkout-link">
-                <a href="/cart">Go back</a>
-            </div>
+                <div class="checkout-link">
+                    <a href="/checkout">Go back</a>
+                </div>
+            @else
+                <button class="checkout-link">
+                    Go to review
+                </button>
+
+                <div class="checkout-link">
+                    <a href="/cart">Go back</a>
+                </div>
+            @endif
         </aside>
     </form>
 </main>

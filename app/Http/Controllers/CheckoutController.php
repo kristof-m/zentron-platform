@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatus;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -18,6 +19,13 @@ class CheckoutController extends Controller
     {
         $order = Order::getCurrentOrder($request);
         return view('checkout', ['order' => $order, 'isReview' => true]);
+    }
+
+    public function confirm(Request $request)
+    {
+        $order = Order::getCurrentOrder($request);
+        $order->status = OrderStatus::Confirmed;
+        $order->save();
     }
 
     public function setDetails(Request $request)

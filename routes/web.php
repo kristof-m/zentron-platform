@@ -84,3 +84,5 @@ Route::post('/checkout/setDetails', [CheckoutController::class, 'setDetails'])
 
 Route::get('/checkout/review', [CheckoutController::class, 'review'])
     ->name('checkout.review');
+Route::post('/checkout/confirm', [CheckoutController::class, 'confirm'])
+    ->name('checkout.confirm');
