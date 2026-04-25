@@ -21,11 +21,19 @@ class CheckoutController extends Controller
         return view('checkout', ['order' => $order, 'isReview' => true]);
     }
 
+    public function payment(Request $request): View
+    {
+        $order = Order::getCurrentOrder($request);
+        return view('checkout.payment', ['order' => $order]);
+    }
+
     public function confirm(Request $request)
     {
         $order = Order::getCurrentOrder($request);
         $order->status = OrderStatus::Confirmed;
         $order->save();
+
+        return redirect(route('checkout.payment'));
     }
 
     public function setDetails(Request $request)
