@@ -5,6 +5,7 @@
     @vite('resources/css/style.css')
     @vite('resources/css/form.css')
     @vite('resources/css/checkout.css')
+    @vite('resources/css/payment.css')
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="zentron payment page"/>
@@ -28,7 +29,7 @@
         >
             <h2>Payment method</h2>
 
-            <form class="payment-form" action="#" method="post">
+            <form class="payment-form" action="/checkout/acceptPayment" method="post">
                 <fieldset
                     class="payment-methods"
                     aria-label="Payment method selector"
