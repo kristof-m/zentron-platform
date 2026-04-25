@@ -15,22 +15,7 @@
 
 @include('components.header')
 
-<section class="checkout-steps" aria-label="Checkout steps">
-    <ol class="checkout-stepper">
-        <li class="step-item is-active">
-            <span class="step-index" aria-hidden="true">1</span>
-            <span class="step-label">Shipping</span>
-        </li>
-        <li class="step-item">
-            <span class="step-index" aria-hidden="true">2</span>
-            <span class="step-label">Review</span>
-        </li>
-        <li class="step-item" aria-current="step">
-            <span class="step-index" aria-hidden="true">3</span>
-            <span class="step-label">Payment</span>
-        </li>
-    </ol>
-</section>
+<x-checkout-stepper :step="($isReview ? 'review' : 'details')"/>
 
 <main class="checkout-main">
     @if (auth()->guest())
