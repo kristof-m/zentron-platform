@@ -12,7 +12,7 @@
 @include('components.header')
 
 <main>
-    @foreach($user->orders()->orderBy('created_at')->get() as $order)
+    @foreach($orders as $order)
         <article>
             <a href="/order/{{ $order->id }}" class="order-link">
                 <h2>#{{ $order->id }}</h2>
