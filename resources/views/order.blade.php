@@ -63,55 +63,57 @@
 
     <p class="total-price">Total: {{ $order->total_amount }} €</p>
 
-    <h2>Shipping details</h2>
-    <table class="details-box">
-        <tbody>
-        <tr>
-            <td>Address:</td>
-            <td>{{$order->address_1}}</td>
-        </tr>
-        @if ($order->address_2)
+    @if ($order->status != OrderStatus::InCart->value)
+        <h2>Shipping details</h2>
+        <table class="details-box">
+            <tbody>
             <tr>
-                <td>Address 2:</td>
-                <td>{{$order->address_2}}</td>
+                <td>Address:</td>
+                <td>{{$order->address_1}}</td>
             </tr>
-        @endif
-        <tr>
-            <td>Postal Code:</td>
-            <td>{{$order->zip}}</td>
-        </tr>
-        @if ($order->city)
+            @if ($order->address_2)
+                <tr>
+                    <td>Address 2:</td>
+                    <td>{{$order->address_2}}</td>
+                </tr>
+            @endif
             <tr>
-                <td>City:</td>
-                <td>{{$order->city}}</td>
+                <td>Postal Code:</td>
+                <td>{{$order->zip}}</td>
             </tr>
-        @endif
-        <tr>
-            <td>Country:</td>
-            <td>{{$order->country}}</td>
-        </tr>
-        </tbody>
-    </table>
+            @if ($order->city)
+                <tr>
+                    <td>City:</td>
+                    <td>{{$order->city}}</td>
+                </tr>
+            @endif
+            <tr>
+                <td>Country:</td>
+                <td>{{$order->country}}</td>
+            </tr>
+            </tbody>
+        </table>
 
-    <h2>Contact info</h2>
-    <table class="details-box">
-        <tbody>
-        <tr>
-            <td>Name:</td>
-            <td>{{ $order->contact_name }}</td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td>{{ $order->contact_email }}</td>
-        </tr>
-        @if ($order->contact_phone)
+        <h2>Contact info</h2>
+        <table class="details-box">
+            <tbody>
             <tr>
-                <td>Phone:</td>
-                <td>{{ $order->contact_phone }}</td>
+                <td>Name:</td>
+                <td>{{ $order->contact_name }}</td>
             </tr>
-        @endif
-        </tbody>
-    </table>
+            <tr>
+                <td>Email:</td>
+                <td>{{ $order->contact_email }}</td>
+            </tr>
+            @if ($order->contact_phone)
+                <tr>
+                    <td>Phone:</td>
+                    <td>{{ $order->contact_phone }}</td>
+                </tr>
+            @endif
+            </tbody>
+        </table>
+    @endif
 </main>
 
 @include('components.footer')
