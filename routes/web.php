@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
@@ -94,3 +95,8 @@ Route::post('/checkout/acceptPayment', [CheckoutController::class, 'acceptPaymen
 
 Route::get('/checkout/complete', [CheckoutController::class, 'complete'])
     ->name('checkout.complete');
+
+Route::get('/order/{order}', [OrderController::class, 'show'])
+    ->can('view', 'order')->name('order');
+Route::get('/orders', [OrderController::class, 'all'])
+    ->name('orders');

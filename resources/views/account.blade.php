@@ -12,6 +12,9 @@
 
 <main>
     <h1>Hi, {{ $user->name }}</h1>
+    <a href="{{ route('orders') }}" class="register-btn">
+        My orders
+    </a>
     <form action="/logout" method="post">
         @csrf
         <button type="submit" class="register-btn">
