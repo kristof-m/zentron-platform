@@ -48,6 +48,13 @@ class CheckoutController extends Controller
         $order->status = OrderStatus::Paid;
         $order->save();
 
+        $user = auth()->user();
+        if ($user) {
+            // current order is complete, clear it out
+            $user->current_order_id = null;
+            $user->save();
+        }
+
         return redirect(route('checkout.complete'));
     }
 
