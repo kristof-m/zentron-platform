@@ -31,7 +31,8 @@ Route::get('/product/{product}/edit', [ProductController::class, 'edit'])
 Route::post('/product/{product}/update', [ProductController::class, 'update'])
     ->name('product.update');
 
-Route::get('/product/{id}', [ProductController::class, 'show']);
+Route::get('/product/{id}', [ProductController::class, 'show'])
+    ->name('product');
 Route::get('/products', [ProductController::class, 'all']);
 
 Route::get('/category/{id}', [CategoryController::class, 'show']);

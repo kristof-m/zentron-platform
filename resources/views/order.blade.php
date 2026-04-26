@@ -14,24 +14,52 @@
 <main>
     <h1>Order #{{ $order->id }}</h1>
 
+    <p class="order-status">
+        @switch ($order->status)
+            @case(OrderStatus::InCart->value)
+                🛒 In Cart
+                @break
+            @case(OrderStatus::Confirmed->value)
+                ✅ Confirmed
+                @break
+            @case(OrderStatus::Paid->value)
+                💸 Paid
+                @break
+            @case(OrderStatus::Shipped->value)
+                ✈️ Shipped
+                @break
+            @default
+        @endswitch
+    </p>
+
+
     <p>Created at: {{ $order->created_at }}</p>
     <p>Updated at: {{ $order->updated_at }}</p>
 
-    @switch ($order->status)
-        @case(OrderStatus::InCart->value)
-            <p>🛒 In Cart</p>
-            @break
-        @case(OrderStatus::Confirmed->value)
-            <p>✅ Confirmed</p>
-            @break
-        @case(OrderStatus::Paid->value)
-            <p>💸 Paid</p>
-            @break
-        @case(OrderStatus::Shipped->value)
-            <p>✈️ Shipped</p>
-            @break
-        @default
-    @endswitch
+    <h2>Products</h2>
+
+    <table class="product-tbl">
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Amount</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($order->products as $product)
+            <tr>
+                <td>
+                    <a class="black-link" href="{{ route('product', [$product]) }}">
+                        {{ $product->name }}
+                    </a>
+                </td>
+                <td>{{ $product->pivot->amount }}</td>
+                <td>{{ $product->pivot->amount * $product->price }} €</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 
     <p class="total-price">Total: {{ $order->total_amount }} €</p>
 
