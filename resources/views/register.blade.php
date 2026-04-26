@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     @vite('resources/css/style.css')
+    @vite('resources/css/form.css')
     @vite('resources/css/auth.css')
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -97,6 +98,16 @@
                         I accept the terms and privacy policy.
                     </label>
                 </div>
+
+                @if ($errors->any())
+                    <div class="form-errors">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <button class="register-btn" type="submit">Join</button>
             </form>
