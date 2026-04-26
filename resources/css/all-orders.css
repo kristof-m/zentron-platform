@@ -33,3 +33,7 @@ article {
         font-size: inherit;
     }
 }
+
+.order-status {
+    width: 25%;
+}

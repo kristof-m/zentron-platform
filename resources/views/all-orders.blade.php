@@ -16,21 +16,23 @@
         <article>
             <a href="/order/{{ $order->id }}" class="order-link">
                 <h2>#{{ $order->id }}</h2>
-                @switch ($order->status)
-                    @case(OrderStatus::InCart->value)
-                        <p>🛒 In Cart</p>
-                        @break
-                    @case(OrderStatus::Confirmed->value)
-                        <p>✅ Confirmed</p>
-                        @break
-                    @case(OrderStatus::Paid->value)
-                        <p>💸 Paid</p>
-                        @break
-                    @case(OrderStatus::Shipped->value)
-                        <p>✈️ Shipped</p>
-                        @break
-                    @default
-                @endswitch
+                <p class="order-status">
+                    @switch ($order->status)
+                        @case(OrderStatus::InCart->value)
+                            🛒 In Cart
+                            @break
+                        @case(OrderStatus::Confirmed->value)
+                            ✅ Confirmed
+                            @break
+                        @case(OrderStatus::Paid->value)
+                            💸 Paid
+                            @break
+                        @case(OrderStatus::Shipped->value)
+                            ✈️ Shipped
+                            @break
+                        @default
+                    @endswitch
+                </p>
 
                 <p>{{ $order->total_amount }} €</p>
 
