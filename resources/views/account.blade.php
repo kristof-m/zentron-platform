@@ -3,21 +3,21 @@
 <head>
     <x-meta-tags title="account"/>
     @vite('resources/css/style.css')
-    @vite('resources/css/auth.css')
+    @vite('resources/css/menu.css')
 </head>
 
 <body>
 
 @include('components.header')
 
-<main>
+<main class="main">
     <h1>Hi, {{ $user->name }}</h1>
-    <a href="{{ route('orders') }}" class="register-btn">
+    <a href="{{ route('orders') }}" class="menu-btn">
         My orders
     </a>
     <form action="/logout" method="post">
         @csrf
-        <button type="submit" class="register-btn">
+        <button type="submit" class="menu-btn">
             Sign out
         </button>
     </form>
