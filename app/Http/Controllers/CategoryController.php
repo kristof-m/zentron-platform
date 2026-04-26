@@ -24,12 +24,17 @@ class CategoryController extends Controller
         $colors = $this->getColors($query);
         $query = $this->filterQuery($request, $query);
 
+        $minPrice = intval($query->min('price'));
+        $maxPrice = round($query->max('price'), 0, PHP_ROUND_HALF_UP);
+
         return view('product-list', [
             'heading' => $category->name,
             'products' => $query->paginate(10)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice,
         ]);
     }
 

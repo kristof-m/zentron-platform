@@ -34,12 +34,17 @@ class ProductController extends Controller
         $colors = $this->getColors($query);
         $query = $this->filterQuery($request, $query);
 
+        $minPrice = intval($query->min('price'));
+        $maxPrice = round($query->max('price'), 0, PHP_ROUND_HALF_UP);
+
         return view('product-list', [
             'heading' => 'All Products',
             'products' => $query->paginate(10)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice,
         ]);
     }
 

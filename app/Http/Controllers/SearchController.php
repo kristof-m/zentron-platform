@@ -23,6 +23,9 @@ class SearchController extends Controller
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);
 
+        $minPrice = intval($query->min('price'));
+        $maxPrice = round($query->max('price'), 0, PHP_ROUND_HALF_UP);
+
         return view('product-list', [
             'heading' => 'Search results for "' . $searchQuery . '"',
             'pageNumber' => $pageNumber,
@@ -30,6 +33,8 @@ class SearchController extends Controller
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice,
         ]);
     }
 }
