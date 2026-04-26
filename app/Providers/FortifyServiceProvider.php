@@ -6,6 +6,7 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\Order;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +30,22 @@ class FortifyServiceProvider extends ServiceProvider
             /* @var $request Request */
             public function toResponse($request): RedirectResponse
             {
+                /* @var $orderId ?int */
+                $orderId = session()->get('orderId');
+
+                if ($orderId) {
+                    $order = Order::find($orderId);
+                    if ($order && $order->user_id == null) {
+                        // user has anonymous order in progress
+                        // associate it with user and set as current
+                        $order->user_id = Auth::id();
+
+                        $user = Auth::user();
+                        $user->current_order_id = $order->id;
+                        $user->save();
+                    }
+                }
+
                 $target = $request->input('redirect-to', '');
                 if ($target == 'admin-home' && Auth::user()->isAdmin()) {
                     return redirect()->route('admin.home');
