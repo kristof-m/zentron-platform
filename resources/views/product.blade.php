@@ -5,6 +5,7 @@
     @vite('resources/css/style.css')
     @vite('resources/css/product.css')
     @vite('resources/js/product-amount.ts')
+    @vite('resources/js/product-image-cycle.ts')
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="zentron store product page - {{ $product->name }}"/>
@@ -16,11 +17,17 @@
 
 <main>
     <div class="main-product">
-        <img
-            alt="{{ $product->name }}"
-            class="main-image"
-            src="{{ $product->imageUrl() }}"
-        />
+        <div class="main-image-wrap" data-product-image-cycle>
+            <img
+                alt="{{ $product->name }}"
+                class="main-image"
+                src="{{ $product->imageUrls()[0] }}"
+                data-alt-src="{{ $product->imageUrls()[1] }}"
+            />
+            <button type="button" class="cycle-image-btn" aria-label="Switch to the next product image">
+                Next image
+            </button>
+        </div>
         <div class="product-col">
             <h1>{{ $product->name }}</h1>
             @if($product->brand != null)
