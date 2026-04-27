@@ -62,6 +62,12 @@ main {
     text-decoration: underline;
 }
 
+.cycle-image-status {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
 .product-col {
     height: 100%;
 

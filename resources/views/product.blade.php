@@ -27,6 +27,7 @@
             <button type="button" class="cycle-image-btn" aria-label="Switch to the next product image">
                 Next image
             </button>
+            <p class="cycle-image-status" aria-live="polite">Image 1 of 2</p>
         </div>
         <div class="product-col">
             <h1>{{ $product->name }}</h1>
