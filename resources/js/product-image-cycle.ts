@@ -22,6 +22,9 @@ for (const root of imageRoots) {
         continue;
     }
 
+    const image1Url = normalizeUrl(image.src);
+    let isShowingImage1 = true;
+
     const swapImage = () => {
         const altSrc = image.dataset.altSrc;
         if (!altSrc) {
@@ -32,8 +35,11 @@ for (const root of imageRoots) {
         image.dataset.altSrc = image.src;
         image.src = nextSrc;
 
+
+        isShowingImage1 = !isShowingImage1;
+
         if (status) {
-            status.textContent = image.dataset.altSrc ? 'Image 2 of 2' : 'Image 1 of 2';
+            status.textContent = isShowingImage1 ? 'Image 1 of 2' : 'Image 2 of 2';
         }
     };
 
