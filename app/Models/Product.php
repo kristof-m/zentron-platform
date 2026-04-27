@@ -38,6 +38,14 @@ class Product extends Model
 
     public function imageUrl(): string
     {
+        if ($this->image_url_primary !== null) {
+            return $this->image_url_primary;
+        }
+
+        if ($this->image_url_secondary !== null) {
+            return $this->image_url_secondary;
+        }
+
         $idx = $this->id % count(self::$imageUrls);
         return self::$imageUrls[$idx];
     }
@@ -60,6 +68,8 @@ class Product extends Model
             "price" => "decimal:2",
             "description" => "string",
             "color" => "string",
+            "image_url_primary" => "string",
+            "image_url_secondary" => "string",
         ];
     }
 
