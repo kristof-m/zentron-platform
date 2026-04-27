@@ -17,40 +17,65 @@
 
 <h1 class="page-title">{{ $create ? 'New product' : 'Editing '.$product->name }}</h1>
 
+@php
+    $nameValue = old('name', $create ? '' : $product->name);
+    $priceValue = old('price', $create ? '' : $product->price);
+    $colorValue = old('color', $create ? '' : $product->color);
+    $descriptionValue = old('description', $create ? '' : $product->description);
+    $brandValue = old('brand_id', $create ? '' : ($product->brand_id ?? ''));
+    $primaryImageUrl = old('image_url_primary', $create ? '' : ($product->image_url_primary ?? ''));
+    $secondaryImageUrl = old('image_url_secondary', $create ? '' : ($product->image_url_secondary ?? ''));
+@endphp
+
 <main>
     <form class="form" action="{{ $create ? route('product.create') : route('product.update', [$product]) }}"
           method="post">
         @csrf
         <div class="field-row">
             <label for="name">Name</label>
-            <input id="name" name="name" value="{{ $create ? '' : $product->name }}" placeholder="Xbox Series X White"/>
+            <input id="name" name="name" value="{{ $nameValue }}" placeholder="Xbox Series X White"/>
+            @error('name')
+                <p class="field-error">{{ $message }}</p>
+            @enderror
         </div>
         <div class="field-row">
             <label for="price">Price</label>
-            <input type="number" step=".01" id="price" name="price" value="{{ $create ? '' : $product->price }}"
+            <input type="number" step=".01" id="price" name="price" value="{{ $priceValue }}"
                    placeholder="149.99"/>
+            @error('price')
+                <p class="field-error">{{ $message }}</p>
+            @enderror
         </div>
         <div class="field-row">
             <label for="color">Color</label>
-            <input id="color" name="color" value="{{ $create ? '' : $product->color }}"
+            <input id="color" name="color" value="{{ $colorValue }}"
                    placeholder="White"/>
+            @error('color')
+                <p class="field-error">{{ $message }}</p>
+            @enderror
         </div>
         <div class="field-row">
             <label for="desc">Description</label>
             <textarea id="desc" type="text" name="description"
-                      placeholder="Enter description here...">{{ $create ? '' : $product->description }}</textarea>
+                      placeholder="Enter description here...">{{ $descriptionValue }}</textarea>
+            @error('description')
+                <p class="field-error">{{ $message }}</p>
+            @enderror
         </div>
         <div class="field-row">
             <label for="brand">Brand</label>
             <select id="brand" name="brand_id">
-                <option value="" {{ !$create && $product->brand_id == null ? 'selected' : '' }}>[None]</option>
+                <option value="" {{ (string) $brandValue === '' ? 'selected' : '' }}>[None]</option>
                 @foreach($brands as $brand)
                     <option
-                        value="{{ $brand->id }}" {{ !$create && $product->brand_id == $brand->id ? 'selected' : '' }}>
+                        value="{{ $brand->id }}" {{ (string) $brandValue === (string) $brand->id ? 'selected' : '' }}>
                         {{ $brand->name }}
                     </option>
                 @endforeach
             </select>
+            @error('brand_id')
+                <p class="field-error">{{ $message }}</p>
+            @enderror
         </div>
         <div class="field-row">
             <label for="image-url-primary">Primary image URL</label>
@@ -58,9 +83,12 @@
                 id="image-url-primary"
                 name="image_url_primary"
                 type="url"
-                value="{{ $create ? '' : $product->image_url_primary }}"
+                value="{{ $primaryImageUrl }}"
                 placeholder="https://example.com/images/product-main.jpg"
             />
+            @error('image_url_primary')
+                <p class="field-error">{{ $message }}</p>
+            @enderror
         </div>
         <div class="field-row">
             <label for="image-url-secondary">Secondary image URL</label>
@@ -68,24 +96,35 @@
                 id="image-url-secondary"
                 name="image_url_secondary"
                 type="url"
-                value="{{ $create ? '' : $product->image_url_secondary }}"
+                value="{{ $secondaryImageUrl }}"
                 placeholder="https://example.com/images/product-secondary.jpg"
             />
+            @error('image_url_secondary')
+                <p class="field-error">{{ $message }}</p>
+            @enderror
         </div>
+
+        @if($primaryImageUrl !== '' || $secondaryImageUrl !== '')
+            <div class="image-preview-grid" aria-label="Image URL previews">
+                @if($primaryImageUrl !== '')
+                    <figure class="image-preview-card">
+                        <img src="{{ $primaryImageUrl }}" alt="Primary image preview" loading="lazy"/>
+                        <figcaption>Primary preview</figcaption>
+                    </figure>
+                @endif
+                @if($secondaryImageUrl !== '')
+                    <figure class="image-preview-card">
+                        <img src="{{ $secondaryImageUrl }}" alt="Secondary image preview" loading="lazy"/>
+                        <figcaption>Secondary preview</figcaption>
+                    </figure>
+                @endif
+            </div>
+        @endif
+
         <button type="submit" class="register-btn">
             Save
         </button>
     </form>
-
-    @if ($errors->any())
-        <div class="form-errors">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 </main>
 
 @include('components.footer')
