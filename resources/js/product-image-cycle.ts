@@ -22,7 +22,6 @@ for (const root of imageRoots) {
         continue;
     }
 
-    const image1Url = normalizeUrl(image.src);
     let isShowingImage1 = true;
 
     const swapImage = () => {
@@ -34,7 +33,6 @@ for (const root of imageRoots) {
         const nextSrc = altSrc;
         image.dataset.altSrc = image.src;
         image.src = nextSrc;
-
 
         isShowingImage1 = !isShowingImage1;
 
