@@ -17,7 +17,7 @@ class Product extends Model
 {
     use Searchable;
 
-    static array $imageUrls;
+    static array $fallbackImageUrls;
 
     /**
      * Create a new component instance.
@@ -26,8 +26,8 @@ class Product extends Model
     {
         parent::__construct();
 
-        if (!isset(self::$imageUrls)) {
-            self::$imageUrls = [
+        if (!isset(self::$fallbackImageUrls)) {
+            self::$fallbackImageUrls = [
                 Vite::asset('resources/images/ps5.jpg'),
                 Vite::asset('resources/images/deck.jpg'),
                 Vite::asset('resources/images/iphone.jpg'),
@@ -36,18 +36,29 @@ class Product extends Model
         }
     }
 
+    public function imageUrls(): array
+    {
+        $fallbackCount = count(self::$fallbackImageUrls);
+        $fallbackIdx = $this->id % $fallbackCount;
+        $fallbackPrimary = self::$fallbackImageUrls[$fallbackIdx];
+        $fallbackSecondary = self::$fallbackImageUrls[($fallbackIdx + 1) % $fallbackCount];
+
+        $primary = $this->image_url_primary;
+        if ($primary === null || trim($primary) === '') {
+            $primary = $fallbackPrimary;
+        }
+
+        $secondary = $this->image_url_secondary;
+        if ($secondary === null || trim($secondary) === '') {
+            $secondary = $fallbackSecondary;
+        }
+
+        return [$primary, $secondary];
+    }
+
     public function imageUrl(): string
     {
-        if ($this->image_url_primary !== null) {
-            return $this->image_url_primary;
-        }
-
-        if ($this->image_url_secondary !== null) {
-            return $this->image_url_secondary;
-        }
-
-        $idx = $this->id % count(self::$imageUrls);
-        return self::$imageUrls[$idx];
+        return $this->imageUrls()[0];
     }
 
     public function categories(): BelongsToMany
