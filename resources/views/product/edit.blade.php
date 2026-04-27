@@ -52,6 +52,26 @@
                 @endforeach
             </select>
         </div>
+        <div class="field-row">
+            <label for="image-url-primary">Primary image URL</label>
+            <input
+                id="image-url-primary"
+                name="image_url_primary"
+                type="url"
+                value="{{ $create ? '' : $product->image_url_primary }}"
+                placeholder="https://example.com/images/product-main.jpg"
+            />
+        </div>
+        <div class="field-row">
+            <label for="image-url-secondary">Secondary image URL</label>
+            <input
+                id="image-url-secondary"
+                name="image_url_secondary"
+                type="url"
+                value="{{ $create ? '' : $product->image_url_secondary }}"
+                placeholder="https://example.com/images/product-secondary.jpg"
+            />
+        </div>
         <button type="submit" class="register-btn">
             Save
         </button>

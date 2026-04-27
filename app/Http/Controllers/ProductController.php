@@ -52,6 +52,8 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'color' => 'nullable|string',
             'brand_id' => 'nullable|exists:Brand,id',
+            'image_url_primary' => 'nullable|url|max:2048',
+            'image_url_secondary' => 'nullable|url|max:2048',
         ]);
 
         $product = Product::create($validated);
@@ -78,6 +80,8 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'color' => 'nullable|string',
             'brand_id' => 'nullable|exists:Brand,id',
+            'image_url_primary' => 'nullable|url|max:2048',
+            'image_url_secondary' => 'nullable|url|max:2048',
         ]);
 
         $product->update($validated);
