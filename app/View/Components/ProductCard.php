@@ -11,7 +11,10 @@ class ProductCard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public \App\Models\Product $product)
+    public function __construct(
+        public \App\Models\Product $product,
+        public bool $isAdmin = false
+    )
     {
         //
     }
@@ -22,7 +25,8 @@ class ProductCard extends Component
     public function render(): View|Closure|string
     {
         return view("components.product-card", [
-            "product" => $this->product
+            "product" => $this->product,
+            "isAdmin" => $this->isAdmin
         ]);
     }
 }

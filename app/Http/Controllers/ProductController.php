@@ -100,14 +100,22 @@ class ProductController extends Controller
         ]);
     }
 
-    public function adminIndex(): View
+    public function adminIndex(Request $request): View
     {
         Gate::authorize('create', Product::class);
 
-        $products = Product::with('brand')->paginate(15);
-        
+        $query = Product::with(['brand', 'categories']);
+
+        $brands = $this->getBrands($query);
+        $colors = $this->getColors($query);
+        $query = $this->filterQuery($request, $query);
+
         return view('admin.products', [
-            'products' => $products
+            'heading' => 'Manage Products',
+            'products' => $query->paginate(20)->withQueryString(),
+            'hiddenFields' => [],
+            'brands' => $brands,
+            'colors' => $colors,
         ]);
     }
 }

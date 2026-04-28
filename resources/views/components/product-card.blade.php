@@ -1,5 +1,5 @@
 <article>
-    <a class="card" href="/product/{{ $product->id }}">
+    <a class="card" href="{{ $isAdmin ? route('product.edit', $product->id) : '/product/' . $product->id }}">
         <img
             class="product-image"
             alt="{{ $product->name }}"
