@@ -99,4 +99,15 @@ class ProductController extends Controller
             'brands' => $brands,
         ]);
     }
+
+    public function adminIndex(): View
+    {
+        Gate::authorize('create', Product::class);
+
+        $products = Product::with('brand')->paginate(15);
+        
+        return view('admin.products', [
+            'products' => $products
+        ]);
+    }
 }

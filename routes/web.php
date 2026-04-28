@@ -72,6 +72,10 @@ Route::get('/admin/home', function () {
     return view('admin.home', compact('user'));
 })->can('create', Product::class)->name('admin.home');
 
+Route::get('/admin/products', [ProductController::class, 'adminIndex'])
+    ->can('create', Product::class)
+    ->name('admin.products');
+
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout');
