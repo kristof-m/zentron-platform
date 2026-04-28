@@ -4,7 +4,7 @@
     </a>
 
     <nav class="desktop-nav no-mobile" aria-label="Main navigation">
-        <a class="black-link" href="/admin/products">Edit Products</a>
+        <a class="black-link" href="{{ route('admin.products') }}">Edit Products</a>
     </nav>
 
     <div class="spacer" aria-hidden="true"></div>
