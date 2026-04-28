@@ -12,6 +12,7 @@
 @include('components.header')
 
 <main>
+    <h1>My orders</h1>
     @foreach($orders as $order)
         <article>
             <a href="/order/{{ $order->id }}" class="order-link">

@@ -34,15 +34,23 @@ class FortifyServiceProvider extends ServiceProvider
                 $orderId = session()->get('orderId');
 
                 if ($orderId) {
-                    $order = Order::find($orderId);
-                    if ($order && $order->user_id == null) {
+                    $guestOrder = Order::find($orderId);
+                    if ($guestOrder && $guestOrder->user_id == null) {
                         // user has anonymous order in progress
-                        // associate it with user and set as current
-                        $order->user_id = Auth::id();
+                        // merge it with their current order
+                        $guestOrder->user_id = Auth::id();
 
                         $user = Auth::user();
-                        $user->current_order_id = $order->id;
-                        $user->save();
+                        $currentOrder = $user->currentOrder;
+                        if ($currentOrder) {
+                            // merge guest order with user's current
+                            $currentOrder->mergeOrder($guestOrder);
+                            $currentOrder->save();
+                            $guestOrder->delete();
+                        } else {
+                            // user has no current order, use the new one
+                            $user->current_order_id = $orderId;
+                        }
                     }
                 }
 
