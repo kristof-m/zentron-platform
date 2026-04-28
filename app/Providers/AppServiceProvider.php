@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Login;
+use App\Listeners\MergeGuestCartOnLogin;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
         Model::preventLazyLoading();
         Model::preventSilentlyDiscardingAttributes();
         Model::preventsAccessingMissingAttributes();
+
+        Event::listen(Login::class, MergeGuestCartOnLogin::class);
     }
 }

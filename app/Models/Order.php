@@ -55,6 +55,22 @@ class Order extends Model
             ->withPivot("amount");
     }
 
+    public function mergeOrder(Order $guestOrder): void
+    {
+        foreach ($guestOrder->products as $product) {
+            $existing = $this->products()->where('product_id', $product->id)->first();
+            if ($existing) {
+                // Add guest amount to existing user amount
+                $newAmount = $existing->pivot->amount + $product->pivot->amount;
+                $this->products()->updateExistingPivot($product->id, ['amount' => $newAmount]);
+            } else {
+                // Attach new product
+                $this->products()->attach($product->id, ['amount' => $product->pivot->amount]);
+            }
+        }
+        $this->updateTotalAmount();
+    }
+
     public function updateTotalAmount(): void
     {
         $total = 0;
