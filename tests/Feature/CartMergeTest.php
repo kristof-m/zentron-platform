@@ -52,3 +52,60 @@ test('merges guest cart into new user cart when login', function () {
     expect($userOrder->products->first()->pivot->amount)->toBe(2);
     expect((int)$userOrder->total_amount)->toBe(20);
 });
+
+test('merges guest cart into existing user cart on login and sums amounts for same product', function () {
+    // Create product
+    $product1 = new Product;
+    $product1->name = 'Product 1';
+    $product1->price = 10.0;
+    $product1->description = 'Test Desc';
+    $product1->save();
+    
+    $product2 = new Product;
+    $product2->name = 'Product 2';
+    $product2->price = 20.0;
+    $product2->description = 'Test Desc';
+    $product2->save();
+
+    // Create guest cart
+    $guestOrder = new Order;
+    $guestOrder->status = OrderStatus::InCart;
+    $guestOrder->total_amount = 0;
+    $guestOrder->save();
+    
+    $guestOrder->products()->attach($product1->id, ['amount' => 2]);
+    $guestOrder->products()->attach($product2->id, ['amount' => 1]);
+    $guestOrder->updateTotalAmount();
+    
+    Session::put('orderId', $guestOrder->id);
+
+    // Create a user with existing cart
+    $user = User::factory()->create();
+    
+    $userOrder = new Order;
+    $userOrder->status = OrderStatus::InCart;
+    $userOrder->total_amount = 0;
+    $userOrder->user_id = $user->id;
+    $userOrder->save();
+    
+    $user->current_order_id = $userOrder->id;
+    $user->save();
+    
+    // User already has product1 in cart
+    $userOrder->products()->attach($product1->id, ['amount' => 3]);
+    $userOrder->updateTotalAmount();
+    Illuminate\Support\Facades\Auth::login($user);
+
+    $user->refresh();
+    $finalOrder = $user->currentOrder;
+    expect($finalOrder->products->count())->toBe(2);
+
+    $pivot1 = $finalOrder->products()->where('product_id', $product1->id)->first()->pivot;
+    expect($pivot1->amount)->toBe(5);
+    
+    $pivot2 = $finalOrder->products()->where('product_id', $product2->id)->first()->pivot;
+    expect($pivot2->amount)->toBe(1);
+    
+    // Total should 70
+    expect((int)$finalOrder->total_amount)->toBe(70);
+});
