@@ -17,14 +17,14 @@ class SearchController extends Controller
         $searchQuery = $request->query('q');
         $query = Product::search($searchQuery);
 
+        $minPrice = intval($query->get()->min('price'));
+        $maxPrice = round($query->get()->max('price'), 0, PHP_ROUND_HALF_UP);
+
         $query = $this->filterQuery($request, $query)
             ->query(fn(Builder $query) => $query->with('categories'));
 
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);
-
-        $minPrice = intval($query->min('price'));
-        $maxPrice = round($query->max('price'), 0, PHP_ROUND_HALF_UP);
 
         return view('product-list', [
             'heading' => 'Search results for "' . $searchQuery . '"',
