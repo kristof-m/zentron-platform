@@ -13,7 +13,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $products = Product::limit(10)->with('categories')->get();
+    $products = Product::limit(10)->with(['categories', 'mainImage'])->get();
     return view('index', ['products' => $products]);
 });
 

@@ -15,20 +15,28 @@ class ProductController extends Controller
 
     public function show(string $id): View
     {
+        $product = Product::with('categories')
+            ->with(['brand', 'mainImage'])
+            ->findOrFail($id);
+
+        $images = $product->images()->get();
+        if ($images->isEmpty()) {
+            $images = collect([$product->fallbackImageUrl()]);
+        }
+
         return view('product', [
-            'product' => Product::with('categories')
-                ->with('brand')
-                ->findOrFail($id),
+            'product' => $product,
+            'images' => $images,
             'otherProducts' => Product::limit(10)
                 ->whereNot('id', '=', $id)
-                ->with('categories')
+                ->with(['categories', 'mainImage'])
                 ->get()
         ]);
     }
 
     public function all(Request $request): View
     {
-        $query = Product::with('categories');
+        $query = Product::with(['categories', 'mainImage']);
 
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);

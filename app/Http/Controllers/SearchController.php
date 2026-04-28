@@ -21,7 +21,7 @@ class SearchController extends Controller
         $maxPrice = round($query->get()->max('price'), 0, PHP_ROUND_HALF_UP);
 
         $query = $this->filterQuery($request, $query)
-            ->query(fn(Builder $query) => $query->with('categories'));
+            ->query(fn(Builder $query) => $query->with(['categories', 'mainImage']));
 
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);
