@@ -117,7 +117,7 @@ class ProductController extends Controller
     {
         Gate::authorize('create', Product::class);
 
-        $query = Product::with(['brand', 'categories']);
+        $query = Product::with(['brand', 'categories', 'mainImage']);
 
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);
