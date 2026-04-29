@@ -1,26 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <x-meta-tags title="admin tools"/>
     @vite('resources/css/style.css')
     @vite('resources/css/admin.css')
     @vite('resources/css/auth.css')
-    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="zentron admin page"/>
-    <title>zentron - admin home</title>
+    @vite('resources/css/menu.css')
 </head>
 
 <body class="admin-page">
 
 @include('admin.header')
 
-<main>
+<main class="main">
     <h1>Hi, {{ $user->name }}</h1>
     <p>You are an admin!</p>
-    <a class="register-btn" href="{{ route('admin.products') }}">Manage Products</a>
-    <a class="register-btn" href="{{ route('product.new') }}">Add new product</a>
-    <a class="register-btn" href="{{ route('brand.new') }}">Add new brand</a>
+    <a class="menu-btn" href="{{ route('admin.products') }}">Manage Products</a>
+    <a class="menu-btn" href="{{ route('product.new') }}">Add new product</a>
+    <a class="menu-btn" href="{{ route('brand.new') }}">Add new brand</a>
     <form action="/logout" method="post">
         @csrf
         <button type="submit" class="register-btn">

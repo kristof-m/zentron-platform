@@ -1,24 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <x-meta-tags title="account"/>
     @vite('resources/css/style.css')
-    @vite('resources/css/auth.css')
-    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="zentron account page"/>
-    <title>zentron - account</title>
+    @vite('resources/css/menu.css')
 </head>
 
 <body>
 
 @include('components.header')
 
-<main>
+<main class="main">
     <h1>Hi, {{ $user->name }}</h1>
+    <a href="{{ route('orders') }}" class="menu-btn">
+        My orders
+    </a>
     <form action="/logout" method="post">
         @csrf
-        <button type="submit" class="register-btn">
+        <button type="submit" class="menu-btn">
             Sign out
         </button>
     </form>

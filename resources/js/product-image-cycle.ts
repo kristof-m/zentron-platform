@@ -1,55 +1,43 @@
-const imageRoots = document.querySelectorAll<HTMLElement>('[data-product-image-cycle]');
+const mainImage = <HTMLImageElement>document.getElementById('main-image');
+const prevBtn = <HTMLButtonElement>document.getElementById('prev-image');
+const nextBtn = <HTMLButtonElement>document.getElementById('next-image');
+const statusLabel = <HTMLParagraphElement>document.getElementById('image-status');
 
-for (const root of imageRoots) {
-    const image = root.querySelector<HTMLImageElement>('.main-image[data-alt-src]');
-    const button = root.querySelector<HTMLButtonElement>('.cycle-image-btn');
-    const status = root.querySelector<HTMLElement>('.cycle-image-status');
+if (mainImage && prevBtn && nextBtn && statusLabel) {
+    const imageUrls: string[] = JSON.parse(mainImage.dataset['imageUrls']);
+    const imageCount = imageUrls.length;
 
-    if (!image || !button) {
-        continue;
+    let currentIdx = 0;
+
+    function swapImage() {
+        mainImage.src = imageUrls[currentIdx];
     }
 
-    const normalizeUrl = (url: string) => new URL(url, window.location.href).href;
-
-    const currentSrc = normalizeUrl(image.src);
-    const altSrc = image.dataset.altSrc;
-
-    if (!altSrc || normalizeUrl(altSrc) === currentSrc) {
-        button.hidden = true;
-        if (status) {
-            status.hidden = true;
-        }
-        continue;
+    function renderStatus() {
+        statusLabel.innerText = `Image ${currentIdx + 1} of ${imageCount}`
     }
 
-    let isShowingImage1 = true;
-
-    const swapImage = () => {
-        const altSrc = image.dataset.altSrc;
-        if (!altSrc) {
-            return;
-        }
-
-        const nextSrc = altSrc;
-        image.dataset.altSrc = image.src;
-        image.src = nextSrc;
-
-        isShowingImage1 = !isShowingImage1;
-
-        if (status) {
-            status.textContent = isShowingImage1 ? 'Image 1 of 2' : 'Image 2 of 2';
-        }
-    };
-
-    button.addEventListener('click', (event) => {
+    prevBtn.addEventListener('click', (event) => {
         event.preventDefault();
+
+        if (currentIdx == 0) {
+            currentIdx = imageCount - 1;
+        } else {
+            currentIdx--;
+        }
         swapImage();
+        renderStatus();
     });
 
-    button.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            swapImage();
+    nextBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        if (currentIdx == imageCount - 1) {
+            currentIdx = 0;
+        } else {
+            currentIdx++;
         }
+        swapImage();
+        renderStatus();
     });
 }

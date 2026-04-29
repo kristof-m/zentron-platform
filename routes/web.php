@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
@@ -12,7 +13,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $products = Product::limit(10)->with('categories')->get();
+    $products = Product::limit(10)->with(['categories', 'mainImage'])->get();
     return view('index', ['products' => $products]);
 });
 
@@ -30,7 +31,8 @@ Route::get('/product/{product}/edit', [ProductController::class, 'edit'])
 Route::post('/product/{product}/update', [ProductController::class, 'update'])
     ->name('product.update');
 
-Route::get('/product/{id}', [ProductController::class, 'show']);
+Route::get('/product/{id}', [ProductController::class, 'show'])
+    ->name('product');
 Route::get('/products', [ProductController::class, 'all']);
 
 Route::get('/category/{id}', [CategoryController::class, 'show']);
@@ -81,3 +83,21 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout');
 Route::post('/checkout/setDetails', [CheckoutController::class, 'setDetails'])
     ->name('checkout.setDetails');
+
+Route::get('/checkout/review', [CheckoutController::class, 'review'])
+    ->name('checkout.review');
+Route::post('/checkout/confirm', [CheckoutController::class, 'confirm'])
+    ->name('checkout.confirm');
+
+Route::get('/checkout/payment', [CheckoutController::class, 'payment'])
+    ->name('checkout.payment');
+Route::post('/checkout/acceptPayment', [CheckoutController::class, 'acceptPayment'])
+    ->name('checkout.acceptPayment');
+
+Route::get('/checkout/complete', [CheckoutController::class, 'complete'])
+    ->name('checkout.complete');
+
+Route::get('/order/{order}', [OrderController::class, 'show'])
+    ->can('view', 'order')->name('order');
+Route::get('/orders', [OrderController::class, 'all'])
+    ->name('orders');

@@ -6,6 +6,7 @@ use App\Enums\OrderStatus;
 use App\Enums\Role;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\Request;
 
@@ -80,6 +81,11 @@ class Order extends Model
 
         $this->total_amount = $total;
         $this->save();
+    }
+
+    public function deliveryType(): BelongsTo
+    {
+        return $this->belongsTo(DeliveryType::class);
     }
 
     /**

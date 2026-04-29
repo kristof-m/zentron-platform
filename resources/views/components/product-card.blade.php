@@ -3,7 +3,7 @@
         <img
             class="product-image"
             alt="{{ $product->name }}"
-            src="{{ $product->imageUrl() }}"
+            src="{{ $product->mainImageUrl() }}"
             width="512"
             height="512"
         />

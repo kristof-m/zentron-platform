@@ -17,8 +17,11 @@ class SearchController extends Controller
         $searchQuery = $request->query('q');
         $query = Product::search($searchQuery);
 
+        $minPrice = intval($query->get()->min('price'));
+        $maxPrice = round($query->get()->max('price'), 0, PHP_ROUND_HALF_UP);
+
         $query = $this->filterQuery($request, $query)
-            ->query(fn(Builder $query) => $query->with('categories'));
+            ->query(fn(Builder $query) => $query->with(['categories', 'mainImage']));
 
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);
@@ -30,6 +33,8 @@ class SearchController extends Controller
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice,
         ]);
     }
 }

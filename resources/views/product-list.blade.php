@@ -1,13 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <x-meta-tags title="{{ $heading }} - page {{ $products->currentPage() }}"
+                 description="{{ $heading }} - page {{ $products->currentPage() }}"/>
     @vite('resources/css/style.css')
     @vite('resources/js/filter.ts')
-    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="zentron store - {{ $heading }} page {{ $products->currentPage() }}"/>
-    <title>{{ $heading }} - page {{ $products->currentPage() }} - zentron</title>
 </head>
 
 <body>
@@ -17,8 +14,8 @@
 
 @php
     $selectedSort = request()->query('sort-order', 'price-asc');
-    $selectedMinPrice = request()->query('price-min', '');
-    $selectedMaxPrice = request()->query('price-max', '');
+    $selectedMinPrice = request()->query('price-min', $minPrice);
+    $selectedMaxPrice = request()->query('price-max',  $maxPrice);
     $selectedBrand = request()->query('brand', 'all');
     if ($selectedBrand !== 'all') {
         $selectedBrand = intval($selectedBrand);
@@ -49,7 +46,7 @@
                 min="0"
                 step="1"
                 value="{{ $selectedMinPrice }}"
-                placeholder="0"
+                placeholder="{{ $minPrice }}"
             />
         </div>
 
@@ -63,7 +60,7 @@
                 min="0"
                 step="1"
                 value="{{ $selectedMaxPrice }}"
-                placeholder="2000"
+                placeholder="{{ $maxPrice }}"
             />
         </div>
 

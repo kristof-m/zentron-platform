@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Vite;
 use Laravel\Scout\Searchable;
@@ -36,29 +37,14 @@ class Product extends Model
         }
     }
 
-    public function imageUrls(): array
+    public function fallbackImageUrl(): string
     {
-        $fallbackCount = count(self::$fallbackImageUrls);
-        $fallbackIdx = $this->id % $fallbackCount;
-        $fallbackPrimary = self::$fallbackImageUrls[$fallbackIdx];
-        $fallbackSecondary = self::$fallbackImageUrls[($fallbackIdx + 1) % $fallbackCount];
-
-        $primary = $this->image_url_primary;
-        if ($primary === null || trim($primary) === '') {
-            $primary = $fallbackPrimary;
-        }
-
-        $secondary = $this->image_url_secondary;
-        if ($secondary === null || trim($secondary) === '') {
-            $secondary = $fallbackSecondary;
-        }
-
-        return [$primary, $secondary];
+        return self::$fallbackImageUrls[$this->id % (count(self::$fallbackImageUrls) - 1)];
     }
 
-    public function imageUrl(): string
+    public function mainImageUrl(): string
     {
-        return $this->imageUrls()[0];
+        return $this->mainImage?->url ?? $this->fallbackImageUrl();
     }
 
     public function categories(): BelongsToMany
@@ -70,6 +56,16 @@ class Product extends Model
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function mainImage(): HasOne
+    {
+        return $this->hasOne(ProductImage::class, 'product_id', 'main_image_id');
     }
 
     protected function casts(): array

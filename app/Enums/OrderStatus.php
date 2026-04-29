@@ -8,4 +8,9 @@ enum OrderStatus: string
     case Confirmed = 'confirmed';
     case Paid = 'paid';
     case Shipped = 'shipped';
+
+    public function isEditable(): bool
+    {
+        return $this == OrderStatus::InCart || $this == OrderStatus::Confirmed;
+    }
 }

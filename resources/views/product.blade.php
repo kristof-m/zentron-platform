@@ -1,15 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <x-meta-tags :title="$product->name"
+                 :description="'product page for '.$product->name"/>
     @vite('resources/css/style.css')
     @vite('resources/css/product.css')
     @vite('resources/js/product-amount.ts')
     @vite('resources/js/product-image-cycle.ts')
-    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="zentron store product page - {{ $product->name }}"/>
-    <title>{{ $product->name }} - zentron</title>
 </head>
 
 <body>
@@ -19,26 +16,33 @@
     <div class="main-product">
         <div class="main-image-wrap" data-product-image-cycle>
             <img
+                id="main-image"
                 alt="{{ $product->name }}"
                 class="main-image"
-                src="{{ $product->imageUrls()[0] }}"
-                data-alt-src="{{ $product->imageUrls()[1] }}"
+                src="{{ $product->mainImageUrl() }}"
+                data-image-urls="{{ $images->toJson() }}"
             />
-            <button type="button" class="cycle-image-btn" aria-label="Switch to the next product image">
-                Next image
-            </button>
-            <p class="cycle-image-status" aria-live="polite">Image 1 of 2</p>
+            <div class="image-controls">
+                <button id="prev-image" class="icon-button image-arrow">
+                    <img alt="Previous image" src="{{ Vite::asset('resources/icons/arrow_left.svg') }}"/>
+                </button>
+                <p id="image-status" class="image-status" aria-live="polite">Image 1
+                    of {{ $images->count() }}</p>
+                <button id="next-image" class="icon-button image-arrow">
+                    <img alt="Next image" src="{{ Vite::asset('resources/icons/arrow_right.svg') }}"/>
+                </button>
+            </div>
         </div>
         <div class="product-col">
             <h1>{{ $product->name }}</h1>
-            @if($product->brand != null)
+            @if ($product->brand != null)
                 <a class="black-link brand-name" href="/brand/{{ $product->brand->id }}">
                     {{ $product->brand->name }}<span aria-hidden="true"> > </span>
                 </a>
             @endif
 
             <div class="tags">
-                @foreach($product->categories as $category)
+                @foreach ($product->categories as $category)
                     <a class="tag black-link" href="/category/{{ $category->id }}">
                         {{ $category->name }}
                     </a>
@@ -48,7 +52,7 @@
             <p class="main-price">{{ $product->price }} €</p>
         </div>
         <div class="product-col">
-            @can('update', $product)
+            @can ('update', $product)
                 <a class="black-link cart-btn" href="{{ route('product.edit', [$product]) }}">Edit this product</a>
             @endcan
 
@@ -74,7 +78,7 @@
 </main>
 
 <div class="products">
-    @foreach($otherProducts as $product)
+    @foreach ($otherProducts as $product)
         <x-product-card :product="$product"/>
     @endforeach
 </div>
