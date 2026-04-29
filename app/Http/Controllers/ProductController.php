@@ -7,7 +7,10 @@ use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class ProductController extends Controller
 {
@@ -19,7 +22,10 @@ class ProductController extends Controller
             ->with(['brand', 'mainImage'])
             ->findOrFail($id);
 
-        $images = $product->images()->get();
+        $images = $product->getMedia('images');
+
+        Log::info('product images', ['images' => $images]);
+
         if ($images->isEmpty()) {
             $images = collect([$product->fallbackImageUrl()]);
         }
@@ -65,11 +71,11 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'color' => 'nullable|string',
             'brand_id' => 'nullable|exists:Brand,id',
-            'image_url_primary' => 'nullable|url|max:2048',
-            'image_url_secondary' => 'nullable|url|max:2048',
+            'image' => 'required|file|image',
         ]);
 
         $product = Product::create($validated);
+        $image = $request->file('image');
 
         return redirect('/product/' . $product->id);
     }
@@ -93,9 +99,16 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'color' => 'nullable|string',
             'brand_id' => 'nullable|exists:Brand,id',
-            'image_url_primary' => 'nullable|url|max:2048',
-            'image_url_secondary' => 'nullable|url|max:2048',
         ]);
+
+        if ($request->file('image') !== null) {
+            try {
+                $product->addMediaFromRequest('image')
+                    ->toMediaCollection('images');
+            } catch (FileDoesNotExist|FileIsTooBig $e) {
+                Log::error($e);
+            }
+        }
 
         $product->update($validated);
 

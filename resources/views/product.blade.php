@@ -19,8 +19,8 @@
                 id="main-image"
                 alt="{{ $product->name }}"
                 class="main-image"
-                src="{{ $product->mainImageUrl() }}"
-                data-image-urls="{{ $images->toJson() }}"
+                src="{{ $product->previewUrl() }}"
+                data-image-urls="{{ $images->select('url')->toJson() }}"
             />
             <div class="image-controls">
                 <button id="prev-image" class="icon-button image-arrow">

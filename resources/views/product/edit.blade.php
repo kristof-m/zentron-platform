@@ -19,19 +19,17 @@
     $colorValue = old('color', $create ? '' : $product->color);
     $descriptionValue = old('description', $create ? '' : $product->description);
     $brandValue = old('brand_id', $create ? '' : ($product->brand_id ?? ''));
-    $primaryImageUrl = old('image_url_primary', $create ? '' : ($product->image_url_primary ?? ''));
-    $secondaryImageUrl = old('image_url_secondary', $create ? '' : ($product->image_url_secondary ?? ''));
 @endphp
 
 <main>
     <form class="form" action="{{ $create ? route('product.create') : route('product.update', [$product]) }}"
-          method="post">
+          method="post" enctype="multipart/form-data">
         @csrf
         <div class="field-row">
             <label for="name">Name</label>
             <input id="name" name="name" value="{{ $nameValue }}" placeholder="Xbox Series X White"/>
             @error('name')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
         <div class="field-row">
@@ -39,7 +37,7 @@
             <input type="number" step=".01" id="price" name="price" value="{{ $priceValue }}"
                    placeholder="149.99"/>
             @error('price')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
         <div class="field-row">
@@ -47,7 +45,7 @@
             <input id="color" name="color" value="{{ $colorValue }}"
                    placeholder="White"/>
             @error('color')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
         <div class="field-row">
@@ -55,7 +53,7 @@
             <textarea id="desc" type="text" name="description"
                       placeholder="Enter description here...">{{ $descriptionValue }}</textarea>
             @error('description')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
         <div class="field-row">
@@ -70,50 +68,30 @@
                 @endforeach
             </select>
             @error('brand_id')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
         <div class="field-row">
-            <label for="image-url-primary">Primary image URL</label>
+            <label for="image">Add image</label>
             <input
-                id="image-url-primary"
-                name="image_url_primary"
-                type="url"
-                value="{{ $primaryImageUrl }}"
-                placeholder="https://example.com/images/product-main.jpg"
+                id="image"
+                name="image"
+                type="file"
+                accept="image/png, image/jpg, image/webp, image/avif"
             />
-            @error('image_url_primary')
-                <p class="field-error">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="field-row">
-            <label for="image-url-secondary">Secondary image URL</label>
-            <input
-                id="image-url-secondary"
-                name="image_url_secondary"
-                type="url"
-                value="{{ $secondaryImageUrl }}"
-                placeholder="https://example.com/images/product-secondary.jpg"
-            />
-            @error('image_url_secondary')
-                <p class="field-error">{{ $message }}</p>
+            @error('image')
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
 
-        @if($primaryImageUrl !== '' || $secondaryImageUrl !== '')
+        @if ($product->hasMedia('images'))
             <div class="image-preview-grid" aria-label="Image URL previews">
-                @if($primaryImageUrl !== '')
+                @foreach ($product->getMedia('images') as $image)
                     <figure class="image-preview-card">
-                        <img src="{{ $primaryImageUrl }}" alt="Primary image preview" loading="lazy"/>
-                        <figcaption>Primary preview</figcaption>
-                    </figure>
-                @endif
-                @if($secondaryImageUrl !== '')
-                    <figure class="image-preview-card">
-                        <img src="{{ $secondaryImageUrl }}" alt="Secondary image preview" loading="lazy"/>
+                        <img src="{{ $image->getUrl() }}" alt="Product image preview" loading="lazy"/>
                         <figcaption>Secondary preview</figcaption>
                     </figure>
-                @endif
+                @endforeach
             </div>
         @endif
 
