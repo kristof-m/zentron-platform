@@ -22,17 +22,21 @@ class ProductController extends Controller
             ->with(['brand', 'mainImage'])
             ->findOrFail($id);
 
-        $images = $product->getMedia('images');
+        $imageUrls = $product->getMedia('images');
 
-        Log::info('product images', ['images' => $images]);
+        Log::info('product images', ['images' => $imageUrls]);
 
-        if ($images->isEmpty()) {
-            $images = collect([$product->fallbackImageUrl()]);
+        if ($imageUrls->isEmpty()) {
+            $imageUrls = collect([$product->fallbackImageUrl()]);
+        } else {
+            $imageUrls = $imageUrls->map(fn($image) => $image->getUrl('hero'));
         }
+
+        Log::info('product images', ['images' => $imageUrls]);
 
         return view('product', [
             'product' => $product,
-            'images' => $images,
+            'imageUrls' => $imageUrls,
             'otherProducts' => Product::limit(10)
                 ->whereNot('id', '=', $id)
                 ->with(['categories', 'mainImage'])

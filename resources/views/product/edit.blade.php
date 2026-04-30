@@ -77,7 +77,7 @@
                 id="image"
                 name="image"
                 type="file"
-                accept="image/png, image/jpg, image/webp, image/avif"
+                accept="image/png, image/jpeg, image/webp, image/avif"
             />
             @error('image')
             <p class="field-error">{{ $message }}</p>
@@ -87,10 +87,10 @@
         @if ($product->hasMedia('images'))
             <div class="image-preview-grid" aria-label="Image URL previews">
                 @foreach ($product->getMedia('images') as $image)
-                    <figure class="image-preview-card">
-                        <img src="{{ $image->getUrl() }}" alt="Product image preview" loading="lazy"/>
-                        <figcaption>Secondary preview</figcaption>
-                    </figure>
+                    <div class="image-preview-card">
+                        <img class="image-preview" src="{{ $image->getUrl() }}" alt="Product image preview"
+                             loading="lazy"/>
+                    </div>
                 @endforeach
             </div>
         @endif

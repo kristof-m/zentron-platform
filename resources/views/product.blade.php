@@ -20,14 +20,14 @@
                 alt="{{ $product->name }}"
                 class="main-image"
                 src="{{ $product->previewUrl() }}"
-                data-image-urls="{{ $images->select('url')->toJson() }}"
+                data-image-urls="{{ $imageUrls->toJson() }}"
             />
             <div class="image-controls">
                 <button id="prev-image" class="icon-button image-arrow">
                     <img alt="Previous image" src="{{ Vite::asset('resources/icons/arrow_left.svg') }}"/>
                 </button>
                 <p id="image-status" class="image-status" aria-live="polite">Image 1
-                    of {{ $images->count() }}</p>
+                    of {{ $imageUrls->count() }}</p>
                 <button id="next-image" class="icon-button image-arrow">
                     <img alt="Next image" src="{{ Vite::asset('resources/icons/arrow_right.svg') }}"/>
                 </button>

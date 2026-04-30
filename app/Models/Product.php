@@ -55,6 +55,15 @@ class Product extends Model implements HasMedia
         return $url;
     }
 
+    public function previewUrlAvif(): string
+    {
+        $url = $this->getFirstMediaUrl('images', 'preview-avif');
+        if ($url == '') {
+            return $this->fallbackImageUrl();
+        }
+        return $url;
+    }
+
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, "ProductCategory",
@@ -102,5 +111,19 @@ class Product extends Model implements HasMedia
             ->addMediaConversion('preview')
             ->fit(Fit::Contain, 300, 300)
             ->nonQueued();
+
+        $this
+            ->addMediaConversion('preview-avif')
+            ->fit(Fit::Contain, 300, 300)
+            ->format('avif');
+
+        $this
+            ->addMediaConversion('hero')
+            ->fit(Fit::Contain, 600, 600);
+
+        $this
+            ->addMediaConversion('hero-avif')
+            ->fit(Fit::Contain, 600, 600)
+            ->format('avif');
     }
 }
