@@ -35,3 +35,11 @@ main {
         height: 100%;
     }
 }
+
+.delete-btn {
+    height: 2rem;
+    color: var(--color-danger-text);
+    border: 1px solid var(--color-text);
+    border-radius: 4px;
+    background-color: var(--color-danger);
+}

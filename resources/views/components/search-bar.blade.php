@@ -1,4 +1,4 @@
-<form class="search-form" action="/search">
+<form class="button-form" action="/search">
     <label class="search-box" for="search">
         <input
             id="search"

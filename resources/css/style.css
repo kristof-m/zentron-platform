@@ -12,6 +12,9 @@
     --color-footer-bg: hsl(218, 18%, 24%);
     --color-footer-text: hsl(210, 30%, 96%);
 
+    --color-danger: hsl(0, 100%, 56%);
+    --color-danger-text: hsl(0, 100%, 100%);
+
     color: var(--color-text);
     background-color: var(--color-bg);
 
@@ -471,7 +474,7 @@ footer .social-icon > img {
     }
 }
 
-.search-form {
+.button-form {
     display: contents;
 }
 

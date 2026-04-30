@@ -110,6 +110,14 @@
     </form>
 
     @if (! $create)
+        <form class="button-form" action="{{ route('product.delete', [$product]) }}" method="post">
+            <button class="delete-btn">
+                Delete
+            </button>
+        </form>
+    @endif
+
+    @if (! $create)
         <h2>Images</h2>
         @if ($product->hasMedia('images'))
             <div class="image-preview-grid" aria-label="Image URL previews">

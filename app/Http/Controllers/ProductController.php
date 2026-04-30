@@ -87,7 +87,7 @@ class ProductController extends Controller
                 File::types(['jpeg', 'png', 'avif', 'webp'])
             ],
         ]);
-        
+
         $validator->validate();
         $fileValidator->validate();
 
@@ -116,6 +116,14 @@ class ProductController extends Controller
         }
 
         return redirect('/product/' . $product->id);
+    }
+
+    public function delete(Product $product)
+    {
+        Gate::authorize('delete', $product);
+
+        $product->delete();
+        return redirect()->route('admin.products');
     }
 
     public function new(): View
