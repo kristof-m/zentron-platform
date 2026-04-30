@@ -1,0 +1,37 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.image-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.8rem;
+}
+
+.image-preview-card {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid var(--color-alt)
+}
+
+.image-preview {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color-bg);
+
+    & > img {
+        width: 100%;
+        height: 100%;
+    }
+}

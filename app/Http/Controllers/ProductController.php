@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\MediaCannotBeDeleted;
 
 class ProductController extends Controller
 {
@@ -143,5 +144,24 @@ class ProductController extends Controller
             'brands' => $brands,
             'colors' => $colors,
         ]);
+    }
+
+    public function removeImage(Product $product, Request $request)
+    {
+        Gate::authorize('update', $product);
+
+        $validated = $request->validate([
+            'id' => 'required|integer',
+        ]);
+
+        $id = $validated['id'];
+
+        try {
+            $product->deleteMedia($id);
+        } catch (MediaCannotBeDeleted $e) {
+            Log::error($e);
+        }
+
+        return redirect()->back();
     }
 }

@@ -5,6 +5,7 @@
     @vite('resources/css/style.css')
     @vite('resources/css/admin.css')
     @vite('resources/css/form.css')
+    @vite('resources/css/product-edit.css')
 </head>
 
 <body class="admin-page">
@@ -84,21 +85,29 @@
             @enderror
         </div>
 
-        @if ($product->hasMedia('images'))
-            <div class="image-preview-grid" aria-label="Image URL previews">
-                @foreach ($product->getMedia('images') as $image)
-                    <div class="image-preview-card">
-                        <img class="image-preview" src="{{ $image->getUrl() }}" alt="Product image preview"
-                             loading="lazy"/>
-                    </div>
-                @endforeach
-            </div>
-        @endif
-
         <button type="submit" class="register-btn">
             Save
         </button>
     </form>
+
+    <h2>Images</h2>
+    @if ($product->hasMedia('images'))
+        <div class="image-preview-grid" aria-label="Image URL previews">
+            @foreach ($product->getMedia('images') as $image)
+                <form class="image-preview-card" action="{{ route('product.removeImage', [$product->id]) }}"
+                      method="post">
+                    <input type="hidden" name="id" value="{{ $image->id }}"/>
+                    <button class="icon-button remove-image-btn">
+                        <img src="{{ Vite::asset('resources/icons/X.svg') }}" alt="Remove image">
+                    </button>
+                    <img class="image-preview" src="{{ $image->getUrl() }}" alt="Product image preview"
+                         loading="lazy"/>
+                </form>
+            @endforeach
+        </div>
+    @else
+        <p>No images found</p>
+    @endif
 </main>
 
 @include('components.footer')

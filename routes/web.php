@@ -31,6 +31,10 @@ Route::get('/product/{product}/edit', [ProductController::class, 'edit'])
 Route::post('/product/{product}/update', [ProductController::class, 'update'])
     ->name('product.update');
 
+Route::post('/product/{product}/removeImage', [ProductController::class, 'removeImage'])
+    ->can('update', 'product')
+    ->name('product.removeImage');
+
 Route::get('/product/{id}', [ProductController::class, 'show'])
     ->name('product');
 Route::get('/products', [ProductController::class, 'all']);
