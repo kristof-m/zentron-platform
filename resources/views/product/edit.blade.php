@@ -12,7 +12,14 @@
 
 @include('admin.header')
 
-<h1 class="page-title">{{ $create ? 'New product' : 'Editing '.$product->name }}</h1>
+@if ($create)
+    <h1 class="page-title">New product</h1>
+@else
+    <h1 class="page-title">
+        Editing <a href="{{ route('product', [$product]) }}">
+            {{ $product->name }}</a>
+    </h1>
+@endif
 
 @php
     $nameValue = old('name', $create ? '' : $product->name);
