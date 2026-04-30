@@ -72,7 +72,7 @@
             <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
-        <div class="field-row">
+        <div class="field-row file-upload">
             @if ($create)
                 <label for="image">Main image</label>
             @else
@@ -90,7 +90,7 @@
         </div>
 
         @if ($create)
-            <div class="field-row">
+            <div class="field-row file-upload">
                 <label for="image">Secondary image</label>
                 <input
                     id="image"
