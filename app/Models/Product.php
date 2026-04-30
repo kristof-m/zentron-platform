@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Vite;
 use Laravel\Scout\Searchable;
 use Spatie\Image\Enums\Fit;
@@ -78,11 +77,6 @@ class Product extends Model implements HasMedia
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);
-    }
-
-    public function mainImage(): HasOne
-    {
-        return $this->hasOne(ProductImage::class, 'product_id', 'main_image_id');
     }
 
     protected function casts(): array

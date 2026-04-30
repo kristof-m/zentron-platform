@@ -20,7 +20,7 @@ class BrandController extends Controller
 
         $query = $brand
             ->products()
-            ->with(['categories', 'mainImage']);
+            ->with(['categories']);
 
         $colors = $this->getColors($query);
         $query = $this->filterQuery($request, $query);

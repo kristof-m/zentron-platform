@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function show(string $id): View
     {
         $product = Product::with('categories')
-            ->with(['brand', 'mainImage'])
+            ->with(['brand'])
             ->findOrFail($id);
 
         $imageUrls = $product->getMedia('images');
@@ -39,14 +39,14 @@ class ProductController extends Controller
             'imageUrls' => $imageUrls,
             'otherProducts' => Product::limit(10)
                 ->whereNot('id', '=', $id)
-                ->with(['categories', 'mainImage'])
+                ->with(['categories'])
                 ->get()
         ]);
     }
 
     public function all(Request $request): View
     {
-        $query = Product::with(['categories', 'mainImage']);
+        $query = Product::with(['categories']);
 
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);
@@ -201,7 +201,7 @@ class ProductController extends Controller
     {
         Gate::authorize('create', Product::class);
 
-        $query = Product::with(['brand', 'categories', 'mainImage']);
+        $query = Product::with(['brand', 'categories']);
 
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);
