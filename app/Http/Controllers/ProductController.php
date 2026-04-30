@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\File;
 use Illuminate\View\View;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
@@ -66,17 +68,52 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         Gate::authorize('create', Product::class);
-        $validated = $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'description' => 'required|max:4095',
             'price' => 'required|numeric',
             'color' => 'nullable|string',
-            'brand_id' => 'nullable|exists:Brand,id',
-            'image' => 'required|file|image',
+            'brand_id' => 'nullable|exists:Brand,id'
         ]);
 
+        $fileValidator = Validator::make($request->files->all(), [
+            'image' => [
+                'required',
+                File::types(['jpeg', 'png', 'avif', 'webp'])
+            ],
+            'image2' => [
+                'required',
+                File::types(['jpeg', 'png', 'avif', 'webp'])
+            ],
+        ]);
+        
+        $validator->validate();
+        $fileValidator->validate();
+
+        if ($validator->fails() || $fileValidator->fails()) {
+            return redirect()->route('product.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $validated = $validator->validated();
+
         $product = Product::create($validated);
-        $image = $request->file('image');
+
+        try {
+            $product->addMediaFromRequest('image')
+                ->toMediaCollection('images');
+        } catch (FileDoesNotExist|FileIsTooBig $e) {
+            Log::error($e);
+        }
+
+        try {
+            $product->addMediaFromRequest('image2')
+                ->toMediaCollection('images');
+        } catch (FileDoesNotExist|FileIsTooBig $e) {
+            Log::error($e);
+        }
 
         return redirect('/product/' . $product->id);
     }
