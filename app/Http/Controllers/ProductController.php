@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Filters\ControllerWithProducts;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -65,6 +66,20 @@ class ProductController extends Controller
         ]);
     }
 
+    private function getCheckedCategories(Request $request): array
+    {
+        $prefix = 'category-';
+        $result = [];
+
+        foreach (Category::all()->select(['id']) as $category) {
+            if ($request->input($prefix . $category['id']) == '1') {
+                $result[] = $category['id'];
+            }
+        }
+
+        return $result;
+    }
+
     public function create(Request $request)
     {
         Gate::authorize('create', Product::class);
@@ -101,6 +116,9 @@ class ProductController extends Controller
 
         $product = Product::create($validated);
 
+        $categories = $this->getCheckedCategories($request);
+        $product->categories()->sync($categories);
+
         try {
             $product->addMediaFromRequest('image')
                 ->toMediaCollection('images');
@@ -129,10 +147,12 @@ class ProductController extends Controller
     public function new(): View
     {
         $brands = Brand::all();
+        $categories = Category::all();
 
         return view('product.edit', [
             'create' => true,
             'brands' => $brands,
+            'categories' => $categories,
         ]);
     }
 
@@ -158,17 +178,22 @@ class ProductController extends Controller
 
         $product->update($validated);
 
+        $categories = $this->getCheckedCategories($request);
+        $product->categories()->sync($categories);
+
         return redirect('/product/' . $product->id);
     }
 
     public function edit(Product $product): View
     {
         $brands = Brand::all();
+        $categories = Category::all();
 
         return view('product.edit', [
             'create' => false,
             'product' => $product->load('brand'),
             'brands' => $brands,
+            'categories' => $categories,
         ]);
     }
 

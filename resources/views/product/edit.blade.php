@@ -5,7 +5,9 @@
     @vite('resources/css/style.css')
     @vite('resources/css/admin.css')
     @vite('resources/css/form.css')
+    @vite('resources/css/product.css')
     @vite('resources/css/product-edit.css')
+    @vite('resources/js/edit-product-categories.ts')
 </head>
 
 <body class="admin-page">
@@ -110,6 +112,35 @@
                 @enderror
             </div>
         @endif
+
+        <section>
+            <h2>Categories</h2>
+            <div class="tags">
+                @if ($create)
+
+                    @foreach ($categories as $category)
+                        <button type="button" class="tag category-add">
+                            {{ $category->name }} <span class="symbol">❌</span>
+                            <input type="hidden" id="category-{{ $category->id }}"
+                                   name="category-{{ $category->id }}" value="0"/>
+                        </button>
+                    @endforeach
+
+                @else
+
+                    @foreach ($categories as $category)
+                        <button type="button" class="tag category-add">
+                            {{ $category->name }}
+                            <span class="symbol">{{ $product->isInCategory($category->id) ? '✅' : '❌' }}</span>
+                            <input type="hidden" id="category-{{ $category->id }}"
+                                   name="category-{{ $category->id }}"
+                                   value="{{ $product->isInCategory($category->id) ? '1' : '0' }}"/>
+                        </button>
+                    @endforeach
+
+                @endif
+            </div>
+        </section>
 
         <button type="submit" class="register-btn">
             Save

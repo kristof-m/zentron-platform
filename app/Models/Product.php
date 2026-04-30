@@ -70,6 +70,11 @@ class Product extends Model implements HasMedia
             "product_id", "category_id");
     }
 
+    public function isInCategory(int $categoryId): bool
+    {
+        return $this->categories->contains($categoryId);
+    }
+
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);
