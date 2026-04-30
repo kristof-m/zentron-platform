@@ -24,15 +24,11 @@ class ProductController extends Controller
 
         $imageUrls = $product->getMedia('images');
 
-        Log::info('product images', ['images' => $imageUrls]);
-
         if ($imageUrls->isEmpty()) {
             $imageUrls = collect([$product->fallbackImageUrl()]);
         } else {
             $imageUrls = $imageUrls->map(fn($image) => $image->getUrl('hero'));
         }
-
-        Log::info('product images', ['images' => $imageUrls]);
 
         return view('product', [
             'product' => $product,
