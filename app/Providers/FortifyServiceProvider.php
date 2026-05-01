@@ -13,9 +13,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Fortify;
@@ -76,6 +78,12 @@ class FortifyServiceProvider extends ServiceProvider
                 return null;
             }
 
+            $target = $request->input('redirect-to', '');
+            if ($target === 'admin-home' && ! $user->isAdmin()) {
+                throw ValidationException::withMessages([
+                    'email' => 'Only administrators can sign in from the admin page.',
+                ]);
+            }
 
             return $user;
         });
