@@ -35,9 +35,9 @@ main {
     height: 100%;
     display: block;
 
-    object-fit: cover;
+    object-fit: contain;
 
-    background-color: var(--color-alt);
+    background-color: var(--color-bg);
 }
 
 .image-controls {

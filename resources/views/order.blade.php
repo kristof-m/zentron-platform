@@ -113,6 +113,18 @@
             @endif
             </tbody>
         </table>
+
+        @if ($order->deliveryType)
+            <h2>Delivery</h2>
+            <table class="details-box">
+                <tbody>
+                <tr>
+                    <td>{{ $order->deliveryType->name }}</td>
+                    <td>{{ $order->deliveryType->price }} €</td>
+                </tr>
+                </tbody>
+            </table>
+        @endif
     @endif
 </main>
 

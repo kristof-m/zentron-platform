@@ -25,7 +25,16 @@ class CleanupExpiredOrders extends Command
             ->where('updated_at', '<', $cutoff)
             ->delete();
 
-        $this->info("Cleaned up {$deleted} expired orders older than {$lifetime} minutes.");
+        $this->info("Cleaned up {$deleted} anonymous orders older than {$lifetime} minutes.");
+
+        $deleted = Order::whereNotNull('user_id')
+            ->join('User', 'user_id', '=', 'User.id')
+            ->whereIn('status', [OrderStatus::InCart, OrderStatus::Confirmed])
+            ->where('Order.updated_at', '<', $cutoff)
+            ->whereColumn('Order.id', '!=', 'User.current_order_id')
+            ->delete();
+
+        $this->info("Cleaned up {$deleted} abandoned orders older than {$lifetime} minutes.");
 
         return 0;
     }

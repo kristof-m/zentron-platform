@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Filters\ControllerWithProducts;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\File;
 use Illuminate\View\View;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\MediaCannotBeDeleted;
 
 class ProductController extends Controller
 {
@@ -16,27 +23,30 @@ class ProductController extends Controller
     public function show(string $id): View
     {
         $product = Product::with('categories')
-            ->with(['brand', 'mainImage'])
+            ->with(['brand'])
             ->findOrFail($id);
 
-        $images = $product->images()->get();
-        if ($images->isEmpty()) {
-            $images = collect([$product->fallbackImageUrl()]);
+        $imageUrls = $product->getMedia('images');
+
+        if ($imageUrls->isEmpty()) {
+            $imageUrls = collect([$product->fallbackImageUrl()]);
+        } else {
+            $imageUrls = $imageUrls->map(fn($image) => $image->getUrl('hero'));
         }
 
         return view('product', [
             'product' => $product,
-            'images' => $images,
+            'imageUrls' => $imageUrls,
             'otherProducts' => Product::limit(10)
                 ->whereNot('id', '=', $id)
-                ->with(['categories', 'mainImage'])
+                ->with(['categories'])
                 ->get()
         ]);
     }
 
     public function all(Request $request): View
     {
-        $query = Product::with(['categories', 'mainImage']);
+        $query = Product::with(['categories']);
 
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);
@@ -56,31 +66,93 @@ class ProductController extends Controller
         ]);
     }
 
+    private function getCheckedCategories(Request $request): array
+    {
+        $prefix = 'category-';
+        $result = [];
+
+        foreach (Category::all()->select(['id']) as $category) {
+            if ($request->input($prefix . $category['id']) == '1') {
+                $result[] = $category['id'];
+            }
+        }
+
+        return $result;
+    }
+
     public function create(Request $request)
     {
         Gate::authorize('create', Product::class);
-        $validated = $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'description' => 'required|max:4095',
             'price' => 'required|numeric',
             'color' => 'nullable|string',
-            'brand_id' => 'nullable|exists:Brand,id',
-            'image_url_primary' => 'nullable|url|max:2048',
-            'image_url_secondary' => 'nullable|url|max:2048',
+            'brand_id' => 'nullable|exists:Brand,id'
         ]);
+
+        $fileValidator = Validator::make($request->files->all(), [
+            'image' => [
+                'required',
+                File::types(['jpeg', 'png', 'avif', 'webp'])
+            ],
+            'image2' => [
+                'required',
+                File::types(['jpeg', 'png', 'avif', 'webp'])
+            ],
+        ]);
+
+        $validator->validate();
+        $fileValidator->validate();
+
+        if ($validator->fails() || $fileValidator->fails()) {
+            return redirect()->route('product.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $validated = $validator->validated();
 
         $product = Product::create($validated);
 
+        $categories = $this->getCheckedCategories($request);
+        $product->categories()->sync($categories);
+
+        try {
+            $product->addMediaFromRequest('image')
+                ->toMediaCollection('images');
+        } catch (FileDoesNotExist|FileIsTooBig $e) {
+            Log::error($e);
+        }
+
+        try {
+            $product->addMediaFromRequest('image2')
+                ->toMediaCollection('images');
+        } catch (FileDoesNotExist|FileIsTooBig $e) {
+            Log::error($e);
+        }
+
         return redirect('/product/' . $product->id);
+    }
+
+    public function delete(Product $product)
+    {
+        Gate::authorize('delete', $product);
+
+        $product->delete();
+        return redirect()->route('admin.products');
     }
 
     public function new(): View
     {
         $brands = Brand::all();
+        $categories = Category::all();
 
         return view('product.edit', [
             'create' => true,
             'brands' => $brands,
+            'categories' => $categories,
         ]);
     }
 
@@ -93,11 +165,21 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'color' => 'nullable|string',
             'brand_id' => 'nullable|exists:Brand,id',
-            'image_url_primary' => 'nullable|url|max:2048',
-            'image_url_secondary' => 'nullable|url|max:2048',
         ]);
 
+        if ($request->file('image') !== null) {
+            try {
+                $product->addMediaFromRequest('image')
+                    ->toMediaCollection('images');
+            } catch (FileDoesNotExist|FileIsTooBig $e) {
+                Log::error($e);
+            }
+        }
+
         $product->update($validated);
+
+        $categories = $this->getCheckedCategories($request);
+        $product->categories()->sync($categories);
 
         return redirect('/product/' . $product->id);
     }
@@ -105,11 +187,13 @@ class ProductController extends Controller
     public function edit(Product $product): View
     {
         $brands = Brand::all();
+        $categories = Category::all();
 
         return view('product.edit', [
             'create' => false,
             'product' => $product->load('brand'),
             'brands' => $brands,
+            'categories' => $categories,
         ]);
     }
 
@@ -130,5 +214,24 @@ class ProductController extends Controller
             'brands' => $brands,
             'colors' => $colors,
         ]);
+    }
+
+    public function removeImage(Product $product, Request $request)
+    {
+        Gate::authorize('update', $product);
+
+        $validated = $request->validate([
+            'id' => 'required|integer',
+        ]);
+
+        $id = $validated['id'];
+
+        try {
+            $product->deleteMedia($id);
+        } catch (MediaCannotBeDeleted $e) {
+            Log::error($e);
+        }
+
+        return redirect()->back();
     }
 }

@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
         $query = $category
             ->products()
-            ->with(['categories', 'mainImage']);
+            ->with(['categories']);
 
         $brands = $this->getBrands($query);
         $colors = $this->getColors($query);

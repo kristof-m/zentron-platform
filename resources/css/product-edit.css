@@ -1,0 +1,81 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 35%;
+}
+
+@media (width <= 40rem) {
+    main {
+        width: 100%
+    }
+
+    .form {
+        width: 100%;
+    }
+}
+
+.image-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.8rem;
+}
+
+.image-preview-card {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid var(--color-alt)
+}
+
+.image-preview {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color-bg);
+
+    & > img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.delete-btn {
+    height: 2rem;
+    min-width: 25rem;
+    color: var(--color-danger-text);
+    border: 1px solid var(--color-text);
+    border-radius: 4px;
+    background-color: var(--color-danger);
+}
+
+@media (width <= 40rem) {
+    .delete-btn {
+        min-width: unset;
+    }
+}
+
+.file-upload {
+    max-width: 100%;
+    overflow: hidden;
+    min-width: 0;
+
+    & > input {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
+.tags {
+    flex-wrap: wrap;
+}

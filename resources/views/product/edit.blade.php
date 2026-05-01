@@ -5,13 +5,23 @@
     @vite('resources/css/style.css')
     @vite('resources/css/admin.css')
     @vite('resources/css/form.css')
+    @vite('resources/css/product.css')
+    @vite('resources/css/product-edit.css')
+    @vite('resources/js/edit-product-categories.ts')
 </head>
 
 <body class="admin-page">
 
 @include('admin.header')
 
-<h1 class="page-title">{{ $create ? 'New product' : 'Editing '.$product->name }}</h1>
+@if ($create)
+    <h1 class="page-title">New product</h1>
+@else
+    <h1 class="page-title">
+        Editing <a href="{{ route('product', [$product]) }}">
+            {{ $product->name }}</a>
+    </h1>
+@endif
 
 @php
     $nameValue = old('name', $create ? '' : $product->name);
@@ -19,19 +29,17 @@
     $colorValue = old('color', $create ? '' : $product->color);
     $descriptionValue = old('description', $create ? '' : $product->description);
     $brandValue = old('brand_id', $create ? '' : ($product->brand_id ?? ''));
-    $primaryImageUrl = old('image_url_primary', $create ? '' : ($product->image_url_primary ?? ''));
-    $secondaryImageUrl = old('image_url_secondary', $create ? '' : ($product->image_url_secondary ?? ''));
 @endphp
 
 <main>
     <form class="form" action="{{ $create ? route('product.create') : route('product.update', [$product]) }}"
-          method="post">
+          method="post" enctype="multipart/form-data">
         @csrf
         <div class="field-row">
             <label for="name">Name</label>
             <input id="name" name="name" value="{{ $nameValue }}" placeholder="Xbox Series X White"/>
             @error('name')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
         <div class="field-row">
@@ -39,7 +47,7 @@
             <input type="number" step=".01" id="price" name="price" value="{{ $priceValue }}"
                    placeholder="149.99"/>
             @error('price')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
         <div class="field-row">
@@ -47,7 +55,7 @@
             <input id="color" name="color" value="{{ $colorValue }}"
                    placeholder="White"/>
             @error('color')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
         <div class="field-row">
@@ -55,7 +63,7 @@
             <textarea id="desc" type="text" name="description"
                       placeholder="Enter description here...">{{ $descriptionValue }}</textarea>
             @error('description')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
         <div class="field-row">
@@ -70,57 +78,103 @@
                 @endforeach
             </select>
             @error('brand_id')
-                <p class="field-error">{{ $message }}</p>
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
-        <div class="field-row">
-            <label for="image-url-primary">Primary image URL</label>
+        <div class="field-row file-upload">
+            @if ($create)
+                <label for="image">Main image</label>
+            @else
+                <label for="image">Add image</label>
+            @endif
             <input
-                id="image-url-primary"
-                name="image_url_primary"
-                type="url"
-                value="{{ $primaryImageUrl }}"
-                placeholder="https://example.com/images/product-main.jpg"
+                id="image"
+                name="image"
+                type="file"
+                accept="image/png, image/jpeg, image/webp, image/avif"
             />
-            @error('image_url_primary')
-                <p class="field-error">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="field-row">
-            <label for="image-url-secondary">Secondary image URL</label>
-            <input
-                id="image-url-secondary"
-                name="image_url_secondary"
-                type="url"
-                value="{{ $secondaryImageUrl }}"
-                placeholder="https://example.com/images/product-secondary.jpg"
-            />
-            @error('image_url_secondary')
-                <p class="field-error">{{ $message }}</p>
+            @error('image')
+            <p class="field-error">{{ $message }}</p>
             @enderror
         </div>
 
-        @if($primaryImageUrl !== '' || $secondaryImageUrl !== '')
-            <div class="image-preview-grid" aria-label="Image URL previews">
-                @if($primaryImageUrl !== '')
-                    <figure class="image-preview-card">
-                        <img src="{{ $primaryImageUrl }}" alt="Primary image preview" loading="lazy"/>
-                        <figcaption>Primary preview</figcaption>
-                    </figure>
-                @endif
-                @if($secondaryImageUrl !== '')
-                    <figure class="image-preview-card">
-                        <img src="{{ $secondaryImageUrl }}" alt="Secondary image preview" loading="lazy"/>
-                        <figcaption>Secondary preview</figcaption>
-                    </figure>
-                @endif
+        @if ($create)
+            <div class="field-row file-upload">
+                <label for="image">Secondary image</label>
+                <input
+                    id="image"
+                    name="image2"
+                    type="file"
+                    accept="image/png, image/jpeg, image/webp, image/avif"
+                />
+                @error('image')
+                <p class="field-error">{{ $message }}</p>
+                @enderror
             </div>
         @endif
+
+        <section>
+            <h2>Categories</h2>
+            <div class="tags">
+                @if ($create)
+
+                    @foreach ($categories as $category)
+                        <button type="button" class="tag category-add">
+                            {{ $category->name }} <span class="symbol">❌</span>
+                            <input type="hidden" id="category-{{ $category->id }}"
+                                   name="category-{{ $category->id }}" value="0"/>
+                        </button>
+                    @endforeach
+
+                @else
+
+                    @foreach ($categories as $category)
+                        <button type="button" class="tag category-add">
+                            {{ $category->name }}
+                            <span class="symbol">{{ $product->isInCategory($category->id) ? '✅' : '❌' }}</span>
+                            <input type="hidden" id="category-{{ $category->id }}"
+                                   name="category-{{ $category->id }}"
+                                   value="{{ $product->isInCategory($category->id) ? '1' : '0' }}"/>
+                        </button>
+                    @endforeach
+
+                @endif
+            </div>
+        </section>
 
         <button type="submit" class="register-btn">
             Save
         </button>
     </form>
+
+    @if (! $create)
+        <form class="button-form" action="{{ route('product.delete', [$product]) }}" method="post">
+            <button class="delete-btn">
+                Delete
+            </button>
+        </form>
+    @endif
+
+    @if (! $create)
+        <h2>Images</h2>
+        @if ($product->hasMedia('images'))
+            <div class="image-preview-grid" aria-label="Image URL previews">
+                @foreach ($product->getMedia('images') as $image)
+                    <form class="image-preview-card" action="{{ route('product.removeImage', [$product->id]) }}"
+                          method="post">
+                        <input type="hidden" name="id" value="{{ $image->id }}"/>
+                        <button class="icon-button remove-image-btn">
+                            <img src="{{ Vite::asset('resources/icons/X.svg') }}" alt="Remove image">
+                        </button>
+                        <img class="image-preview" src="{{ $image->getUrl() }}" alt="Product image preview"
+                             loading="lazy"/>
+                    </form>
+                @endforeach
+            </div>
+        @else
+            <p>No images found</p>
+        @endif
+    @endif
 </main>
 
 @include('components.footer')

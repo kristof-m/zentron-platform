@@ -7,16 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Vite;
 use Laravel\Scout\Searchable;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 #[Table("Product")]
 #[Unguarded]
-class Product extends Model
+class Product extends Model implements HasMedia
 {
     use Searchable;
+    use InteractsWithMedia;
 
     static array $fallbackImageUrls;
 
@@ -42,9 +45,22 @@ class Product extends Model
         return self::$fallbackImageUrls[$this->id % (count(self::$fallbackImageUrls) - 1)];
     }
 
-    public function mainImageUrl(): string
+    public function previewUrl(): string
     {
-        return $this->mainImage?->url ?? $this->fallbackImageUrl();
+        $url = $this->getFirstMediaUrl('images', 'preview');
+        if ($url == '') {
+            return $this->fallbackImageUrl();
+        }
+        return $url;
+    }
+
+    public function previewUrlAvif(): string
+    {
+        $url = $this->getFirstMediaUrl('images', 'preview-avif');
+        if ($url == '') {
+            return $this->fallbackImageUrl();
+        }
+        return $url;
     }
 
     public function categories(): BelongsToMany
@@ -53,19 +69,14 @@ class Product extends Model
             "product_id", "category_id");
     }
 
+    public function isInCategory(int $categoryId): bool
+    {
+        return $this->categories->contains($categoryId);
+    }
+
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);
-    }
-
-    public function images(): HasMany
-    {
-        return $this->hasMany(ProductImage::class);
-    }
-
-    public function mainImage(): HasOne
-    {
-        return $this->hasOne(ProductImage::class, 'product_id', 'main_image_id');
     }
 
     protected function casts(): array
@@ -91,5 +102,27 @@ class Product extends Model
                 ->pluck('name')
                 ->implode(' '),
         ];
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
+
+        $this
+            ->addMediaConversion('preview-avif')
+            ->fit(Fit::Contain, 300, 300)
+            ->format('avif');
+
+        $this
+            ->addMediaConversion('hero')
+            ->fit(Fit::Contain, 600, 600);
+
+        $this
+            ->addMediaConversion('hero-avif')
+            ->fit(Fit::Contain, 600, 600)
+            ->format('avif');
     }
 }
