@@ -42,7 +42,7 @@ class Product extends Model implements HasMedia
 
     public function fallbackImageUrl(): string
     {
-        return self::$fallbackImageUrls[$this->id % (count(self::$fallbackImageUrls) - 1)];
+        return self::$fallbackImageUrls[$this->id % (count(self::$fallbackImageUrls))];
     }
 
     public function previewUrl(): string
