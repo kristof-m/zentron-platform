@@ -51,7 +51,10 @@
             <p>Partner and wholesale inquiries</p>
             <p>Kosice, KE - Online only storefront</p>
         </section>
-
-        <a href="/admin/login">Admin Tools</a>
+        @auth
+            @if(auth()->user()->role === \App\Enums\Role::Admin)
+                <a href="/admin/login">Admin Tools</a>
+            @endif
+        @endauth
     </section>
 </footer>
