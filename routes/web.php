@@ -13,8 +13,14 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $products = Product::limit(10)->with(['categories'])->get();
-    return view('index', ['products' => $products, 'random_product_id_deals' => Product::inRandomOrder()->first()->id, 'random_product_id_discounts' => Product::inRandomOrder()->first()->id]);
+    $products = Product::with('categories')->limit(10)->get();
+    $randomIds = Product::inRandomOrder()->limit(2)->pluck('id');
+
+    return view('index', [
+        'products' => $products,
+        'random_product_id_deals' => $randomIds[0] ?? null,
+        'random_product_id_discounts' => $randomIds[1] ?? null
+    ]);
 });
 
 Route::get('/product/new', [ProductController::class, 'new'])
