@@ -167,6 +167,15 @@ class ProductController extends Controller
             'brand_id' => 'nullable|exists:Brand,id',
         ]);
 
+        $fileValidator = Validator::make($request->files->all(), [
+            'image' => [
+                'nullable',
+                File::types(['jpeg', 'png', 'avif', 'webp'])
+            ],
+        ]);
+
+        $fileValidator->validate();
+
         if ($request->file('image') !== null) {
             try {
                 $product->addMediaFromRequest('image')
