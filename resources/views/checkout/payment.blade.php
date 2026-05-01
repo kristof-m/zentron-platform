@@ -15,6 +15,7 @@
 <x-checkout-stepper step="payment"/>
 
 <form class="checkout-main" action="/checkout/acceptPayment" method="post">
+    @csrf
     <section
         class="checkout-layout"
         aria-label="Checkout payment layout"

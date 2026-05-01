@@ -31,8 +31,8 @@
             aria-label="Admin login form"
         >
             <h2>Sign in to admin panel</h2>
-            @csrf
             <form class="register-form" action="/login" method="post">
+                @csrf
                 <input type="hidden" name="redirect-to" value="admin-home"/>
                 <label for="admin-email">E-mail</label>
                 <input
