@@ -15,13 +15,17 @@
 <main>
     <div class="main-product">
         <div class="main-image-wrap" data-product-image-cycle>
-            <img
-                id="main-image"
-                alt="{{ $product->name }}"
-                class="main-image"
-                src="{{ $product->previewUrl() }}"
-                data-image-urls="{{ $imageUrls->toJson() }}"
-            />
+            <picture id="main-image"
+                     data-image-urls="{{ $imageUrls->toJson() }}"
+                     data-avif-urls="{{ $avifUrls->toJson() }}"
+                     class="main-picture">
+                <source srcset="{{ $avifUrls[0] }}" type="image/avif"/>
+                <img
+                    class="main-image"
+                    alt="{{ $product->name }}"
+                    src="{{ $imageUrls[0] }}"
+                />
+            </picture>
             <div class="image-controls">
                 <button id="prev-image" class="icon-button image-arrow">
                     <img alt="Previous image" src="{{ Vite::asset('resources/icons/arrow_left.svg') }}"/>

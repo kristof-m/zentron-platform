@@ -1,16 +1,21 @@
-const mainImage = <HTMLImageElement>document.getElementById('main-image');
+const picture = <HTMLPictureElement>document.getElementById('main-image');
+const image = <HTMLImageElement>picture.getElementsByTagName('img')[0];
+const source = <HTMLSourceElement>picture.getElementsByTagName('source')[0];
+
 const prevBtn = <HTMLButtonElement>document.getElementById('prev-image');
 const nextBtn = <HTMLButtonElement>document.getElementById('next-image');
 const statusLabel = <HTMLParagraphElement>document.getElementById('image-status');
 
-if (mainImage && prevBtn && nextBtn && statusLabel) {
-    const imageUrls: string[] = JSON.parse(mainImage.dataset['imageUrls']);
+if (picture && image && source && prevBtn && nextBtn && statusLabel) {
+    const imageUrls: string[] = JSON.parse(picture.dataset['imageUrls']);
+    const avifUrls: string[] = JSON.parse(picture.dataset['avifUrls']);
     const imageCount = imageUrls.length;
 
     let currentIdx = 0;
 
     function swapImage() {
-        mainImage.src = imageUrls[currentIdx];
+        source.srcset = avifUrls[currentIdx];
+        image.src = imageUrls[currentIdx];
     }
 
     function renderStatus() {

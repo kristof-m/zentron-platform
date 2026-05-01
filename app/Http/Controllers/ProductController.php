@@ -26,16 +26,23 @@ class ProductController extends Controller
             ->with(['brand'])
             ->findOrFail($id);
 
-        $imageUrls = $product->getMedia('images');
+        $images = $product->getMedia('images');
+        $imageUrls = collect();
+        $avifUrls = collect();
 
-        if ($imageUrls->isEmpty()) {
-            $imageUrls = collect([$product->fallbackImageUrl()]);
+        if ($images->isEmpty()) {
+            $imageUrls = [$product->fallbackImageUrl()];
+            $avifUrls = [$product->fallbackImageUrl()];
         } else {
-            $imageUrls = $imageUrls->map(fn($image) => $image->getUrl('hero'));
+            foreach ($images as $image) {
+                $imageUrls[] = $image->getUrl('hero');
+                $avifUrls[] = $image->getUrl('hero-avif');
+            }
         }
 
         return view('product', [
             'product' => $product,
+            'avifUrls' => $avifUrls,
             'imageUrls' => $imageUrls,
             'otherProducts' => Product::limit(10)
                 ->whereNot('id', '=', $id)
