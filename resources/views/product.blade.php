@@ -56,8 +56,8 @@
                 <a class="black-link cart-btn" href="{{ route('product.edit', [$product]) }}">Edit this product</a>
             @endcan
 
-            <h2>Free delivery</h2>
-            <p>Expected Mar 18-20</p>
+            <h2>Delivery from {{ \App\Models\DeliveryType::min('price') }} €</h2>
+            <p>Expected {{ Date::now()->addDays(3)->format('M d') }} - {{ Date::now()->addDays(6)->format('M d') }}</p>
 
             <form class="cart-row" method="post" action="/cart/setAmount">
                 @csrf
