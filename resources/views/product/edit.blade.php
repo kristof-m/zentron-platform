@@ -149,6 +149,7 @@
 
     @if (! $create)
         <form class="button-form" action="{{ route('product.delete', [$product]) }}" method="post">
+            @csrf
             <button class="delete-btn">
                 Delete
             </button>
@@ -160,8 +161,8 @@
         @if ($product->hasMedia('images'))
             <div class="image-preview-grid" aria-label="Image URL previews">
                 @foreach ($product->getMedia('images') as $image)
-                    <form class="image-preview-card" action="{{ route('product.removeImage', [$product->id]) }}"
-                          method="post">
+                    <form class="image-preview-card" action="{{ route('product.removeImage', [$product->id]) }}" method="post">
+                          @csrf
                         <input type="hidden" name="id" value="{{ $image->id }}"/>
                         <button class="icon-button remove-image-btn">
                             <img src="{{ Vite::asset('resources/icons/X.svg') }}" alt="Remove image">
