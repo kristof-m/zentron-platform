@@ -31,8 +31,8 @@ class ProductController extends Controller
         $avifUrls = collect();
 
         if ($images->isEmpty()) {
-            $imageUrls = [$product->fallbackImageUrl()];
-            $avifUrls = [$product->fallbackImageUrl()];
+            $imageUrls[] = $product->fallbackImageUrl();
+            $avifUrls[] = $product->fallbackImageUrl();
         } else {
             foreach ($images as $image) {
                 $imageUrls[] = $image->getUrl('hero');
