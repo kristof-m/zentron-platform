@@ -83,17 +83,18 @@
         </div>
         <div class="field-row file-upload">
             @if ($create)
-                <label for="image">Main image</label>
+                <label for="images">Main image</label>
             @else
-                <label for="image">Add image</label>
+                <label for="images">Add images</label>
             @endif
             <input
-                id="image"
-                name="image"
+                id="images"
+                name="images[]"
                 type="file"
                 accept="image/png, image/jpeg, image/webp, image/avif"
+                multiple
             />
-            @error('image')
+            @error('images.*')
             <p class="field-error">{{ $message }}</p>
             @enderror
         </div>

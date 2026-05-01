@@ -168,7 +168,7 @@ class ProductController extends Controller
         ]);
 
         $fileValidator = Validator::make($request->files->all(), [
-            'image' => [
+            'images.*' => [
                 'nullable',
                 File::types(['jpeg', 'png', 'avif', 'webp'])
             ],
@@ -176,12 +176,15 @@ class ProductController extends Controller
 
         $fileValidator->validate();
 
-        if ($request->file('image') !== null) {
-            try {
-                $product->addMediaFromRequest('image')
-                    ->toMediaCollection('images');
-            } catch (FileDoesNotExist|FileIsTooBig $e) {
-                Log::error($e);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                if ($image !== null) {
+                    try {
+                        $product->addMedia($image)->toMediaCollection('images');
+                    } catch (FileDoesNotExist|FileIsTooBig $e) {
+                        Log::error($e);
+                    }
+                }
             }
         }
 
