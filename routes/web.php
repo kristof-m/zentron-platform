@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $products = Product::limit(10)->with(['categories'])->get();
-    return view('index', ['products' => $products]);
+    return view('index', ['products' => $products, 'random_product_id' => Product::inRandomOrder()->first()->id]);
 });
 
 Route::get('/product/new', [ProductController::class, 'new'])

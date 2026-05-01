@@ -10,7 +10,7 @@
 @include('components.header')
 
 <article class="deals-card" aria-label="Featured promotions">
-    <a class="deal-tile" href="#">
+    <a class="deal-tile" href="/product/{{ $random_product_id }}">
         <img
             alt="A set of colorful lava lamps on a shelf"
             class="deal-image"
