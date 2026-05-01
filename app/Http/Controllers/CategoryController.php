@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Filters\ControllerWithProducts;
+use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -37,11 +39,49 @@ class CategoryController extends Controller
         ]);
     }
 
-// 'All' pagination causes type error
     public function all(?int $pageNumber = 1): View
     {
         return view('categories', [
             'categories' => Category::all()
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        Gate::authorize('create', Category::class);
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $category = Category::create($validated);
+
+        return redirect(route('category.show', [$category]));
+    }
+
+    public function new(): View
+    {
+        return view('category.edit', [
+            'create' => true,
+        ]);
+    }
+
+    public function update(Category $category, Request $request)
+    {
+        Gate::authorize('update', $category);
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $category->update($validated);
+
+        return redirect(route('category.show', [$category]));
+    }
+
+    public function edit(Category $category): View
+    {
+        return view('category.edit', [
+            'create' => false,
+            'category' => $category,
         ]);
     }
 }

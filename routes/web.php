@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -48,7 +49,22 @@ Route::get('/product/{id}', [ProductController::class, 'show'])
     ->name('product');
 Route::get('/products', [ProductController::class, 'all']);
 
-Route::get('/category/{id}', [CategoryController::class, 'show']);
+Route::get('/category/new', [CategoryController::class, 'new'])
+    ->can('create', Category::class)
+    ->name('category.new');
+
+Route::post('/category/create', [CategoryController::class, 'create'])
+    ->name('category.create');
+
+Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])
+    ->can('update', 'category')
+    ->name('category.edit');
+
+Route::post('/category/{category}/update', [CategoryController::class, 'update'])
+    ->name('category.update');
+
+Route::get('/category/{id}', [CategoryController::class, 'show'])
+    ->name('category.show');
 Route::get('/categories', [CategoryController::class, 'all']);
 
 

@@ -17,6 +17,7 @@
     <p>You are an admin!</p>
     <a class="menu-btn" href="{{ route('admin.products') }}">Manage Products</a>
     <a class="menu-btn" href="{{ route('product.new') }}">Add new product</a>
+    <a class="menu-btn" href="{{ route('category.new') }}">Add new category</a>
     <a class="menu-btn" href="{{ route('brand.new') }}">Add new brand</a>
     <form action="/logout" method="post">
         @csrf
