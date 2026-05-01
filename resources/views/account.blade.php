@@ -15,6 +15,11 @@
     <a href="{{ route('orders') }}" class="menu-btn">
         My orders
     </a>
+    @if ($user->isAdmin())
+        <a href="{{ route('admin.home') }}" class="menu-btn">
+            Admin tools
+        </a>
+    @endif
     <form action="/logout" method="post">
         @csrf
         <button type="submit" class="menu-btn">
