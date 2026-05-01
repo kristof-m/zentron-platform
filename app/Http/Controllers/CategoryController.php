@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Filters\ControllerWithProducts;
 use App\Models\Category;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
