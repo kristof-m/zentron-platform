@@ -10,8 +10,6 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-
-
     public function show(Request $request): View
     {
         $order = Order::getCurrentOrder($request);

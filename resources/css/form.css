@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    min-width: 20rem;
+    min-width: 25rem;
 
     & > .field-row {
         display: flex;
@@ -25,33 +25,6 @@
     margin: 0;
     color: hsl(1, 62%, 45%);
     font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.image-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-    gap: 0.8rem;
-}
-
-.image-preview-card {
-    margin: 0;
-    border: 1px solid var(--color-alt);
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.image-preview-card > img {
-    width: 100%;
-    height: 8rem;
-    object-fit: cover;
-    background-color: var(--color-alt);
-}
-
-.image-preview-card > figcaption {
-    font-size: 0.8rem;
     font-weight: 600;
 }
 

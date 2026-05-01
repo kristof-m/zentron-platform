@@ -120,29 +120,22 @@
                     />
 
                     <fieldset class="delivery-methods">
-                        <legend>Delivery method</legend>
+                        <legend>Delivery</legend>
 
-                        <label class="delivery-option">
-                            <input
-                                type="radio"
-                                name="delivery-method"
-                                checked
-                            />
-                            <span>Home courier (2-3 business days)</span>
-                            <span>6 EUR</span>
-                        </label>
-
-                        <label class="delivery-option">
-                            <input type="radio" name="delivery-method"/>
-                            <span>Pickup point (next day)</span>
-                            <span>3 EUR</span>
-                        </label>
-
-                        <label class="delivery-option">
-                            <input type="radio" name="delivery-method"/>
-                            <span>Store pickup</span>
-                            <span>0 EUR</span>
-                        </label>
+                        @foreach ($deliveryMethods as $option)
+                            <label class="delivery-option">
+                                <input
+                                    type="radio"
+                                    name="delivery-method"
+                                    value="{{ $option->id }}"
+                                    @if ($loop->index == 0)
+                                        checked
+                                    @endif
+                                />
+                                <span>{{ $option->name }}</span>
+                                <span>{{ $option->price }} €</span>
+                            </label>
+                        @endforeach
                     </fieldset>
 
                     <div class="checkbox-row">

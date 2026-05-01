@@ -15,13 +15,13 @@
         @foreach($products as $product)
             <article class="cart-item">
                 <div class="item-display">
-                    <img
-                        src="{{ $product->imageUrl() }}"
-                        alt="{{ $product->name }}"
-                        width="512"
-                        height="512"
-                        class="item-image"
-                    />
+                    <picture class="item-image">
+                        <source srcset="{{ $product->previewUrlAvif() }}" type="image/avif"/>
+                        <img
+                            src="{{ $product->previewUrl() }}"
+                            alt="{{ $product->name }}"
+                        />
+                    </picture>
                     <a class="black-link item-name" href="/product/{{ $product->id }}">
                         <h2>{{ $product->name }}</h2>
                     </a>

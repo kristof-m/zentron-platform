@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\OrderStatus;
+use App\Models\DeliveryType;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -12,13 +13,23 @@ class CheckoutController extends Controller
     public function show(Request $request): View
     {
         $order = Order::getCurrentOrder($request);
-        return view('checkout', ['order' => $order, 'isReview' => false]);
+        $deliveryMethods = DeliveryType::all();
+        return view('checkout', [
+            'order' => $order,
+            'isReview' => false,
+            'deliveryMethods' => $deliveryMethods
+        ]);
     }
 
     public function review(Request $request): View
     {
         $order = Order::getCurrentOrder($request);
-        return view('checkout', ['order' => $order, 'isReview' => true]);
+        $deliveryMethods = DeliveryType::all();
+        return view('checkout', [
+            'order' => $order,
+            'isReview' => true,
+            'deliveryMethods' => $deliveryMethods
+        ]);
     }
 
     public function payment(Request $request): View
@@ -72,6 +83,8 @@ class CheckoutController extends Controller
 
             'email' => 'required|string',
             'phone-number' => 'nullable|string',
+
+            'delivery-method' => 'required|integer|exists:DeliveryType,id',
         ]);
 
         $order->contact_name = $validated['name'];
@@ -83,6 +96,8 @@ class CheckoutController extends Controller
         $order->zip = $validated['zip'];
         $order->city = $validated['city'];
         $order->country = $validated['country'];
+
+        $order->delivery_type_id = $validated['delivery-method'];
 
         $order->save();
 
