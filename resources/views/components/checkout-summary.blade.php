@@ -12,7 +12,7 @@
         <span>Total:</span><span>{{ $total }} €</span>
     </p>
 
-    <button class="checkout-link">
+    <button type="submit" class="checkout-link">
         {{ $forwardText }}
     </button>
 
