@@ -69,23 +69,10 @@ class CheckoutController extends Controller
         return redirect(route('checkout.complete'));
     }
 
-    public function setDetails(Request $request)
+    public function setDetails(\App\Http\Requests\UpdateCheckoutDetailsRequest $request)
     {
         $order = Order::getCurrentOrder($request);
-        $validated = $request->validate([
-            'name' => 'required|string',
-
-            'address-1' => 'required|string',
-            'address-2' => 'nullable|string',
-            'zip' => 'required|string',
-            'city' => 'required|string',
-            'country' => 'required|string',
-
-            'email' => 'required|string',
-            'phone-number' => 'nullable|string',
-
-            'delivery-method' => 'required|integer|exists:DeliveryType,id',
-        ]);
+        $validated = $request->validated();
 
         $order->contact_name = $validated['name'];
         $order->contact_phone = $validated['phone-number'];

@@ -88,39 +88,9 @@ class ProductController extends Controller
         return $result;
     }
 
-    public function create(Request $request)
+    public function create(\App\Http\Requests\StoreProductRequest $request)
     {
-        Gate::authorize('create', Product::class);
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'description' => 'required|max:4095',
-            'price' => 'required|numeric',
-            'color' => 'nullable|string',
-            'brand_id' => 'nullable|exists:Brand,id'
-        ]);
-
-        $fileValidator = Validator::make($request->files->all(), [
-            'image' => [
-                'required',
-                File::types(['jpeg', 'png', 'avif', 'webp'])
-            ],
-            'image2' => [
-                'required',
-                File::types(['jpeg', 'png', 'avif', 'webp'])
-            ],
-        ]);
-
-        $validator->validate();
-        $fileValidator->validate();
-
-        if ($validator->fails() || $fileValidator->fails()) {
-            return redirect()->route('product.create')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $validated = $validator->validated();
+        $validated = $request->safe()->except(['image', 'image2']);
 
         $product = Product::create($validated);
 
@@ -164,25 +134,9 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Product $product, Request $request)
+    public function update(Product $product, \App\Http\Requests\UpdateProductRequest $request)
     {
-        Gate::authorize('update', $product);
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'required|max:4095',
-            'price' => 'required|numeric',
-            'color' => 'nullable|string',
-            'brand_id' => 'nullable|exists:Brand,id',
-        ]);
-
-        $fileValidator = Validator::make($request->files->all(), [
-            'images.*' => [
-                'nullable',
-                File::types(['jpeg', 'png', 'avif', 'webp'])
-            ],
-        ]);
-
-        $fileValidator->validate();
+        $validated = $request->safe()->except(['images']);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
