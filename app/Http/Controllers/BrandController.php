@@ -12,6 +12,7 @@ use Illuminate\View\View;
 class BrandController extends Controller
 {
     use ControllerWithProducts;
+    public const PRODUCTS_PER_PAGE = 10;
 
     public function show(Request $request, string $id, ?int $pageNumber = 1): View
     {
@@ -31,7 +32,7 @@ class BrandController extends Controller
         return view('product-list', [
             'heading' => $brand->name,
             'pageNumber' => $pageNumber,
-            'products' => $query->paginate(10)->withQueryString(),
+            'products' => $query->paginate(self::PRODUCTS_PER_PAGE)->withQueryString(),
             'hiddenFields' => ['brand'],
             'colors' => $colors,
             'minPrice' => $minPrice,
