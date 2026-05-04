@@ -160,6 +160,11 @@ footer .social-icon > img {
     &:focus {
         text-decoration: underline;
     }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-text);
+        outline-offset: 2px;
+    }
 }
 
 .products {
@@ -480,6 +485,11 @@ footer .social-icon > img {
 
 .cart-btn {
     cursor: pointer;
+
+    &:focus-visible {
+        outline: 2px solid var(--color-text);
+        outline-offset: 2px;
+    }
 }
 
 .cart-btn:disabled {
