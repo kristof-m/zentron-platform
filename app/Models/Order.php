@@ -88,6 +88,13 @@ class Order extends Model
         return $this->belongsTo(DeliveryType::class);
     }
 
+    public function totalPrice(): float
+    {
+        $this->load('deliveryType');
+        return $this->total_amount
+        + $this->deliveryType?->price ?? 0;
+    }
+
     /**
      * Get the attributes that should be cast.
      *

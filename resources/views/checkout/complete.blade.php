@@ -3,7 +3,7 @@
 <head>
     <x-meta-tags title="checkout complete"/>
     @vite('resources/css/style.css')
-    @vite('resources/css/form.css')
+    @vite('resources/css/menu.css')
     @vite('resources/css/checkout.css')
 </head>
 
@@ -11,12 +11,15 @@
 
 @include('components.header')
 
-<main class="checkout-main">
-    <h1>Order complete</h1>
-
-    <a class="checkout-link" href="/">Go home</a>
-    <a class="checkout-link" href="/orders">View orders</a>
+<main class="main">
+    <h1>Order complete!</h1>
+    <a class="menu-btn" href="/">Go home</a>
+    <a class="menu-btn" href="/orders">View orders</a>
 </main>
+
+@include('components.footer')
+
+@include('components.mobile-nav')
 
 </body>
 </html>

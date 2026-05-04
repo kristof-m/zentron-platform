@@ -15,13 +15,17 @@
 <main>
     <div class="main-product">
         <div class="main-image-wrap" data-product-image-cycle>
-            <img
-                id="main-image"
-                alt="{{ $product->name }}"
-                class="main-image"
-                src="{{ $product->previewUrl() }}"
-                data-image-urls="{{ $imageUrls->toJson() }}"
-            />
+            <picture id="main-image"
+                     data-image-urls="{{ $imageUrls->toJson() }}"
+                     data-avif-urls="{{ $avifUrls->toJson() }}"
+                     class="main-picture">
+                <source srcset="{{ $avifUrls[0] }}" type="image/avif"/>
+                <img
+                    class="main-image"
+                    alt="{{ $product->name }}"
+                    src="{{ $imageUrls[0] }}"
+                />
+            </picture>
             <div class="image-controls">
                 <button id="prev-image" class="icon-button image-arrow">
                     <img alt="Previous image" src="{{ Vite::asset('resources/icons/arrow_left.svg') }}"/>
@@ -56,8 +60,8 @@
                 <a class="black-link cart-btn" href="{{ route('product.edit', [$product]) }}">Edit this product</a>
             @endcan
 
-            <h2>Free delivery</h2>
-            <p>Expected Mar 18-20</p>
+            <h2>Delivery from {{ \App\Models\DeliveryType::min('price') }} €</h2>
+            <p>Expected {{ Date::now()->addDays(3)->format('M d') }} - {{ Date::now()->addDays(6)->format('M d') }}</p>
 
             <form class="cart-row" method="post" action="/cart/setAmount">
                 @csrf

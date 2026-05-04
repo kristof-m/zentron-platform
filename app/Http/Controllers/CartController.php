@@ -22,10 +22,14 @@ class CartController extends Controller
             $entries[$product->id] = $product->pivot->amount;
         }
 
+        $deliveryFee = $order->deliveryType?->price;
+
         return view('cart', [
+            'order' => $order,
             'products' => $products,
             'amounts' => $entries,
-            'totalPrice' => $order->total_amount,
+            'totalPrice' => $order->totalPrice(),
+            'deliveryFee' => $deliveryFee,
         ]);
     }
 

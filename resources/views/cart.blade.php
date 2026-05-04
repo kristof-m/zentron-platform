@@ -77,15 +77,17 @@
     <div class="payment-col">
         <p class="price-row">
             <span>Price:</span>
-            <span>{{ $totalPrice }} €</span>
+            <span>{{ $order->total_amount }} €</span>
         </p>
-        <p class="price-row">
-            <span>Delivery fee:</span>
-            <span>4.99 €</span>
-        </p>
+        @if ($deliveryFee)
+            <p class="price-row">
+                <span>Delivery fee:</span>
+                <span>{{ $deliveryFee }}</span>
+            </p>
+        @endif
         <p class="price-row total-price">
             <span>Total:</span>
-            <span>{{ $totalPrice + 4.99 }} €</span>
+            <span>{{ $totalPrice }} €</span>
         </p>
         <div class="spacer" aria-hidden="true"></div>
         @if($products->isEmpty())
