@@ -45,7 +45,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request): \Illuminate\Http\RedirectResponse
     {
         Gate::authorize('create', Category::class);
         $validated = $request->validate([
@@ -64,7 +64,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function update(Category $category, Request $request)
+    public function update(Category $category, Request $request): \Illuminate\Http\RedirectResponse
     {
         Gate::authorize('update', $category);
         $validated = $request->validate([

@@ -47,7 +47,7 @@ class BrandController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request): \Illuminate\Http\RedirectResponse
     {
         Gate::authorize('create', Brand::class);
         $validated = $request->validate([
@@ -66,7 +66,7 @@ class BrandController extends Controller
         ]);
     }
 
-    public function update(Brand $brand, Request $request)
+    public function update(Brand $brand, Request $request): \Illuminate\Http\RedirectResponse
     {
         Gate::authorize('update', $brand);
         $validated = $request->validate([

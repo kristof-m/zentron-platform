@@ -86,7 +86,7 @@ class ProductController extends Controller
         return $result;
     }
 
-    public function create(\App\Http\Requests\StoreProductRequest $request)
+    public function create(\App\Http\Requests\StoreProductRequest $request): \Illuminate\Http\RedirectResponse
     {
         $validated = $request->safe()->except(['image', 'image2']);
 
@@ -112,7 +112,7 @@ class ProductController extends Controller
         return redirect('/product/' . $product->id);
     }
 
-    public function delete(Product $product)
+    public function delete(Product $product): \Illuminate\Http\RedirectResponse
     {
         Gate::authorize('delete', $product);
 
@@ -132,7 +132,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Product $product, \App\Http\Requests\UpdateProductRequest $request)
+    public function update(Product $product, \App\Http\Requests\UpdateProductRequest $request): \Illuminate\Http\RedirectResponse
     {
         $validated = $request->safe()->except(['images']);
 
@@ -188,7 +188,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function removeImage(Product $product, Request $request)
+    public function removeImage(Product $product, Request $request): \Illuminate\Http\RedirectResponse
     {
         Gate::authorize('update', $product);
 

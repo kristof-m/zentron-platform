@@ -55,7 +55,7 @@ class CheckoutController extends Controller
         return view('checkout.complete', ['order' => $order]);
     }
 
-    public function confirm(Request $request)
+    public function confirm(Request $request): \Illuminate\Http\RedirectResponse
     {
         $order = Order::getCurrentOrder($request);
         $order->status = OrderStatus::Confirmed;
@@ -64,7 +64,7 @@ class CheckoutController extends Controller
         return redirect(route('checkout.payment'));
     }
 
-    public function acceptPayment(Request $request)
+    public function acceptPayment(Request $request): \Illuminate\Http\RedirectResponse
     {
         $order = Order::getCurrentOrder($request);
         $order->status = OrderStatus::Paid;
@@ -80,7 +80,7 @@ class CheckoutController extends Controller
         return redirect(route('checkout.complete'));
     }
 
-    public function setDetails(\App\Http\Requests\UpdateCheckoutDetailsRequest $request)
+    public function setDetails(\App\Http\Requests\UpdateCheckoutDetailsRequest $request): \Illuminate\Http\RedirectResponse
     {
         $order = Order::getCurrentOrder($request);
         $validated = $request->validated();

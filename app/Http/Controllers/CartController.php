@@ -33,7 +33,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function setAmount(Request $request)
+    public function setAmount(Request $request): \Illuminate\Http\RedirectResponse
     {
         $validated = $request->validate([
             'id' => 'required|integer|exists:Product,id',
@@ -54,7 +54,7 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function remove(Request $request)
+    public function remove(Request $request): \Illuminate\Http\RedirectResponse
     {
         $validated = $request->validate([
             'id' => 'required|integer|exists:Product,id',
