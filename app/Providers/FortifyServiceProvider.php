@@ -33,30 +33,6 @@ class FortifyServiceProvider extends ServiceProvider
             /* @var $request Request */
             public function toResponse($request): RedirectResponse
             {
-                /* @var $orderId ?int */
-                $orderId = session()->get('orderId');
-
-                if ($orderId) {
-                    $guestOrder = Order::find($orderId);
-                    if ($guestOrder && $guestOrder->user_id == null) {
-                        // user has anonymous order in progress
-                        // merge it with their current order
-                        $guestOrder->user_id = Auth::id();
-
-                        $user = Auth::user();
-                        $currentOrder = $user->currentOrder;
-                        if ($currentOrder) {
-                            // merge guest order with user's current
-                            $currentOrder->mergeOrder($guestOrder);
-                            $currentOrder->save();
-                            $guestOrder->delete();
-                        } else {
-                            // user has no current order, use the new one
-                            $user->current_order_id = $orderId;
-                        }
-                    }
-                }
-
                 $target = $request->input('redirect-to', '');
                 if ($target == 'admin-home' && Auth::user()->isAdmin()) {
                     return redirect()->route('admin.home');
