@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Filters\ControllerWithProducts;
-use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -12,7 +11,7 @@ use Illuminate\View\View;
 class CategoryController extends Controller
 {
     use ControllerWithProducts;
-
+    public const PRODUCTS_PER_PAGE = 10;
     public function show(Request $request, string $id): View
     {
         $category = Category::findOrFail($id);
@@ -30,7 +29,7 @@ class CategoryController extends Controller
 
         return view('product-list', [
             'heading' => $category->name,
-            'products' => $query->paginate(10)->withQueryString(),
+            'products' => $query->paginate(self::PRODUCTS_PER_PAGE)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
