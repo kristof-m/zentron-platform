@@ -19,6 +19,7 @@ use Spatie\MediaLibrary\MediaCollections\Exceptions\MediaCannotBeDeleted;
 class ProductController extends Controller
 {
     use ControllerWithProducts;
+    const PRODUCTS_PER_PAGE = 10;
 
     public function show(string $id): View
     {
@@ -44,7 +45,7 @@ class ProductController extends Controller
             'product' => $product,
             'avifUrls' => $avifUrls,
             'imageUrls' => $imageUrls,
-            'otherProducts' => Product::limit(10)
+            'otherProducts' => Product::limit(self::PRODUCTS_PER_PAGE)
                 ->whereNot('id', '=', $id)
                 ->with(['categories'])
                 ->get()
@@ -64,7 +65,7 @@ class ProductController extends Controller
 
         return view('product-list', [
             'heading' => 'All Products',
-            'products' => $query->paginate(10)->withQueryString(),
+            'products' => $query->paginate(self::PRODUCTS_PER_PAGE)->withQueryString(),
             'hiddenFields' => [],
             'brands' => $brands,
             'colors' => $colors,
