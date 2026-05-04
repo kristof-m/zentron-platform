@@ -35,7 +35,18 @@ class CheckoutController extends Controller
     public function payment(Request $request): View
     {
         $order = Order::getCurrentOrder($request);
-        return view('checkout.payment', ['order' => $order]);
+        $paymentMethods = [
+            'google' => 'Google Pay',
+            'apple' => 'Apple Pay',
+            'card' => 'Credit/Debit Card',
+            'bank' => 'Bank transfer',
+        ];
+
+        return view('checkout.payment', [
+            'order' => $order, 
+            'paymentMethods' => $paymentMethods,
+            'selectedPayment' => 'card',
+        ]);
     }
 
     public function complete(Request $request): View

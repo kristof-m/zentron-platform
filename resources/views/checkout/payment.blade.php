@@ -32,26 +32,17 @@
                     aria-label="Payment method selector"
                     disabled
                 >
-                    <label class="payment-option">
-                        <input type="radio" name="payment-method"/>
-                        <span>Google Pay</span>
-                    </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment-method"/>
-                        <span>Apple Pay</span>
-                    </label>
-                    <label class="payment-option">
-                        <input
-                            type="radio"
-                            name="payment-method"
-                            checked
-                        />
-                        <span>Credit/Debit Card</span>
-                    </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment-method"/>
-                        <span>Bank transfer</span>
-                    </label>
+                    @foreach ($paymentMethods as $id => $name)
+                        <label class="payment-option">
+                            <input
+                                type="radio"
+                                name="payment-method"
+                                value="{{ $id }}"
+                                {{ ($id === $selectedPayment) ? 'checked' : '' }}
+                            />
+                            <span>{{ $name }}</span>
+                        </label>
+                    @endforeach
                 </fieldset>
 
                 <label for="card-no">Card No:</label>
